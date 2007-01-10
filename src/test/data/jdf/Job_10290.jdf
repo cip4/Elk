@@ -1,0 +1,559 @@
+<?xml version="1.0" encoding="utf-8"?>
+<JDF Type="Product" ProjectID="" ICSVersions="Base_L1-1.0 MISBC_L2-1.0 MISPRE_L1-1.0 CPS_L1-1.0" xmlns="http://www.CIP4.org/JDFSchema_1_1" ID="TharJob_10290" Status="Ready" CommentURL="http://10.48.193.82/JDF/JDF/CommentURLSite/commenturl_thardata25.asp?jobid=465&amp;jobno=10290" JobPartID="465" Version="1.2" DescriptiveName="JDF: ICS Test  HEIDELBERG" JobID="10290" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" MaxVersion="1.2">
+  <ResourcePool>
+    <DeliveryIntent ID="THAR_DELIVERYINTENT_1" Status="Available" DescriptiveName="Delivery for Job 10290" Class="Intent">
+      <DropIntent>
+        <Contact ContactTypes="Customer">
+          <Company OrganizationName="Tharstern Ltd" />
+          <Person FamilyName="Smith" FirstName="Fred" AdditionalNames="">
+            <ComChannel ChannelType="Phone" Locator="+44 1282 654 321" />
+            <ComChannel ChannelType="Email" Locator="fred.smith@tharstern.com" />
+          </Person>
+        </Contact>
+        <DropItemIntent Amount="10000">
+          <ComponentRef rRef="THAR_FINALPRODUCT_1" />
+        </DropItemIntent>
+      </DropIntent>
+    </DeliveryIntent>
+    <Component ComponentType="PartialProduct Sheet" ID="THAR_PRODUCT_1" Status="Unavailable" ProductType="Cover" DescriptiveName="Product Output for Cover" Class="Quantity" />
+    <Component ComponentType="PartialProduct Sheet" ID="THAR_PRODUCT_2" Status="Unavailable" ProductType="Text" DescriptiveName="Product Output for Text" Class="Quantity" />
+    <BindingIntent Status="Available" ID="THAR_BINDINGINTENT_1" BindingOrder="Collecting" Class="Intent">
+      <BindingType DataType="EnumerationSpan" Actual="SaddleStitch" />
+    </BindingIntent>
+    <Component ComponentType="FinalProduct" ID="THAR_FINALPRODUCT_1" Status="Unavailable" ProductType="BROCHURE" DescriptiveName="Final Product" Class="Quantity" />
+  </ResourcePool>
+  <ResourceLinkPool>
+    <DeliveryIntentLink rRef="THAR_DELIVERYINTENT_1" Usage="Input" />
+    <ComponentLink Usage="Input" rRef="THAR_PRODUCT_1" />
+    <ComponentLink Usage="Input" rRef="THAR_PRODUCT_2" />
+    <BindingIntentLink rRef="THAR_BINDINGINTENT_1" Usage="Input" />
+    <ComponentLink Usage="Output" rRef="THAR_FINALPRODUCT_1" Amount="10000.0" />
+  </ResourceLinkPool>
+  <Comment Name="JobDescription">Job Title: JDF: ICS Test
+Size: Cover: A4 - Text: A4 16pp
+Material: MACO SATIN 200 gsm
+Origination: From artwork supplied
+Printing: 4/4 CYMK with sealer
+Finishing: Fold Stitch Trim
+Delivery: Mainland UK
+Notes: Some notes
+and more notes
+</Comment>
+  <CustomerInfo CustomerID="THA001" CustomerOrderID="" CustomerJobName="JDF: ICS Test  HEIDELBERG">
+    <Contact ContactTypes="Customer">
+      <Company OrganizationName="Tharstern Ltd" />
+      <Address Region="Lancs" PostalCode="BB8 9PD" City="COLNE" Street="RB House&#xD;&#xA;Greenfield Road" Country="United Kingdom" />
+      <Person FamilyName="Smith" FirstName="Fred" AdditionalNames="" />
+      <ComChannel ChannelType="Phone" Locator="+44 1282 654 321" />
+      <ComChannel ChannelType="Email" Locator="fred.smith@tharstern.com" />
+    </Contact>
+  </CustomerInfo>
+  <AuditPool>
+    <Created TimeStamp="2005-01-25T11:39:08Z" Author="TharsternJDFWC" />
+  </AuditPool>
+  <NodeInfo Start="2005-01-25T10:04:51Z" End="2005-01-28T15:00:00Z">
+    <JMF SenderID="TharsternJDFWC" TimeStamp="2005-01-25T10:39:08Z" Version="1.2" xmlns="http://www.CIP4.org/JDFSchema_1_1" DescriptiveName="JMF Event Subscription Node">
+      <Query Type="Events" ID="10290_1">
+        <Subscription RepeatTime="0.0" RepeatStep="0" URL="http://10.48.193.82:8501/JMF" />
+        <NotificationFilter JobID="10290" Classes="Event Information Warning Error Fatal" />
+      </Query>
+      <Query Type="Resource" ID="10290_2">
+        <ResourceQuParams Exact="true" JobID="10290" Usage="Output" />
+        <Subscription URL="http://10.48.193.82:8501/JMF" />
+      </Query>
+    </JMF>
+  </NodeInfo>
+  <JDF Type="Product" ID="THAR_1" Status="Ready" JobPartID="660" Version="1.2" DescriptiveName="Cover" JobID="10290">
+    <NodeInfo />
+    <ResourcePool>
+      <MediaIntent Status="Available" ID="THAR_MEDIAINTENT_1" Class="Intent">
+        <StockBrand DataType="StringSpan" Actual="MACO SATIN 880x630 200 gsm" />
+        <Weight DataType="NumberSpan" Actual="200.0" />
+        <Thickness DataType="NumberSpan" Actual="254.0" />
+      </MediaIntent>
+      <ColorIntent Status="Available" ID="THAR_COLORINTENT_1" Class="Intent" PartIDKeys="Side">
+        <ColorIntent Side="Front">
+          <ColorsUsed>
+            <SeparationSpec Name="Cyan" />
+            <SeparationSpec Name="Magenta" />
+            <SeparationSpec Name="Yellow" />
+            <SeparationSpec Name="Black" />
+            <SeparationSpec Name="PANTONE Green 0921 U" />
+          </ColorsUsed>
+        </ColorIntent>
+        <ColorIntent Side="Back">
+          <ColorsUsed>
+            <SeparationSpec Name="Cyan" />
+            <SeparationSpec Name="Magenta" />
+            <SeparationSpec Name="Yellow" />
+            <SeparationSpec Name="Black" />
+            <SeparationSpec Name="PANTONE Green 0921 U" />
+          </ColorsUsed>
+        </ColorIntent>
+      </ColorIntent>
+      <LayoutIntent Status="Available" ID="THAR_LAYOUTINTENT_1" Class="Intent">
+        <Pages DataType="IntegerSpan" Actual="4" />
+        <Dimensions DataType="XYPairSpan" Actual="2494.488189 1785.826772" />
+        <FinishedDimensions DataType="ShapeSpan" Actual="595.275591 841.889764 0.0" />
+      </LayoutIntent>
+      <Media Status="Available" Brand="AGFA" AmountRequired="5.0" Dimension="1020.0 720.0" MediaType="Plate" ID="THAR_PLATEMEDIA_1" MediaUnit="Sheet" Class="Consumable" />
+      <ExposedMedia ID="THAR_EXPOSEDMEDIA_1" Status="Unavailable" PartIDKeys="SignatureName SheetName Side Separation" DescriptiveName="ExposedMedia for Cover" Class="Handling">
+        <MediaRef rRef="THAR_PLATEMEDIA_1" />
+        <ExposedMedia SignatureName="LESIG1">
+          <ExposedMedia SheetName="SHT6601">
+            <ExposedMedia Side="Front">
+              <ExposedMedia ProductID="0001" Separation="Cyan" />
+              <ExposedMedia ProductID="0002" Separation="Magenta" />
+              <ExposedMedia ProductID="0003" Separation="Yellow" />
+              <ExposedMedia ProductID="0004" Separation="Black" />
+              <ExposedMedia ProductID="0005" Separation="PANTONE Green 0921 U" />
+            </ExposedMedia>
+          </ExposedMedia>
+        </ExposedMedia>
+      </ExposedMedia>
+      <ColorPool Status="Available" ID="THAR_COLORPOOL_1" Class="Parameter" DescriptiveName="Colours for Cover">
+        <Color Name="Cyan" />
+        <Color Name="Magenta" />
+        <Color Name="Yellow" />
+        <Color Name="Black" />
+        <Color Name="PANTONE Green 0921 U" ColorBook="PANTONE" MediaType="Uncoated" ColorBookEntry="921" />
+      </ColorPool>
+      <ColorantControl ID="THAR_COLORANTCONTROL_1" Status="Available" PartIDKeys="SignatureName SheetName Side" Class="Parameter">
+        <ColorPoolRef rRef="THAR_COLORPOOL_1" />
+        <ColorantControl SignatureName="LESIG1">
+          <ColorantControl SheetName="SHT6601">
+            <ColorantControl Side="Front">
+              <ColorantParams>
+                <SeparationSpec Name="Cyan" />
+                <SeparationSpec Name="Magenta" />
+                <SeparationSpec Name="Yellow" />
+                <SeparationSpec Name="Black" />
+                <SeparationSpec Name="PANTONE Green 0921 U" />
+              </ColorantParams>
+              <ColorantOrder>
+                <SeparationSpec Name="Cyan" />
+                <SeparationSpec Name="Magenta" />
+                <SeparationSpec Name="Yellow" />
+                <SeparationSpec Name="Black" />
+                <SeparationSpec Name="PANTONE Green 0921 U" />
+              </ColorantOrder>
+            </ColorantControl>
+            <ColorantControl Side="Back">
+              <ColorantParams>
+                <SeparationSpec Name="Cyan" />
+                <SeparationSpec Name="Magenta" />
+                <SeparationSpec Name="Yellow" />
+                <SeparationSpec Name="Black" />
+                <SeparationSpec Name="PANTONE Green 0921 U" />
+              </ColorantParams>
+              <ColorantOrder>
+                <SeparationSpec Name="Cyan" />
+                <SeparationSpec Name="Magenta" />
+                <SeparationSpec Name="Yellow" />
+                <SeparationSpec Name="Black" />
+                <SeparationSpec Name="PANTONE Green 0921 U" />
+              </ColorantOrder>
+            </ColorantControl>
+          </ColorantControl>
+        </ColorantControl>
+      </ColorantControl>
+      <Media Status="Available" Weight="200.0" Brand="MACO" AmountRequired="2750.0" Thickness="254.0" Grade="1" Dimension="2494.488189 1785.826772" MediaType="Paper" DescriptiveName="Paper - MACO SATIN 880x630 200 gsm" ID="THAR_PAPERMEDIA_1" MediaUnit="Sheet" MediaTypeDetails="Paper" Class="Consumable" />
+      <Layout ID="THAR_LAYOUT_1" Status="Incomplete" Name="THAR_LAYOUT_Cover" Class="Parameter">
+        <Signature Name="LESIG1" DescriptiveName="LESIG1">
+          <Sheet Name="SHT6601" DescriptiveName="SHT6601">
+            <Surface Side="Front" />
+          </Sheet>
+        </Signature>
+      </Layout>
+      <Preview ID="THAR_PREVIEW_1" Status="Incomplete" PartIDKeys="SignatureName SheetName Side Separation" DescriptiveName="Preview for Cover" Class="Parameter">
+        <Preview SignatureName="LESIG1">
+          <Preview SheetName="SHT6601">
+            <Preview Side="Front">
+              <Preview Separation="Cyan" />
+              <Preview Separation="Magenta" />
+              <Preview Separation="Yellow" />
+              <Preview Separation="Black" />
+              <Preview Separation="PANTONE Green 0921 U" />
+            </Preview>
+          </Preview>
+        </Preview>
+      </Preview>
+      <Device DeviceID="1" FriendlyName="Heidelberg Speedmaster 102-6" ID="THAR_PRESS_DEVICE_1" Status="Available" DescriptiveName="Heidelberg Speedmaster 102-6" Class="Implementation" />
+      <Component Status="Unavailable" Dimensions="2494.488189 1785.826772 0.0" SourceSheet="SHT6601" DescriptiveName="Component - Cover - 1 ConventionalPrinting Output" ID="THAR_COMPONENT_CONVENTIONALPRINTING_1" PartIDKeys="SignatureName SheetName Condition" Class="Quantity" ComponentType="Sheet">
+        <Component SignatureName="LESIG1">
+          <Component SheetName="SHT6601">
+            <Component Condition="Good" />
+            <Component Condition="Waste" />
+          </Component>
+        </Component>
+      </Component>
+      <Component ComponentType="Block" ID="THAR_COMPONENT_CUTTING_1" Status="Unavailable" DescriptiveName="Component - Cover - 1 Cutting Output" Class="Quantity" />
+      <FoldingIntent Status="Available" ID="THAR_FOLDINGINTENT_1" Class="Intent" PartIDKeys="SheetName">
+        <FoldingIntent SheetName="SHT6601">
+          <FoldingCatalog DataType="NameSpan" Preferred="F4-1" Actual="F4-1" />
+        </FoldingIntent>
+      </FoldingIntent>
+      <Component ComponentType="Block" ID="THAR_COMPONENT_FOLDING_1" Status="Unavailable" DescriptiveName="Component - Cover - 1 Folding Output" Class="Quantity" />
+    </ResourcePool>
+    <ResourceLinkPool>
+      <MediaIntentLink rRef="THAR_MEDIAINTENT_1" Usage="Input" />
+      <ColorIntentLink rRef="THAR_COLORINTENT_1" Usage="Input" />
+      <LayoutIntentLink rRef="THAR_LAYOUTINTENT_1" Usage="Input" />
+      <FoldingIntentLink rRef="THAR_FOLDINGINTENT_1" Usage="Input" />
+      <ComponentLink Usage="Input" rRef="THAR_COMPONENT_FOLDING_1" />
+      <ComponentLink Usage="Output" rRef="THAR_PRODUCT_1" Amount="10000.0" />
+    </ResourceLinkPool>
+    <JDF Type="ProcessGroup" ID="THAR_PREPRESS_1" Status="Ready" JobPartID="pp660_1" Category="PrePress" DescriptiveName="Pre Press for Cover" JobID="10290" Version="1.2">
+      <ResourcePool>
+        <Assembly Order="Collecting" ID="THAR_ASSEMBLY_1" JobID="10290" Status="Incomplete" BindingSide="Left" Class="Parameter" />
+        <BinderySignature BindingEdge="Left" FoldCatalog="F4-1" ID="BS1" Status="Incomplete" Class="Parameter" />
+        <InterpretingParams Class="Parameter" ID="THAR_INTERPRETINGPARAMS_1" Status="Available">
+          <MediaRef rRef="THAR_PLATEMEDIA_1" />
+          <MediaRef rRef="THAR_PAPERMEDIA_1" />
+        </InterpretingParams>
+        <RunList ID="THAR_RUNLIST_1" Status="Incomplete" NPage="4" Class="Parameter" />
+        <RunList ID="THAR_RUNLIST_2" Status="Incomplete" Class="Parameter" />
+        <RunList ID="THAR_RUNLIST_3" Status="Incomplete" Class="Parameter" />
+        <StrippingParams WorkStyle="WorkAndTurn" ID="THAR_STRIPPING_1" JobID="10290" Status="Incomplete" PartIDKeys="SignatureName SheetName" Class="Parameter">
+          <StrippingParams SignatureName="LESIG1">
+            <StrippingParams SheetName="SHT6601">
+              <StripCellParams BleedFoot="5" TrimSize="595.275590551181 841.889763779528" BleedHead="5" BleedFace="5" />
+              <MediaRef rRef="THAR_PLATEMEDIA_1" />
+              <MediaRef rRef="THAR_PAPERMEDIA_1" />
+              <BinderySignatureRef rRef="BS1" />
+              <Position MarginLeft="5" RelativeBox="0.0 0.5 0.5 1.0" MarginRight="5" MarginBottom="4" MarginTop="4" />
+              <Position MarginLeft="5" RelativeBox="0.5 0.5 1.0 1.0" MarginRight="5" MarginBottom="4" Orientation="Flip180" MarginTop="4" />
+              <Position MarginLeft="5" RelativeBox="0.0 0.0 0.5 0.5" MarginRight="5" MarginBottom="4" MarginTop="4" />
+              <Position MarginLeft="5" RelativeBox="0.5 0.0 1.0 0.5" MarginRight="5" MarginBottom="4" Orientation="Flip180" MarginTop="4" />
+              <DeviceRef rRef="THAR_PRESS_DEVICE_1" />
+            </StrippingParams>
+          </StrippingParams>
+        </StrippingParams>
+        <Device DeviceID="UNKNOWN_ID" FriendlyName="PrePress Workflow" ID="THAR_PLATEMAKINGDEVICE_1" Status="Available" DescriptiveName="PrePress Workflow" Class="Implementation" />
+      </ResourcePool>
+      <ResourceLinkPool />
+      <JDF Type="ProcessGroup" ID="THAR_PREPRESSPREPARATIONGB_1" Status="Waiting" Types="PrePressPreparation" JobPartID="pp660_2" Category="PrePressPreparation" DescriptiveName="GB PrePressPreparation for Cover" JobID="10290" Version="1.2">
+        <NodeInfo />
+        <ResourcePool />
+        <ResourceLinkPool>
+          <RunListLink rRef="THAR_RUNLIST_1" Usage="Input" />
+          <RunListLink rRef="THAR_RUNLIST_2" Usage="Output" ProcessUsage="Document" />
+        </ResourceLinkPool>
+      </JDF>
+      <JDF Type="ProcessGroup" ID="THAR_IMPOSITIONPREPARATIONGB_1" Status="Waiting" Types="ImpositionPreparation" JobPartID="pp660_3" Category="ImpositionPreparation" DescriptiveName="GB ImpositionPreparation for Cover" JobID="10290" Version="1.2">
+        <NodeInfo />
+        <ResourcePool />
+        <ResourceLinkPool>
+          <StrippingParamsLink rRef="THAR_STRIPPING_1" Usage="Input" />
+          <AssemblyLink rRef="THAR_ASSEMBLY_1" Usage="Input" />
+          <RunListLink rRef="THAR_RUNLIST_3" Usage="Output" ProcessUsage="Marks" />
+          <LayoutLink rRef="THAR_LAYOUT_1" Usage="Output" />
+        </ResourceLinkPool>
+      </JDF>
+      <JDF Type="ProcessGroup" ID="THAR_FINALIMAGINGGB_1" Status="Waiting" Types="Imposition RIPing PreviewGeneration ImageSetting" JobPartID="pp660_4" Category="FinalImaging" DescriptiveName="GB PlateMaking for Cover" JobID="10290" Version="1.2">
+        <NodeInfo />
+        <ResourcePool />
+        <ResourceLinkPool>
+          <RunListLink rRef="THAR_RUNLIST_2" Usage="Input" ProcessUsage="Document" />
+          <RunListLink rRef="THAR_RUNLIST_3" Usage="Input" ProcessUsage="Marks" />
+          <LayoutLink rRef="THAR_LAYOUT_1" Usage="Input" />
+          <ColorantControlLink rRef="THAR_COLORANTCONTROL_1" Usage="Input" />
+          <InterpretingParamsLink rRef="THAR_INTERPRETINGPARAMS_1" Usage="Input" />
+          <MediaLink Usage="Input" rRef="THAR_PLATEMEDIA_1" Amount="5.0" />
+          <DeviceLink Usage="Input" rRef="THAR_PLATEMAKINGDEVICE_1" />
+          <ExposedMediaLink Usage="Output" rRef="THAR_EXPOSEDMEDIA_1" />
+          <PreviewLink rRef="THAR_PREVIEW_1" Usage="Output" />
+        </ResourceLinkPool>
+      </JDF>
+    </JDF>
+    <JDF Type="ConventionalPrinting" ID="THAR_CONVENTIONALPRINTING_1" Status="Ready" CommentURL="http://10.48.193.82/JDF/JDF/CommentURLSite/commenturl_thardata25.asp?jobid=465&amp;jobno=10290" JobPartID="op6001" Version="1.2" DescriptiveName="Cover - Section 1 - ConventionalPrinting" JobID="10290">
+      <NodeInfo TotalDuration="PT1H57M" SetupDuration="PT8M" />
+      <ResourcePool>
+        <ConventionalPrintingParams WorkStyle="WorkAndTurn" ID="THAR_PRINTINGPARAMS_1" Status="Available" PrintingType="SheetFed" DescriptiveName="Conventional Printing Parameters" Class="Parameter" />
+      </ResourcePool>
+      <ResourceLinkPool>
+        <ExposedMediaLink Usage="Input" rRef="THAR_EXPOSEDMEDIA_1" ProcessUsage="Plate">
+          <Part SignatureName="LESIG1" Separation="Cyan" Side="Front" SheetName="SHT6601" />
+          <Part SignatureName="LESIG1" Separation="Magenta" Side="Front" SheetName="SHT6601" />
+          <Part SignatureName="LESIG1" Separation="Yellow" Side="Front" SheetName="SHT6601" />
+          <Part SignatureName="LESIG1" Separation="Black" Side="Front" SheetName="SHT6601" />
+          <Part SignatureName="LESIG1" Separation="PANTONE Green 0921 U" Side="Front" SheetName="SHT6601" />
+        </ExposedMediaLink>
+        <ConventionalPrintingParamsLink rRef="THAR_PRINTINGPARAMS_1" Usage="Input" />
+        <DeviceLink Usage="Input" rRef="THAR_PRESS_DEVICE_1" />
+        <ColorantControlLink rRef="THAR_COLORANTCONTROL_1" Usage="Input" />
+        <MediaLink Usage="Input" rRef="THAR_PAPERMEDIA_1" Amount="2750.0" />
+        <ComponentLink Usage="Output" rRef="THAR_COMPONENT_CONVENTIONALPRINTING_1">
+          <Part Condition="Good" SignatureName="LESIG1" SheetName="SHT6601" />
+          <Part Condition="Waste" SignatureName="LESIG1" SheetName="SHT6601" />
+          <AmountPool>
+            <PartAmount Amount="2625">
+              <Part Condition="Good" SignatureName="LESIG1" SheetName="SHT6601" />
+            </PartAmount>
+            <PartAmount Amount="125">
+              <Part Condition="Waste" SignatureName="LESIG1" SheetName="SHT6601" />
+            </PartAmount>
+          </AmountPool>
+        </ComponentLink>
+      </ResourceLinkPool>
+    </JDF>
+    <JDF Type="Cutting" ID="THAR_CUTTING_1" Status="Ready" CommentURL="http://10.48.193.82/JDF/JDF/CommentURLSite/commenturl_thardata25.asp?jobid=465&amp;jobno=10290" JobPartID="op6003" Version="1.2" DescriptiveName="Cover - Section 1 - Cutting" JobID="10290">
+      <NodeInfo TotalDuration="PT15M" SetupDuration="P" />
+      <ResourcePool>
+        <CuttingParams Status="Incomplete" ID="THAR_CUTTINGPARAMS_1" Class="Parameter" DescriptiveName="Cutting Setup" />
+      </ResourcePool>
+      <ResourceLinkPool>
+        <CuttingParamsLink rRef="THAR_CUTTINGPARAMS_1" Usage="Input" />
+        <ComponentLink Usage="Input" rRef="THAR_COMPONENT_CONVENTIONALPRINTING_1" />
+        <ComponentLink Usage="Output" rRef="THAR_COMPONENT_CUTTING_1" Amount="5250.0" />
+      </ResourceLinkPool>
+    </JDF>
+    <JDF Type="Folding" ID="THAR_FOLDING_1" Status="Ready" CommentURL="http://10.48.193.82/JDF/JDF/CommentURLSite/commenturl_thardata25.asp?jobid=465&amp;jobno=10290" JobPartID="op6004" Version="1.2" DescriptiveName="Cover - Section 1 - Folding" JobID="10290">
+      <NodeInfo TotalDuration="PT10H40M" SetupDuration="P" />
+      <ResourcePool>
+        <FoldingParams FoldCatalog="F4-1" ID="THAR_FOLDINGPARAMS_1" Status="Available" DescriptiveName="Folding Setup" DescriptionType="FoldCatalog" Class="Parameter" />
+      </ResourcePool>
+      <ResourceLinkPool>
+        <FoldingParamsLink rRef="THAR_FOLDINGPARAMS_1" Usage="Input" />
+        <ComponentLink Usage="Input" rRef="THAR_COMPONENT_CUTTING_1" />
+        <ComponentLink Usage="Output" rRef="THAR_COMPONENT_FOLDING_1" Amount="7875.0" />
+      </ResourceLinkPool>
+    </JDF>
+  </JDF>
+  <JDF Type="Product" ID="THAR_2" Status="Ready" JobPartID="661" Version="1.2" DescriptiveName="Text" JobID="10290">
+    <NodeInfo />
+    <ResourcePool>
+      <MediaIntent Status="Available" ID="THAR_MEDIAINTENT_2" Class="Intent">
+        <StockBrand DataType="StringSpan" Actual="MACO SATIN B1 80 gsm" />
+        <Weight DataType="NumberSpan" Actual="80.0" />
+        <Thickness DataType="NumberSpan" Actual="114.0" />
+      </MediaIntent>
+      <ColorIntent Status="Available" ID="THAR_COLORINTENT_2" Class="Intent" PartIDKeys="Side">
+        <ColorIntent Side="Front">
+          <ColorsUsed>
+            <SeparationSpec Name="Black" />
+          </ColorsUsed>
+        </ColorIntent>
+        <ColorIntent Side="Back">
+          <ColorsUsed>
+            <SeparationSpec Name="Black" />
+          </ColorsUsed>
+        </ColorIntent>
+      </ColorIntent>
+      <LayoutIntent Status="Available" ID="THAR_LAYOUTINTENT_2" Class="Intent">
+        <Pages DataType="IntegerSpan" Actual="16" />
+        <Dimensions DataType="XYPairSpan" Actual="2494.488189 1785.826772" />
+        <FinishedDimensions DataType="ShapeSpan" Actual="595.275591 841.889764 0.0" />
+      </LayoutIntent>
+      <Media Status="Available" Brand="AGFA" AmountRequired="2.0" Dimension="1020.0 720.0" MediaType="Plate" ID="THAR_PLATEMEDIA_2" MediaUnit="Sheet" Class="Consumable" />
+      <ExposedMedia ID="THAR_EXPOSEDMEDIA_2" Status="Unavailable" PartIDKeys="SignatureName SheetName Side Separation" DescriptiveName="ExposedMedia for Text" Class="Handling">
+        <MediaRef rRef="THAR_PLATEMEDIA_2" />
+        <ExposedMedia SignatureName="LESIG2">
+          <ExposedMedia SheetName="SHT6611">
+            <ExposedMedia Side="Front">
+              <ExposedMedia ProductID="0006" Separation="Black" />
+            </ExposedMedia>
+            <ExposedMedia Side="Back">
+              <ExposedMedia ProductID="0007" Separation="Black" />
+            </ExposedMedia>
+          </ExposedMedia>
+        </ExposedMedia>
+      </ExposedMedia>
+      <ColorPool Status="Available" ID="THAR_COLORPOOL_2" Class="Parameter" DescriptiveName="Colours for Text">
+        <Color Name="Black" />
+      </ColorPool>
+      <ColorantControl ID="THAR_COLORANTCONTROL_2" Status="Available" PartIDKeys="SignatureName SheetName Side" Class="Parameter">
+        <ColorPoolRef rRef="THAR_COLORPOOL_2" />
+        <ColorantControl SignatureName="LESIG2">
+          <ColorantControl SheetName="SHT6611">
+            <ColorantControl Side="Front">
+              <ColorantParams>
+                <SeparationSpec Name="Black" />
+              </ColorantParams>
+              <ColorantOrder>
+                <SeparationSpec Name="Black" />
+              </ColorantOrder>
+            </ColorantControl>
+            <ColorantControl Side="Back">
+              <ColorantParams>
+                <SeparationSpec Name="Black" />
+              </ColorantParams>
+              <ColorantOrder>
+                <SeparationSpec Name="Black" />
+              </ColorantOrder>
+            </ColorantControl>
+          </ColorantControl>
+        </ColorantControl>
+      </ColorantControl>
+      <Media Status="Available" Weight="80.0" Brand="MACO" AmountRequired="11000.0" Thickness="114.0" Grade="1" Dimension="2494.488189 1785.826772" MediaType="Paper" DescriptiveName="Paper - MACO SATIN B1 80 gsm" ID="THAR_PAPERMEDIA_2" MediaUnit="Sheet" MediaTypeDetails="Paper" Class="Consumable" />
+      <Layout ID="THAR_LAYOUT_2" Status="Incomplete" Name="THAR_LAYOUT_Text" Class="Parameter">
+        <Signature Name="LESIG2" DescriptiveName="LESIG2">
+          <Sheet Name="SHT6611" DescriptiveName="SHT6611">
+            <Surface Side="Front" />
+            <Surface Side="Back" />
+          </Sheet>
+        </Signature>
+      </Layout>
+      <Preview ID="THAR_PREVIEW_2" Status="Incomplete" PartIDKeys="SignatureName SheetName Side Separation" DescriptiveName="Preview for Text" Class="Parameter">
+        <Preview SignatureName="LESIG2">
+          <Preview SheetName="SHT6611">
+            <Preview Side="Front">
+              <Preview Separation="Black" />
+            </Preview>
+            <Preview Side="Back">
+              <Preview Separation="Black" />
+            </Preview>
+          </Preview>
+        </Preview>
+      </Preview>
+      <Device DeviceID="1" FriendlyName="Heidelberg Speedmaster 102-6" ID="THAR_PRESS_DEVICE_2" Status="Available" DescriptiveName="Heidelberg Speedmaster 102-6" Class="Implementation" />
+      <Component Status="Unavailable" Dimensions="2494.488189 1785.826772 0.0" SourceSheet="SHT6611" DescriptiveName="Component - Text - 1 ConventionalPrinting Output" ID="THAR_COMPONENT_CONVENTIONALPRINTING_2" PartIDKeys="SignatureName SheetName Condition" Class="Quantity" ComponentType="Sheet">
+        <Component SignatureName="LESIG2">
+          <Component SheetName="SHT6611">
+            <Component Condition="Good" />
+            <Component Condition="Waste" />
+          </Component>
+        </Component>
+      </Component>
+      <FoldingIntent Status="Available" ID="THAR_FOLDINGINTENT_2" Class="Intent" PartIDKeys="SheetName">
+        <FoldingIntent SheetName="SHT6611">
+          <FoldingCatalog DataType="NameSpan" Preferred="F16-6" Actual="F16-6" />
+        </FoldingIntent>
+      </FoldingIntent>
+      <Component ComponentType="Block" ID="THAR_COMPONENT_FOLDING_2" Status="Unavailable" DescriptiveName="Component - Text - 1 Folding Output" Class="Quantity" />
+    </ResourcePool>
+    <ResourceLinkPool>
+      <MediaIntentLink rRef="THAR_MEDIAINTENT_2" Usage="Input" />
+      <ColorIntentLink rRef="THAR_COLORINTENT_2" Usage="Input" />
+      <LayoutIntentLink rRef="THAR_LAYOUTINTENT_2" Usage="Input" />
+      <FoldingIntentLink rRef="THAR_FOLDINGINTENT_2" Usage="Input" />
+      <ComponentLink Usage="Input" rRef="THAR_COMPONENT_FOLDING_2" />
+      <ComponentLink Usage="Output" rRef="THAR_PRODUCT_2" Amount="10000.0" />
+    </ResourceLinkPool>
+    <JDF Type="ProcessGroup" ID="THAR_PREPRESS_2" Status="Ready" JobPartID="pp661_1" Category="PrePress" DescriptiveName="Pre Press for Text" JobID="10290" Version="1.2">
+      <ResourcePool>
+        <Assembly Order="Collecting" ID="THAR_ASSEMBLY_2" JobID="10290" Status="Incomplete" BindingSide="Left" Class="Parameter" />
+        <BinderySignature BindingEdge="Left" FoldCatalog="F16-6" ID="BS2" Status="Incomplete" Class="Parameter" />
+        <InterpretingParams Class="Parameter" ID="THAR_INTERPRETINGPARAMS_2" Status="Available">
+          <MediaRef rRef="THAR_PLATEMEDIA_2" />
+          <MediaRef rRef="THAR_PAPERMEDIA_2" />
+        </InterpretingParams>
+        <RunList ID="THAR_RUNLIST_4" Status="Incomplete" NPage="16" Class="Parameter" />
+        <RunList ID="THAR_RUNLIST_5" Status="Incomplete" Class="Parameter" />
+        <RunList ID="THAR_RUNLIST_6" Status="Incomplete" Class="Parameter" />
+        <StrippingParams WorkStyle="WorkAndBack" ID="THAR_STRIPPING_2" JobID="10290" Status="Incomplete" PartIDKeys="SignatureName SheetName" Class="Parameter">
+          <StrippingParams SignatureName="LESIG2">
+            <StrippingParams SheetName="SHT6611">
+              <StripCellParams BleedFoot="5" TrimSize="595.275590551181 841.889763779528" BleedHead="5" BleedFace="5" />
+              <MediaRef rRef="THAR_PLATEMEDIA_2" />
+              <MediaRef rRef="THAR_PAPERMEDIA_2" />
+              <BinderySignatureRef rRef="BS2" />
+              <Position MarginLeft="5" RelativeBox="0.0 0.0 1.0 1.0" MarginRight="5" MarginBottom="4" MarginTop="4" />
+              <DeviceRef rRef="THAR_PRESS_DEVICE_2" />
+            </StrippingParams>
+          </StrippingParams>
+        </StrippingParams>
+        <Device DeviceID="UNKNOWN_ID" FriendlyName="PrePress Workflow" ID="THAR_PLATEMAKINGDEVICE_2" Status="Available" DescriptiveName="PrePress Workflow" Class="Implementation" />
+      </ResourcePool>
+      <ResourceLinkPool />
+      <JDF Type="ProcessGroup" ID="THAR_PREPRESSPREPARATIONGB_2" Status="Waiting" Types="PrePressPreparation" JobPartID="pp661_2" Category="PrePressPreparation" DescriptiveName="GB PrePressPreparation for Text" JobID="10290" Version="1.2">
+        <NodeInfo />
+        <ResourcePool />
+        <ResourceLinkPool>
+          <RunListLink rRef="THAR_RUNLIST_4" Usage="Input" />
+          <RunListLink rRef="THAR_RUNLIST_5" Usage="Output" ProcessUsage="Document" />
+        </ResourceLinkPool>
+      </JDF>
+      <JDF Type="ProcessGroup" ID="THAR_IMPOSITIONPREPARATIONGB_2" Status="Waiting" Types="ImpositionPreparation" JobPartID="pp661_3" Category="ImpositionPreparation" DescriptiveName="GB ImpositionPreparation for Text" JobID="10290" Version="1.2">
+        <NodeInfo />
+        <ResourcePool />
+        <ResourceLinkPool>
+          <StrippingParamsLink rRef="THAR_STRIPPING_2" Usage="Input" />
+          <AssemblyLink rRef="THAR_ASSEMBLY_2" Usage="Input" />
+          <RunListLink rRef="THAR_RUNLIST_6" Usage="Output" ProcessUsage="Marks" />
+          <LayoutLink rRef="THAR_LAYOUT_2" Usage="Output" />
+        </ResourceLinkPool>
+      </JDF>
+      <JDF Type="ProcessGroup" ID="THAR_FINALIMAGINGGB_2" Status="Waiting" Types="Imposition RIPing PreviewGeneration ImageSetting" JobPartID="pp661_4" Category="FinalImaging" DescriptiveName="GB PlateMaking for Text" JobID="10290" Version="1.2">
+        <NodeInfo />
+        <ResourcePool />
+        <ResourceLinkPool>
+          <RunListLink rRef="THAR_RUNLIST_5" Usage="Input" ProcessUsage="Document" />
+          <RunListLink rRef="THAR_RUNLIST_6" Usage="Input" ProcessUsage="Marks" />
+          <LayoutLink rRef="THAR_LAYOUT_2" Usage="Input" />
+          <ColorantControlLink rRef="THAR_COLORANTCONTROL_2" Usage="Input" />
+          <InterpretingParamsLink rRef="THAR_INTERPRETINGPARAMS_2" Usage="Input" />
+          <MediaLink Usage="Input" rRef="THAR_PLATEMEDIA_2" Amount="2.0" />
+          <DeviceLink Usage="Input" rRef="THAR_PLATEMAKINGDEVICE_2" />
+          <ExposedMediaLink Usage="Output" rRef="THAR_EXPOSEDMEDIA_2" />
+          <PreviewLink rRef="THAR_PREVIEW_2" Usage="Output" />
+        </ResourceLinkPool>
+      </JDF>
+    </JDF>
+    <JDF Type="ConventionalPrinting" ID="THAR_CONVENTIONALPRINTING_2" Status="Ready" CommentURL="http://10.48.193.82/JDF/JDF/CommentURLSite/commenturl_thardata25.asp?jobid=465&amp;jobno=10290" JobPartID="op6006" Version="1.2" DescriptiveName="Text - Section 1 - ConventionalPrinting" JobID="10290">
+      <NodeInfo TotalDuration="PT4H2M" SetupDuration="PT15M" />
+      <ResourcePool>
+        <ConventionalPrintingParams WorkStyle="WorkAndBack" ID="THAR_PRINTINGPARAMS_2" Status="Available" PrintingType="SheetFed" DescriptiveName="Conventional Printing Parameters" Class="Parameter" />
+      </ResourcePool>
+      <ResourceLinkPool>
+        <ExposedMediaLink Usage="Input" rRef="THAR_EXPOSEDMEDIA_2" ProcessUsage="Plate">
+          <Part SignatureName="LESIG2" Separation="Black" Side="Front" SheetName="SHT6611" />
+        </ExposedMediaLink>
+        <ConventionalPrintingParamsLink rRef="THAR_PRINTINGPARAMS_2" Usage="Input" />
+        <DeviceLink Usage="Input" rRef="THAR_PRESS_DEVICE_2" />
+        <ColorantControlLink rRef="THAR_COLORANTCONTROL_2" Usage="Input" />
+        <MediaLink Usage="Input" rRef="THAR_PAPERMEDIA_2" Amount="11000.0" />
+        <ComponentLink Usage="Output" rRef="THAR_COMPONENT_CONVENTIONALPRINTING_2">
+          <Part Condition="Good" SignatureName="LESIG2" SheetName="SHT6611" />
+          <Part Condition="Waste" SignatureName="LESIG2" SheetName="SHT6611" />
+          <AmountPool>
+            <PartAmount Amount="10500">
+              <Part Condition="Good" SignatureName="LESIG2" SheetName="SHT6611" />
+            </PartAmount>
+            <PartAmount Amount="500">
+              <Part Condition="Waste" SignatureName="LESIG2" SheetName="SHT6611" />
+            </PartAmount>
+          </AmountPool>
+        </ComponentLink>
+      </ResourceLinkPool>
+    </JDF>
+    <JDF Type="ConventionalPrinting" ID="THAR_CONVENTIONALPRINTING_3" Status="Ready" CommentURL="http://10.48.193.82/JDF/JDF/CommentURLSite/commenturl_thardata25.asp?jobid=465&amp;jobno=10290" JobPartID="op6007" Version="1.2" DescriptiveName="Text - Section 1 - ConventionalPrinting" JobID="10290">
+      <NodeInfo TotalDuration="PT4H2M" SetupDuration="PT15M" />
+      <ResourcePool>
+        <ConventionalPrintingParams WorkStyle="WorkAndBack" ID="THAR_PRINTINGPARAMS_3" Status="Available" PrintingType="SheetFed" DescriptiveName="Conventional Printing Parameters" Class="Parameter" />
+      </ResourcePool>
+      <ResourceLinkPool>
+        <ExposedMediaLink Usage="Input" rRef="THAR_EXPOSEDMEDIA_2" ProcessUsage="Plate">
+          <Part SignatureName="LESIG2" Separation="Black" Side="Back" SheetName="SHT6611" />
+        </ExposedMediaLink>
+        <ConventionalPrintingParamsLink rRef="THAR_PRINTINGPARAMS_3" Usage="Input" />
+        <DeviceLink Usage="Input" rRef="THAR_PRESS_DEVICE_2" />
+        <ColorantControlLink rRef="THAR_COLORANTCONTROL_2" Usage="Input" />
+        <MediaLink Usage="Input" rRef="THAR_PAPERMEDIA_2" Amount="11000.0" />
+        <ComponentLink Usage="Output" rRef="THAR_COMPONENT_CONVENTIONALPRINTING_2">
+          <Part Condition="Good" SignatureName="LESIG2" SheetName="SHT6611" />
+          <Part Condition="Waste" SignatureName="LESIG2" SheetName="SHT6611" />
+          <AmountPool>
+            <PartAmount Amount="10500">
+              <Part Condition="Good" SignatureName="LESIG2" SheetName="SHT6611" />
+            </PartAmount>
+            <PartAmount Amount="500">
+              <Part Condition="Waste" SignatureName="LESIG2" SheetName="SHT6611" />
+            </PartAmount>
+          </AmountPool>
+        </ComponentLink>
+      </ResourceLinkPool>
+    </JDF>
+    <JDF Type="Folding" ID="THAR_FOLDING_2" Status="Ready" CommentURL="http://10.48.193.82/JDF/JDF/CommentURLSite/commenturl_thardata25.asp?jobid=465&amp;jobno=10290" JobPartID="op6008" Version="1.2" DescriptiveName="Text - Section 1 - Folding" JobID="10290">
+      <NodeInfo TotalDuration="PT10H40M" SetupDuration="P" />
+      <ResourcePool>
+        <FoldingParams FoldCatalog="F16-6" ID="THAR_FOLDINGPARAMS_2" Status="Available" DescriptiveName="Folding Setup" DescriptionType="FoldCatalog" Class="Parameter" />
+      </ResourcePool>
+      <ResourceLinkPool>
+        <FoldingParamsLink rRef="THAR_FOLDINGPARAMS_2" Usage="Input" />
+        <ComponentLink Usage="Input" rRef="THAR_COMPONENT_CONVENTIONALPRINTING_2" />
+        <ComponentLink Usage="Output" rRef="THAR_COMPONENT_FOLDING_2" Amount="11813.0" />
+      </ResourceLinkPool>
+    </JDF>
+  </JDF>
+</JDF>

@@ -1,0 +1,840 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JDF DescriptiveName="Heidelberg A4 brochure" ICSVersions="Base_L1-1.0 MIS_L1-1.0 MISPRE_L1-1.0" ID="JOB-1000117" JobID="P11115" JobPartID="JP1" Status="Waiting" Type="Product" Version="1.2" xmlns="http://www.CIP4.org/JDFSchema_1_1"><NodeInfo FirstStart="2005-01-25T17:49:49+01:00" LastEnd="2005-02-04T17:49:49+01:00"/>
+    <AuditPool>
+        <Created AgentName="Printplus JDF-Server" AgentVersion="V1.2.8.2 - 2005-01-25" Author="Lilo Litho" TimeStamp="2005-01-25T17:49:49+01:00"/>
+    </AuditPool>
+    <CustomerInfo CustomerID="1000668" CustomerJobName="JDF - Heidelberg A4 brochure 6.4.5">
+        <ContactRef rRef="IDCustomer"/>
+    </CustomerInfo>
+    <ResourcePool>
+        <Contact Class="Parameter" ContactTypes="Customer" ID="IDCustomer" Status="Available">
+            <Company OrganizationName="Heidelberger Druckmaschinen AG"/>
+            <Person FamilyName="Müller" FirstName="Josef"/>
+            <Address City="Heidelberg"/>
+        </Contact>
+        <DeliveryIntent Class="Intent" ID="DEL-1000117" Locked="false" Status="Available">
+            <DropIntent>
+                <Required Actual="2005-01-25T17:49:49+01:00" DataType="TimeSpan" Preferred="2005-01-25T17:49:49+01:00"/>
+                <DropItemIntent Amount="10000"/>
+            </DropIntent>
+        </DeliveryIntent>
+        <Device Class="Implementation" DescriptiveName="Press-u 8-FOM 72 x 102 cm 12'000 Bg/h Schichtarbeit" DeviceID="Press-481" FriendlyName="Press-u 8-FOM 72 x 102 cm 12'000 Bg/h Schichtarbeit" ID="DEV-481" Locked="false" Status="Available">
+            <CostCenter CostCenterID="481" Name="u 8-FOM 72 x 102 cm 12'000 Bg/h Schichtarbeit"/>
+        </Device>
+        <Device Class="Implementation" DescriptiveName="Press-6-FOM 74 x 104 cm Roland R706LTV" DeviceID="Press-476" FriendlyName="Press-6-FOM 74 x 104 cm Roland R706LTV" ID="DEV-476" Locked="false" Status="Available">
+            <CostCenter CostCenterID="476" Name="6-FOM 74 x 104 cm Roland R706LTV"/>
+        </Device>
+        <ColorantControl Class="Parameter" ID="CC-1000117" Locked="false" PartIDKeys="SignatureName SheetName Side" PartUsage="Implicit" ProcessColorModel="DeviceCMYK" Status="Available">
+            <ColorPoolRef rRef="CP-1000117"/>
+            <ColorantControl SignatureName="Signature-1000685">
+                <ColorantControl SheetName="Sheet-1001040">
+                    <ColorantControl Side="Front">
+                        <ColorantParams>
+                            <SeparationSpec Name="Black"/>
+                            <SeparationSpec Name="Cyan"/>
+                            <SeparationSpec Name="Magenta"/>
+                            <SeparationSpec Name="Yellow"/>
+                            <SeparationSpec Name="Pantone"/>
+                            <SeparationSpec Name="hks"/>
+                        </ColorantParams>
+                    </ColorantControl>
+                    <ColorantControl Side="Back">
+                        <ColorantParams>
+                            <SeparationSpec Name="Black"/>
+                            <SeparationSpec Name="Cyan"/>
+                            <SeparationSpec Name="Magenta"/>
+                            <SeparationSpec Name="Yellow"/>
+                        </ColorantParams>
+                    </ColorantControl>
+                </ColorantControl>
+            </ColorantControl>
+            <ColorantControl SignatureName="Signature-1000686">
+                <ColorantControl SheetName="Sheet-1001041">
+                    <ColorantControl Side="Front">
+                        <ColorantParams>
+                            <SeparationSpec Name="Black"/>
+                            <SeparationSpec Name="Cyan"/>
+                            <SeparationSpec Name="Magenta"/>
+                            <SeparationSpec Name="Yellow"/>
+                        </ColorantParams>
+                    </ColorantControl>
+                    <ColorantControl Side="Back">
+                        <ColorantParams>
+                            <SeparationSpec Name="Black"/>
+                            <SeparationSpec Name="Cyan"/>
+                            <SeparationSpec Name="Magenta"/>
+                            <SeparationSpec Name="Yellow"/>
+                        </ColorantParams>
+                    </ColorantControl>
+                </ColorantControl>
+            </ColorantControl>
+            <ColorantControl SignatureName="Signature-1000687">
+                <ColorantControl SheetName="Sheet-1001042">
+                    <ColorantControl Side="Front">
+                        <ColorantParams>
+                            <SeparationSpec Name="Black"/>
+                            <SeparationSpec Name="Cyan"/>
+                            <SeparationSpec Name="Magenta"/>
+                            <SeparationSpec Name="Yellow"/>
+                        </ColorantParams>
+                    </ColorantControl>
+                    <ColorantControl Side="Back">
+                        <ColorantParams>
+                            <SeparationSpec Name="Black"/>
+                            <SeparationSpec Name="Cyan"/>
+                            <SeparationSpec Name="Magenta"/>
+                            <SeparationSpec Name="Yellow"/>
+                        </ColorantParams>
+                    </ColorantControl>
+                </ColorantControl>
+            </ColorantControl>
+        </ColorantControl>
+        <ColorPool Class="Parameter" ID="CP-1000117" Locked="false" Status="Available">
+            <Color Name="Black"/>
+            <Color Name="Cyan"/>
+            <Color Name="Magenta"/>
+            <Color Name="Yellow"/>
+            <Color Name="Pantone"/>
+            <Color Name="hks"/>
+        </ColorPool>
+        <Assembly BindingSide="Left" Class="Parameter" ID="ASS-1000117" Order="Collecting" Status="Available"/>
+        <BinderySignature Class="Parameter" DescriptiveName="Umschlag 4 Seiten" FoldCatalog="F4-1" ID="BIS-1000117-93000000-1001652" Status="Available"/>
+        <BinderySignature Class="Parameter" DescriptiveName="16 S. 3-Bruch (Standard Drahtheftung)" FoldCatalog="F16-6" ID="BIS-1000117-1000036-1001653" Status="Available"/>
+        <BinderySignature Class="Parameter" DescriptiveName="16 S. 3-Bruch (Standard Drahtheftung)" FoldCatalog="F16-6" ID="BIS-1000117-1000036-1001654" Status="Available"/>
+        <StrippingParams Class="Parameter" ID="STP-1000117" PartIDKeys="SignatureName SheetName BinderySignatureName" Status="Available">
+            <StrippingParams SignatureName="Signature-1000685" WorkStyle="WorkAndTurn">
+                <MediaRef rRef="MEP-1000685"/>
+                <DeviceRef rRef="DEV-476"/>
+                <StrippingParams SheetName="Sheet-1001040">
+                    <StrippingParams BinderySignatureName="BinderySignature-1001652">
+                        <Comment Name="Description">Seiten: 1-2,3-4</Comment>
+                        <BinderySignatureRef rRef="BIS-1000117-93000000-1001652"/>
+                        <StripCellParams BackOverfold="28.3464566929134" BleedFace="5.66929133858268" BleedFoot="5.66929133858268" BleedHead="5.66929133858268" CutWidthFoot="0" CutWidthHead="0" MillingDepth="0" Spine="0" TrimFace="8.50393700787402" TrimFoot="8.50393700787402" TrimHead="8.50393700787402" TrimSize="595.275590551181 841.889763779528"/>
+                        <Position Orientation="Flip90" RelativeBox="0 0 0.5 1"/>
+                        <Position Orientation="Rotate270" RelativeBox="0.5 0 1 1"/>
+                    </StrippingParams>
+                </StrippingParams>
+            </StrippingParams>
+            <StrippingParams SignatureName="Signature-1000686" WorkStyle="Perfecting">
+                <MediaRef rRef="MEP-1000686"/>
+                <DeviceRef rRef="DEV-481"/>
+                <StrippingParams SheetName="Sheet-1001041">
+                    <StrippingParams BinderySignatureName="BinderySignature-1001653">
+                        <Comment Name="Description">Seiten: 1-8,25-32</Comment>
+                        <BinderySignatureRef rRef="BIS-1000117-1000036-1001653"/>
+                        <StripCellParams BackOverfold="28.3464566929134" BleedFace="5.66929133858268" BleedFoot="5.66929133858268" BleedHead="5.66929133858268" CutWidthFoot="0" CutWidthHead="0" MillingDepth="0" Spine="0" TrimFace="8.50393700787402" TrimFoot="8.50393700787402" TrimHead="8.50393700787402" TrimSize="595.275590551181 841.889763779528"/>
+                        <Position Orientation="Flip180" RelativeBox="0 0 1 1"/>
+                    </StrippingParams>
+                </StrippingParams>
+            </StrippingParams>
+            <StrippingParams SignatureName="Signature-1000687" WorkStyle="Perfecting">
+                <MediaRef rRef="MEP-1000687"/>
+                <DeviceRef rRef="DEV-481"/>
+                <StrippingParams SheetName="Sheet-1001042">
+                    <StrippingParams BinderySignatureName="BinderySignature-1001654">
+                        <Comment Name="Description">Seiten: 9-16,17-24</Comment>
+                        <BinderySignatureRef rRef="BIS-1000117-1000036-1001654"/>
+                        <StripCellParams BackOverfold="28.3464566929134" BleedFace="5.66929133858268" BleedFoot="5.66929133858268" BleedHead="5.66929133858268" CutWidthFoot="0" CutWidthHead="0" MillingDepth="0" Spine="0" TrimFace="8.50393700787402" TrimFoot="8.50393700787402" TrimHead="8.50393700787402" TrimSize="595.275590551181 841.889763779528"/>
+                        <Position Orientation="Flip180" RelativeBox="0 0 1 1"/>
+                    </StrippingParams>
+                </StrippingParams>
+            </StrippingParams>
+        </StrippingParams>
+        <RunList Class="Parameter" ID="RL-1000117" NPage="36" Status="Unavailable"/>
+        <RunList Class="Parameter" ID="RLD-1000117" Status="Unavailable"/>
+        <RunList Class="Parameter" ID="RLM-1000117" Status="Unavailable"/>
+        <BindingIntent BindingOrder="Collecting" Class="Intent" ID="BII-1000117" Locked="false" Status="Available">
+            <BindingType Actual="SaddleStitch" DataType="EnumerationSpan" Preferred="SaddleStitch"/>
+        </BindingIntent>
+        <Component Class="Quantity" ComponentType="Sheet" DescriptiveName="PrintedSheets-1000117" ID="PrintedSheets-1000117" Locked="false" PartIDKeys="SignatureName SheetName Condition" PartUsage="Explicit" ProductID="PrintedSheets-1000117" Status="Unavailable">
+            <Component SignatureName="Signature-1000685">
+                <Component DescriptiveName="Umschlag: 4 Seiten, 6/6 farbig" SheetName="Sheet-1001040">
+                    <Component Condition="Good" IsWaste="false"/>
+                    <Component Condition="Waste" IsWaste="true"/>
+                </Component>
+            </Component>
+            <Component SignatureName="Signature-1000686">
+                <Component DescriptiveName="Inhalt: 16 Seiten, 4/4 farbig" SheetName="Sheet-1001041">
+                    <Component Condition="Good" IsWaste="false"/>
+                    <Component Condition="Waste" IsWaste="true"/>
+                </Component>
+            </Component>
+            <Component SignatureName="Signature-1000687">
+                <Component DescriptiveName="Inhalt: 16 Seiten, 4/4 farbig" SheetName="Sheet-1001042">
+                    <Component Condition="Good" IsWaste="false"/>
+                    <Component Condition="Waste" IsWaste="true"/>
+                </Component>
+            </Component>
+        </Component>
+        <Component Class="Quantity" ComponentType="PartialProduct" DescriptiveName="FoldedSheets-1000117" ID="FoldedSheets-1000117" IsWaste="false" Locked="false" PartIDKeys="SignatureName SheetName" PartUsage="Implicit" ProductID="FoldedSheets-1000117" Status="Unavailable">
+            <Component SignatureName="Signature-1000685">
+                <Component SheetName="Sheet-1001040"/>
+            </Component>
+            <Component SignatureName="Signature-1000686">
+                <Component SheetName="Sheet-1001041"/>
+            </Component>
+            <Component SignatureName="Signature-1000687">
+                <Component SheetName="Sheet-1001042"/>
+            </Component>
+        </Component>
+        <Component Class="Quantity" ComponentType="FinalProduct" ID="FinalProduct-1000117" Status="Unavailable"/>
+        <Media BackCoatings="Glossy" Brand="Antalis AG" Class="Consumable" DescriptiveName="Zanders Mega glänzend hochweiss standard (Kopie)" Dimension="1984.25196850394 1417.32283464567" FrontCoatings="Glossy" GrainDirection="ShortEdge" ID="MEP-1000685" MediaType="Paper" MediaUnit="Sheet" ProductID="28400962" Status="Unavailable" Thickness="200" Weight="200"/>
+        <Media BackCoatings="Matte" Brand="Antalis AG" Class="Consumable" DescriptiveName="Novatech matt/Nopacoat silk hochweiss" Dimension="2607.87401574803 1842.51968503937" FrontCoatings="Matte" GrainDirection="LongEdge" ID="MEP-1000686" MediaType="Paper" MediaUnit="Sheet" ProductID="283871" Status="Available" Thickness="135" Weight="135"/>
+        <Media BackCoatings="Matte" Brand="Antalis AG" Class="Consumable" DescriptiveName="Novatech matt/Nopacoat silk hochweiss" Dimension="2607.87401574803 1842.51968503937" FrontCoatings="Matte" GrainDirection="LongEdge" ID="MEP-1000687" MediaType="Paper" MediaUnit="Sheet" ProductID="283871" Status="Available" Thickness="135" Weight="135"/>
+        <Media Class="Consumable" DescriptiveName="TemporaryPlate" ID="PLATE-1000117" MediaType="Plate" Status="Available"/>
+        <Layout Class="Parameter" ID="LAY-1000117" Locked="false" Name="LAY-1000117" Status="Unavailable">
+            <Signature Name="Signature-1000685">
+                <Sheet Name="Sheet-1001040">
+                    <MediaRef rRef="MEP-1000685"/>
+                    <Surface Side="Front"/>
+                    <Surface Side="Back"/>
+                </Sheet>
+            </Signature>
+            <Signature Name="Signature-1000686">
+                <Sheet Name="Sheet-1001041">
+                    <MediaRef rRef="MEP-1000686"/>
+                    <Surface Side="Front"/>
+                    <Surface Side="Back"/>
+                </Sheet>
+            </Signature>
+            <Signature Name="Signature-1000687">
+                <Sheet Name="Sheet-1001042">
+                    <MediaRef rRef="MEP-1000687"/>
+                    <Surface Side="Front"/>
+                    <Surface Side="Back"/>
+                </Sheet>
+            </Signature>
+        </Layout>
+        <Media Class="Consumable" DescriptiveName="ImpositionProofMedia" ID="IMPPM-1000117" MediaType="Paper" PartUsage="Implicit" Status="Available"/>
+        <ExposedMedia Class="Handling" ID="IMPP-1000117" Locked="false" PartUsage="Implicit" Status="Unavailable">
+            <MediaRef rRef="IMPPM-1000117"/>
+        </ExposedMedia>
+        <ExposedMedia Class="Handling" ID="EXP-1000117" Locked="false" PartIDKeys="SignatureName SheetName Side Separation" PartUsage="Implicit" Status="Unavailable">
+            <MediaRef rRef="PLATE-1000117"/>
+            <ExposedMedia SignatureName="Signature-1000685">
+                <ExposedMedia SheetName="Sheet-1001040">
+                    <ExposedMedia Side="Front">
+                        <ExposedMedia ProductID="Plate-1" Separation="Black"/>
+                        <ExposedMedia ProductID="Plate-2" Separation="Cyan"/>
+                        <ExposedMedia ProductID="Plate-3" Separation="Magenta"/>
+                        <ExposedMedia ProductID="Plate-4" Separation="Yellow"/>
+                        <ExposedMedia ProductID="Plate-5" Separation="Pantone"/>
+                        <ExposedMedia ProductID="Plate-6" Separation="hks"/>
+                    </ExposedMedia>
+                </ExposedMedia>
+            </ExposedMedia>
+            <ExposedMedia SignatureName="Signature-1000686">
+                <ExposedMedia SheetName="Sheet-1001041">
+                    <ExposedMedia Side="Front">
+                        <ExposedMedia ProductID="Plate-7" Separation="Black"/>
+                        <ExposedMedia ProductID="Plate-8" Separation="Cyan"/>
+                        <ExposedMedia ProductID="Plate-9" Separation="Magenta"/>
+                        <ExposedMedia ProductID="Plate-10" Separation="Yellow"/>
+                    </ExposedMedia>
+                    <ExposedMedia Side="Back">
+                        <ExposedMedia ProductID="Plate-11" Separation="Black"/>
+                        <ExposedMedia ProductID="Plate-12" Separation="Cyan"/>
+                        <ExposedMedia ProductID="Plate-13" Separation="Magenta"/>
+                        <ExposedMedia ProductID="Plate-14" Separation="Yellow"/>
+                    </ExposedMedia>
+                </ExposedMedia>
+            </ExposedMedia>
+            <ExposedMedia SignatureName="Signature-1000687">
+                <ExposedMedia SheetName="Sheet-1001042">
+                    <ExposedMedia Side="Front">
+                        <ExposedMedia ProductID="Plate-15" Separation="Black"/>
+                        <ExposedMedia ProductID="Plate-16" Separation="Cyan"/>
+                        <ExposedMedia ProductID="Plate-17" Separation="Magenta"/>
+                        <ExposedMedia ProductID="Plate-18" Separation="Yellow"/>
+                    </ExposedMedia>
+                    <ExposedMedia Side="Back">
+                        <ExposedMedia ProductID="Plate-19" Separation="Black"/>
+                        <ExposedMedia ProductID="Plate-20" Separation="Cyan"/>
+                        <ExposedMedia ProductID="Plate-21" Separation="Magenta"/>
+                        <ExposedMedia ProductID="Plate-22" Separation="Yellow"/>
+                    </ExposedMedia>
+                </ExposedMedia>
+            </ExposedMedia>
+        </ExposedMedia>
+        <Preview Class="Parameter" ID="PRV-1000117" Locked="false" PartIDKeys="SignatureName SheetName Side Separation" PartUsage="Implicit" Status="Unavailable" URL="http://localhost/">
+            <Preview SignatureName="Signature-1000685">
+                <Preview SheetName="Sheet-1001040">
+                    <Preview Side="Front">
+                        <Preview Separation="Black"/>
+                        <Preview Separation="Cyan"/>
+                        <Preview Separation="Magenta"/>
+                        <Preview Separation="Yellow"/>
+                        <Preview Separation="Pantone"/>
+                        <Preview Separation="hks"/>
+                    </Preview>
+                    <Preview Side="Back">
+                        <Preview Separation="Black"/>
+                        <Preview Separation="Cyan"/>
+                        <Preview Separation="Magenta"/>
+                        <Preview Separation="Yellow"/>
+                    </Preview>
+                </Preview>
+            </Preview>
+            <Preview SignatureName="Signature-1000686">
+                <Preview SheetName="Sheet-1001041">
+                    <Preview Side="Front">
+                        <Preview Separation="Black"/>
+                        <Preview Separation="Cyan"/>
+                        <Preview Separation="Magenta"/>
+                        <Preview Separation="Yellow"/>
+                    </Preview>
+                    <Preview Side="Back">
+                        <Preview Separation="Black"/>
+                        <Preview Separation="Cyan"/>
+                        <Preview Separation="Magenta"/>
+                        <Preview Separation="Yellow"/>
+                    </Preview>
+                </Preview>
+            </Preview>
+            <Preview SignatureName="Signature-1000687">
+                <Preview SheetName="Sheet-1001042">
+                    <Preview Side="Front">
+                        <Preview Separation="Black"/>
+                        <Preview Separation="Cyan"/>
+                        <Preview Separation="Magenta"/>
+                        <Preview Separation="Yellow"/>
+                    </Preview>
+                    <Preview Side="Back">
+                        <Preview Separation="Black"/>
+                        <Preview Separation="Cyan"/>
+                        <Preview Separation="Magenta"/>
+                        <Preview Separation="Yellow"/>
+                    </Preview>
+                </Preview>
+            </Preview>
+        </Preview>
+        <Ink Class="Consumable" ID="INK-1000117" Locked="false" PartIDKeys="SignatureName SheetName Side Separation" PartUsage="Implicit" Status="Unavailable">
+            <Ink SignatureName="Signature-1000685">
+                <Ink SheetName="Sheet-1001040">
+                    <Ink Side="Front">
+                        <Ink ColorName="Black" Separation="Black"/>
+                        <Ink ColorName="Cyan" Separation="Cyan"/>
+                        <Ink ColorName="Magenta" Separation="Magenta"/>
+                        <Ink ColorName="Yellow" Separation="Yellow"/>
+                        <Ink ColorName="Pantone" Separation="Pantone"/>
+                        <Ink ColorName="hks" Separation="hks"/>
+                    </Ink>
+                    <Ink Side="Back">
+                        <Ink ColorName="Black" Separation="Black"/>
+                        <Ink ColorName="Cyan" Separation="Cyan"/>
+                        <Ink ColorName="Magenta" Separation="Magenta"/>
+                        <Ink ColorName="Yellow" Separation="Yellow"/>
+                    </Ink>
+                </Ink>
+            </Ink>
+            <Ink SignatureName="Signature-1000686">
+                <Ink SheetName="Sheet-1001041">
+                    <Ink Side="Front">
+                        <Ink ColorName="Black" Separation="Black"/>
+                        <Ink ColorName="Cyan" Separation="Cyan"/>
+                        <Ink ColorName="Magenta" Separation="Magenta"/>
+                        <Ink ColorName="Yellow" Separation="Yellow"/>
+                    </Ink>
+                    <Ink Side="Back">
+                        <Ink ColorName="Black" Separation="Black"/>
+                        <Ink ColorName="Cyan" Separation="Cyan"/>
+                        <Ink ColorName="Magenta" Separation="Magenta"/>
+                        <Ink ColorName="Yellow" Separation="Yellow"/>
+                    </Ink>
+                </Ink>
+            </Ink>
+            <Ink SignatureName="Signature-1000687">
+                <Ink SheetName="Sheet-1001042">
+                    <Ink Side="Front">
+                        <Ink ColorName="Black" Separation="Black"/>
+                        <Ink ColorName="Cyan" Separation="Cyan"/>
+                        <Ink ColorName="Magenta" Separation="Magenta"/>
+                        <Ink ColorName="Yellow" Separation="Yellow"/>
+                    </Ink>
+                    <Ink Side="Back">
+                        <Ink ColorName="Black" Separation="Black"/>
+                        <Ink ColorName="Cyan" Separation="Cyan"/>
+                        <Ink ColorName="Magenta" Separation="Magenta"/>
+                        <Ink ColorName="Yellow" Separation="Yellow"/>
+                    </Ink>
+                </Ink>
+            </Ink>
+        </Ink>
+        <ColorIntent Class="Intent" ID="COI-1000117" Locked="false" PartIDKeys="SignatureName SheetName Side" PartUsage="Implicit" Status="Available">
+            <ColorPoolRef rRef="CP-1000117"/>
+            <ColorIntent SignatureName="Signature-1000685">
+                <ColorIntent SheetName="Sheet-1001040">
+                    <ColorIntent Side="Front">
+                        <ColorsUsed>
+                            <SeparationSpec Name="Black"/>
+                            <SeparationSpec Name="Cyan"/>
+                            <SeparationSpec Name="Magenta"/>
+                            <SeparationSpec Name="Yellow"/>
+                            <SeparationSpec Name="Pantone"/>
+                            <SeparationSpec Name="hks"/>
+                        </ColorsUsed>
+                    </ColorIntent>
+                    <ColorIntent Side="Back">
+                        <ColorsUsed>
+                            <SeparationSpec Name="Black"/>
+                            <SeparationSpec Name="Cyan"/>
+                            <SeparationSpec Name="Magenta"/>
+                            <SeparationSpec Name="Yellow"/>
+                        </ColorsUsed>
+                    </ColorIntent>
+                </ColorIntent>
+            </ColorIntent>
+            <ColorIntent SignatureName="Signature-1000686">
+                <ColorIntent SheetName="Sheet-1001041">
+                    <ColorIntent Side="Front">
+                        <ColorsUsed>
+                            <SeparationSpec Name="Black"/>
+                            <SeparationSpec Name="Cyan"/>
+                            <SeparationSpec Name="Magenta"/>
+                            <SeparationSpec Name="Yellow"/>
+                        </ColorsUsed>
+                    </ColorIntent>
+                    <ColorIntent Side="Back">
+                        <ColorsUsed>
+                            <SeparationSpec Name="Black"/>
+                            <SeparationSpec Name="Cyan"/>
+                            <SeparationSpec Name="Magenta"/>
+                            <SeparationSpec Name="Yellow"/>
+                        </ColorsUsed>
+                    </ColorIntent>
+                </ColorIntent>
+            </ColorIntent>
+            <ColorIntent SignatureName="Signature-1000687">
+                <ColorIntent SheetName="Sheet-1001042">
+                    <ColorIntent Side="Front">
+                        <ColorsUsed>
+                            <SeparationSpec Name="Black"/>
+                            <SeparationSpec Name="Cyan"/>
+                            <SeparationSpec Name="Magenta"/>
+                            <SeparationSpec Name="Yellow"/>
+                        </ColorsUsed>
+                    </ColorIntent>
+                    <ColorIntent Side="Back">
+                        <ColorsUsed>
+                            <SeparationSpec Name="Black"/>
+                            <SeparationSpec Name="Cyan"/>
+                            <SeparationSpec Name="Magenta"/>
+                            <SeparationSpec Name="Yellow"/>
+                        </ColorsUsed>
+                    </ColorIntent>
+                </ColorIntent>
+            </ColorIntent>
+        </ColorIntent>
+    </ResourcePool>
+    <ResourceLinkPool>
+        <DeliveryIntentLink Usage="Input" rRef="DEL-1000117"/>
+        <BindingIntentLink Usage="Input" rRef="BII-1000117"/>
+        <ComponentLink Amount="10000" Usage="Output" rRef="FinalProduct-1000117"/>
+    </ResourceLinkPool>
+    <JDF Category="PrePress" DescriptiveName="Prepress: Heidelberg A4 brochure" ID="PREPRESS-1000117" JobPartID="JP2" Status="Waiting" Type="ProcessGroup">
+        <NodeInfo FirstStart="2005-01-25T17:49:49+01:00" LastEnd="2005-02-04T17:49:49+01:00"/>
+        <JDF Category="PrePressPreparation" DescriptiveName="PP-Preparation: Heidelberg A4 brochure" ID="PPGB-1000117" JobPartID="JP3" Status="Waiting" Type="ProcessGroup" Types="PrePressPreparation">
+            <NodeInfo FirstStart="2005-01-25T17:49:49+01:00" LastEnd="2005-01-28T17:49:49+01:00" SetupDuration="P0DT0H20M49S" TotalDuration="P0DT3H28M12S"/>
+            <ResourceLinkPool>
+                <RunListLink Usage="Input" rRef="RL-1000117"/>
+                <RunListLink ProcessUsage="Document" Usage="Output" rRef="RLD-1000117"/>
+            </ResourceLinkPool>
+        </JDF>
+        <JDF Category="ImpositionPreparation" DescriptiveName="Imposition: Heidelberg A4 brochure" ID="IPGB-1000117" JobPartID="JP4" Status="Waiting" Type="ProcessGroup" Types="ImpositionPreparation">
+            <NodeInfo FirstStart="2005-01-25T17:49:49+01:00" LastEnd="2005-01-28T17:49:49+01:00" SetupDuration="P0DT0H8M2S" TotalDuration="P0DT1H20M24S"/>
+            <ResourceLinkPool>
+                <StrippingParamsLink Usage="Input" rRef="STP-1000117"/>
+                <AssemblyLink Usage="Input" rRef="ASS-1000117"/>
+                <LayoutLink Usage="Output" rRef="LAY-1000117"/>
+                <RunListLink ProcessUsage="Marks" Usage="Output" rRef="RLM-1000117"/>
+            </ResourceLinkPool>
+        </JDF>
+    </JDF>
+    <JDF DescriptiveName="Part: Umschlag: 4 Seiten, 6/6 farbig" ID="SIG-1000685" JobPartID="JP5" Status="Waiting" Type="Product">
+        <NodeInfo FirstStart="2005-01-25T17:49:49+01:00" LastEnd="2005-01-28T17:49:49+01:00" SetupDuration="P0DT0H16M8S" TotalDuration="P0DT2H41M24S"/>
+        <ResourcePool>
+            <LayoutIntent Class="Intent" ID="LAI-1000685" Status="Available">
+                <FinishedDimensions Actual="595.275590551181 841.889763779528 0" DataType="ShapeSpan" Preferred="595.275590551181 841.889763779528 0"/>
+                <Pages Actual="4" DataType="IntegerSpan" Preferred="4"/>
+            </LayoutIntent>
+            <MediaIntent Class="Intent" ID="MEIP-1000685" Locked="false" Status="Available">
+                <StockBrand Actual="Zanders Mega glänzend hochweiss standard (Kopie)" DataType="StringSpan" Preferred="Zanders Mega glänzend hochweiss standard (Kopie)"/>
+                <MediaType Actual="Paper" DataType="EnumerationSpan" Preferred="Paper"/>
+                <Dimensions Actual="1984.25196850394 1417.32283464567" DataType="XYPairSpan" Preferred="1984.25196850394 1417.32283464567"/>
+                <Weight Actual="200" DataType="NumberSpan" Preferred="200"/>
+                <GrainDirection Actual="ShortEdge" DataType="EnumerationSpan" Preferred="ShortEdge"/>
+                <BackCoatings Actual="Glossy" DataType="EnumerationSpan" Preferred="Glossy"/>
+                <FrontCoatings Actual="Glossy" DataType="EnumerationSpan" Preferred="Glossy"/>
+                <Thickness Actual="200" DataType="NumberSpan" Preferred="200"/>
+            </MediaIntent>
+        </ResourcePool>
+        <ResourceLinkPool>
+            <LayoutIntentLink Usage="Input" rRef="LAI-1000685"/>
+            <ColorIntentLink Usage="Input" rRef="COI-1000117">
+                <Part SignatureName="Signature-1000685"/>
+            </ColorIntentLink>
+            <MediaIntentLink Usage="Input" rRef="MEIP-1000685"/>
+            <ComponentLink Usage="Output" rRef="FoldedSheets-1000117">
+                <Part SignatureName="Signature-1000685"/>
+            </ComponentLink>
+        </ResourceLinkPool>
+        <JDF Category="PrePress" DescriptiveName="Prepress: Umschlag: 4 Seiten, 6/6 farbig" ID="PREPRESS-1000685" JobPartID="JP6" Status="Waiting" Type="ProcessGroup">
+            <NodeInfo FirstStart="2005-01-25T17:49:49+01:00" LastEnd="2005-02-04T17:49:49+01:00"/>
+            <ResourcePool/>
+            <JDF Category="ProofImaging" DescriptiveName="Imposition/Proof: Umschlag: 4 Seiten, 6/6 farbig" ID="IPROOFGB-1000685" JobPartID="JP7" Status="Waiting" Type="ProcessGroup" Types="Imposition ProofImaging">
+                <NodeInfo FirstStart="2005-01-25T17:49:49+01:00" LastEnd="2005-01-28T17:49:49+01:00" SetupDuration="P0DT0H7M12S" TotalDuration="P0DT1H12M0S"/>
+                <ResourceLinkPool>
+                    <LayoutLink Usage="Input" rRef="LAY-1000117"/>
+                    <RunListLink ProcessUsage="Document" Usage="Input" rRef="RLD-1000117"/>
+                    <RunListLink ProcessUsage="Marks" Usage="Input" rRef="RLM-1000117"/>
+                    <ColorantControlLink Usage="Input" rRef="CC-1000117"/>
+                    <MediaLink Usage="Input" rRef="IMPPM-1000117"/>
+                    <ExposedMediaLink Usage="Output" rRef="IMPP-1000117">
+                        <Part SheetName="Sheet-1001040" SignatureName="Signature-1000685"/>
+                    </ExposedMediaLink>
+                </ResourceLinkPool>
+            </JDF>
+            <JDF Category="FinalImaging" DescriptiveName="Platemaking: Umschlag: 4 Seiten, 6/6 farbig" ID="PMGB-1000685" JobPartID="JP8" Status="Waiting" Type="ProcessGroup" Types="Imposition RIPing PreviewGeneration ImageSetting">
+                <NodeInfo FirstStart="2005-01-25T17:49:49+01:00" LastEnd="2005-01-28T17:49:49+01:00" SetupDuration="P0DT0H19M12S" TotalDuration="P0DT3H12M0S"/>
+                <ResourceLinkPool>
+                    <LayoutLink Usage="Input" rRef="LAY-1000117"/>
+                    <RunListLink ProcessUsage="Document" Usage="Input" rRef="RLD-1000117"/>
+                    <RunListLink ProcessUsage="Marks" Usage="Input" rRef="RLM-1000117"/>
+                    <ColorantControlLink Usage="Input" rRef="CC-1000117"/>
+                    <ExposedMediaLink Usage="Output" rRef="EXP-1000117">
+                        <Part SheetName="Sheet-1001040" SignatureName="Signature-1000685"/>
+                    </ExposedMediaLink>
+                    <PreviewLink Usage="Output" rRef="PRV-1000117">
+                        <Part SheetName="Sheet-1001040" SignatureName="Signature-1000685"/>
+                    </PreviewLink>
+                </ResourceLinkPool>
+            </JDF>
+        </JDF>
+        <JDF DescriptiveName="Press: Umschlag: 4 Seiten, 6/6 farbig" ID="PRESS-1001040" JobPartID="JP9" Status="Waiting" Type="ProcessGroup">
+            <NodeInfo FirstStart="2005-01-25T17:49:49+01:00" LastEnd="2005-01-28T17:49:49+01:00" SetupDuration="P0DT0H37M12S" TotalDuration="P0DT6H12M0S"/>
+            <JDF DescriptiveName="Press: Umschlag: 4 Seiten, 6/6 farbig" ID="P11115-1001040-1" JobPartID="JP10" Status="Waiting" Type="ConventionalPrinting">
+                <Comment Name="Description">Anzahl Farben der '6-FOM 74 x 104 cm Roland R706LTV' : 6; Druckart : Umschlagen (Worktype 'WorkAndTurn'); Anzahl der berechneten Durchläufe : 2; Anzahl der JDF Durchläufe : 1; Anzahl Farben Vorderseite : 6; Anzahl Farben Rückseite : 6; </Comment>
+                <NodeInfo FirstStart="2005-01-25T17:49:49+01:00" LastEnd="2005-01-28T17:49:49+01:00" SetupDuration="P0DT0H8M4S" TotalDuration="P0DT1H20M42S"/>
+                <ResourceLinkPool>
+                    <MediaLink Usage="Input" rRef="MEP-1000685"/>
+                    <DeviceLink Usage="Input" rRef="DEV-476"/>
+                    <ConventionalPrintingParamsLink Usage="Input" rRef="CVPP-1001040"/>
+                    
+                    <ComponentLink Amount="5050" Usage="Output" rRef="PrintedSheets-1000117">
+                        <Part Condition="Good" SheetName="Sheet-1001040" SignatureName="Signature-1000685"/>
+                        <Part Condition="Waste" SheetName="Sheet-1001040" SignatureName="Signature-1000685"/>
+                        <AmountPool>
+                            <PartAmount Amount="952">
+                                <Part Condition="Waste" SheetName="Sheet-1001040" SignatureName="Signature-1000685"/>
+                            </PartAmount>
+                            <PartAmount Amount="5050">
+                                <Part Condition="Good" SheetName="Sheet-1001040" SignatureName="Signature-1000685"/>
+                            </PartAmount>
+                        </AmountPool>
+                    </ComponentLink>
+                    <ExposedMediaLink ProcessUsage="Plate" Usage="Input" rRef="EXP-1000117">
+                        <Part SheetName="Sheet-1001040" SignatureName="Signature-1000685"/>
+                    </ExposedMediaLink>
+                    <ColorantControlLink Usage="Input" rRef="CC-1000117">
+                        <Part SheetName="Sheet-1001040" SignatureName="Signature-1000685"/>
+                    </ColorantControlLink>
+                    <InkLink Usage="Input" rRef="INK-1000117">
+                        <Part SheetName="Sheet-1001040" SignatureName="Signature-1000685"/>
+                    </InkLink>
+                </ResourceLinkPool>
+                <ResourcePool>
+                    <ConventionalPrintingParams Class="Parameter" ID="CVPP-1001040" Locked="false" PrintingType="SheetFed" Status="Available" WorkStyle="WorkAndTurn"/>
+                </ResourcePool>
+            </JDF>
+            <JDF DescriptiveName="Folding: Umschlag: 4 Seiten, 6/6 farbig" ID="FOL-1001040" JobPartID="JP11" Status="Waiting" Type="Folding">
+                <NodeInfo FirstStart="2005-01-25T17:49:49+01:00" LastEnd="2005-01-28T17:49:49+01:00" SetupDuration="P0DT0H25M12S" TotalDuration="P0DT4H12M0S"/>
+                <ResourcePool>
+                    
+                    <FoldingParams Class="Parameter" DescriptionType="FoldCatalog" FoldCatalog="F4-1" ID="FPP-1001040" Status="Available"/>
+                </ResourcePool>
+                <ResourceLinkPool>
+                    <FoldingParamsLink Usage="Input" rRef="FPP-1001040"/>
+                    <DeviceLink Usage="Input" rRef="DEV-476"/>
+                    <ComponentLink Usage="Input" rRef="PrintedSheets-1000117">
+                        <Part Condition="Good" SheetName="Sheet-1001040" SignatureName="Signature-1000685"/>
+                    </ComponentLink>
+                    <ComponentLink Usage="Output" rRef="FoldedSheets-1000117">
+                        <Part SheetName="Sheet-1001040" SignatureName="Signature-1000685"/>
+                    </ComponentLink>
+                </ResourceLinkPool>
+            </JDF>
+        </JDF>
+    </JDF>
+    <JDF DescriptiveName="Part: Inhalt: 16 Seiten, 4/4 farbig" ID="SIG-1000686" JobPartID="JP12" Status="Waiting" Type="Product">
+        <NodeInfo FirstStart="2005-01-25T17:49:49+01:00" LastEnd="2005-01-28T17:49:49+01:00" SetupDuration="P0DT0H18M28S" TotalDuration="P0DT3H4M48S"/>
+        <ResourcePool>
+            <LayoutIntent Class="Intent" ID="LAI-1000686" Status="Available">
+                <FinishedDimensions Actual="595.275590551181 841.889763779528 0" DataType="ShapeSpan" Preferred="595.275590551181 841.889763779528 0"/>
+                <Pages Actual="16" DataType="IntegerSpan" Preferred="16"/>
+            </LayoutIntent>
+            <MediaIntent Class="Intent" ID="MEIP-1000686" Locked="false" Status="Available">
+                <StockBrand Actual="Novatech matt/Nopacoat silk hochweiss" DataType="StringSpan" Preferred="Novatech matt/Nopacoat silk hochweiss"/>
+                <MediaType Actual="Paper" DataType="EnumerationSpan" Preferred="Paper"/>
+                <Dimensions Actual="2607.87401574803 1842.51968503937" DataType="XYPairSpan" Preferred="2607.87401574803 1842.51968503937"/>
+                <Weight Actual="135" DataType="NumberSpan" Preferred="135"/>
+                <GrainDirection Actual="LongEdge" DataType="EnumerationSpan" Preferred="LongEdge"/>
+                <BackCoatings Actual="Matte" DataType="EnumerationSpan" Preferred="Matte"/>
+                <FrontCoatings Actual="Matte" DataType="EnumerationSpan" Preferred="Matte"/>
+                <Thickness Actual="135" DataType="NumberSpan" Preferred="135"/>
+            </MediaIntent>
+        </ResourcePool>
+        <ResourceLinkPool>
+            <LayoutIntentLink Usage="Input" rRef="LAI-1000686"/>
+            <ColorIntentLink Usage="Input" rRef="COI-1000117">
+                <Part SignatureName="Signature-1000686"/>
+            </ColorIntentLink>
+            <MediaIntentLink Usage="Input" rRef="MEIP-1000686"/>
+            <ComponentLink Usage="Output" rRef="FoldedSheets-1000117">
+                <Part SignatureName="Signature-1000686"/>
+            </ComponentLink>
+        </ResourceLinkPool>
+        <JDF Category="PrePress" DescriptiveName="Prepress: Inhalt: 16 Seiten, 4/4 farbig" ID="PREPRESS-1000686" JobPartID="JP13" Status="Waiting" Type="ProcessGroup">
+            <NodeInfo FirstStart="2005-01-25T17:49:49+01:00" LastEnd="2005-02-04T17:49:49+01:00"/>
+            <ResourcePool/>
+            <JDF Category="ProofImaging" DescriptiveName="Imposition/Proof: Inhalt: 16 Seiten, 4/4 farbig" ID="IPROOFGB-1000686" JobPartID="JP14" Status="Waiting" Type="ProcessGroup" Types="Imposition ProofImaging">
+                <NodeInfo FirstStart="2005-01-25T17:49:49+01:00" LastEnd="2005-01-28T17:49:49+01:00" SetupDuration="P0DT0H7M12S" TotalDuration="P0DT1H12M0S"/>
+                <ResourceLinkPool>
+                    <LayoutLink Usage="Input" rRef="LAY-1000117"/>
+                    <RunListLink ProcessUsage="Document" Usage="Input" rRef="RLD-1000117"/>
+                    <RunListLink ProcessUsage="Marks" Usage="Input" rRef="RLM-1000117"/>
+                    <ColorantControlLink Usage="Input" rRef="CC-1000117"/>
+                    <MediaLink Usage="Input" rRef="IMPPM-1000117"/>
+                    <ExposedMediaLink Usage="Output" rRef="IMPP-1000117">
+                        <Part SheetName="Sheet-1001041" SignatureName="Signature-1000686"/>
+                    </ExposedMediaLink>
+                </ResourceLinkPool>
+            </JDF>
+            <JDF Category="FinalImaging" DescriptiveName="Platemaking: Inhalt: 16 Seiten, 4/4 farbig" ID="PMGB-1000686" JobPartID="JP15" Status="Waiting" Type="ProcessGroup" Types="Imposition RIPing PreviewGeneration ImageSetting">
+                <NodeInfo FirstStart="2005-01-25T17:49:49+01:00" LastEnd="2005-01-28T17:49:49+01:00" SetupDuration="P0DT0H19M12S" TotalDuration="P0DT3H12M0S"/>
+                <ResourceLinkPool>
+                    <LayoutLink Usage="Input" rRef="LAY-1000117"/>
+                    <RunListLink ProcessUsage="Document" Usage="Input" rRef="RLD-1000117"/>
+                    <RunListLink ProcessUsage="Marks" Usage="Input" rRef="RLM-1000117"/>
+                    <ColorantControlLink Usage="Input" rRef="CC-1000117"/>
+                    <ExposedMediaLink Usage="Output" rRef="EXP-1000117">
+                        <Part SheetName="Sheet-1001041" SignatureName="Signature-1000686"/>
+                    </ExposedMediaLink>
+                    <PreviewLink Usage="Output" rRef="PRV-1000117">
+                        <Part SheetName="Sheet-1001041" SignatureName="Signature-1000686"/>
+                    </PreviewLink>
+                </ResourceLinkPool>
+            </JDF>
+        </JDF>
+        <JDF DescriptiveName="Press: Inhalt: 16 Seiten, 4/4 farbig" ID="PRESS-1001041" JobPartID="JP16" Status="Waiting" Type="ProcessGroup">
+            <NodeInfo FirstStart="2005-01-25T17:49:49+01:00" LastEnd="2005-01-28T17:49:49+01:00" SetupDuration="P0DT0H37M12S" TotalDuration="P0DT6H12M0S"/>
+            <JDF DescriptiveName="Press: Inhalt: 16 Seiten, 4/4 farbig" ID="P11115-1001041-1" JobPartID="JP17" Status="Waiting" Type="ConventionalPrinting">
+                <Comment Name="Description">Anzahl Farben der 'u 8-FOM 72 x 102 cm 12'000 Bg/h Schichtarbeit' : 8; Druckart : S/WD in einem Durchgang (Worktype 'Perfecting'); Anzahl der berechneten Durchläufe : 1; Anzahl der JDF Durchläufe : 1; Anzahl Farben Vorderseite : 4; Anzahl Farben Rückseite : 4; </Comment>
+                <NodeInfo FirstStart="2005-01-25T17:49:49+01:00" LastEnd="2005-01-28T17:49:49+01:00" SetupDuration="P0DT0H18M28S" TotalDuration="P0DT3H4M48S"/>
+                <ResourceLinkPool>
+                    <MediaLink Usage="Input" rRef="MEP-1000686"/>
+                    <DeviceLink Usage="Input" rRef="DEV-481"/>
+                    <ConventionalPrintingParamsLink Usage="Input" rRef="CVPP-1001041"/>
+                    
+                    <ComponentLink Amount="10302" Usage="Output" rRef="PrintedSheets-1000117">
+                        <Part Condition="Good" SheetName="Sheet-1001041" SignatureName="Signature-1000686"/>
+                        <Part Condition="Waste" SheetName="Sheet-1001041" SignatureName="Signature-1000686"/>
+                        <AmountPool>
+                            <PartAmount Amount="1058">
+                                <Part Condition="Waste" SheetName="Sheet-1001041" SignatureName="Signature-1000686"/>
+                            </PartAmount>
+                            <PartAmount Amount="10302">
+                                <Part Condition="Good" SheetName="Sheet-1001041" SignatureName="Signature-1000686"/>
+                            </PartAmount>
+                        </AmountPool>
+                    </ComponentLink>
+                    <ExposedMediaLink ProcessUsage="Plate" Usage="Input" rRef="EXP-1000117">
+                        <Part SheetName="Sheet-1001041" SignatureName="Signature-1000686"/>
+                    </ExposedMediaLink>
+                    <ColorantControlLink Usage="Input" rRef="CC-1000117">
+                        <Part SheetName="Sheet-1001041" SignatureName="Signature-1000686"/>
+                    </ColorantControlLink>
+                    <InkLink Usage="Input" rRef="INK-1000117">
+                        <Part SheetName="Sheet-1001041" SignatureName="Signature-1000686"/>
+                    </InkLink>
+                </ResourceLinkPool>
+                <ResourcePool>
+                    <ConventionalPrintingParams Class="Parameter" ID="CVPP-1001041" Locked="false" PrintingType="SheetFed" Status="Available" WorkStyle="Perfecting"/>
+                </ResourcePool>
+            </JDF>
+            <JDF DescriptiveName="Folding: Inhalt: 16 Seiten, 4/4 farbig" ID="FOL-1001041" JobPartID="JP18" Status="Waiting" Type="Folding">
+                <NodeInfo FirstStart="2005-01-25T17:49:49+01:00" LastEnd="2005-01-28T17:49:49+01:00" SetupDuration="P0DT0H25M12S" TotalDuration="P0DT4H12M0S"/>
+                <ResourcePool>
+                    
+                    <FoldingParams Class="Parameter" DescriptionType="FoldCatalog" FoldCatalog="F4-1" ID="FPP-1001041" Status="Available"/>
+                </ResourcePool>
+                <ResourceLinkPool>
+                    <FoldingParamsLink Usage="Input" rRef="FPP-1001041"/>
+                    <DeviceLink Usage="Input" rRef="DEV-481"/>
+                    <ComponentLink Usage="Input" rRef="PrintedSheets-1000117">
+                        <Part Condition="Good" SheetName="Sheet-1001041" SignatureName="Signature-1000686"/>
+                    </ComponentLink>
+                    <ComponentLink Usage="Output" rRef="FoldedSheets-1000117">
+                        <Part SheetName="Sheet-1001041" SignatureName="Signature-1000686"/>
+                    </ComponentLink>
+                </ResourceLinkPool>
+            </JDF>
+        </JDF>
+    </JDF>
+    <JDF DescriptiveName="Part: Inhalt: 16 Seiten, 4/4 farbig" ID="SIG-1000687" JobPartID="JP19" Status="Waiting" Type="Product">
+        <NodeInfo FirstStart="2005-01-25T17:49:49+01:00" LastEnd="2005-01-28T17:49:49+01:00" SetupDuration="P0DT0H18M28S" TotalDuration="P0DT3H4M48S"/>
+        <ResourcePool>
+            <LayoutIntent Class="Intent" ID="LAI-1000687" Status="Available">
+                <FinishedDimensions Actual="595.275590551181 841.889763779528 0" DataType="ShapeSpan" Preferred="595.275590551181 841.889763779528 0"/>
+                <Pages Actual="16" DataType="IntegerSpan" Preferred="16"/>
+            </LayoutIntent>
+            <MediaIntent Class="Intent" ID="MEIP-1000687" Locked="false" Status="Available">
+                <StockBrand Actual="Novatech matt/Nopacoat silk hochweiss" DataType="StringSpan" Preferred="Novatech matt/Nopacoat silk hochweiss"/>
+                <MediaType Actual="Paper" DataType="EnumerationSpan" Preferred="Paper"/>
+                <Dimensions Actual="2607.87401574803 1842.51968503937" DataType="XYPairSpan" Preferred="2607.87401574803 1842.51968503937"/>
+                <Weight Actual="135" DataType="NumberSpan" Preferred="135"/>
+                <GrainDirection Actual="LongEdge" DataType="EnumerationSpan" Preferred="LongEdge"/>
+                <BackCoatings Actual="Matte" DataType="EnumerationSpan" Preferred="Matte"/>
+                <FrontCoatings Actual="Matte" DataType="EnumerationSpan" Preferred="Matte"/>
+                <Thickness Actual="135" DataType="NumberSpan" Preferred="135"/>
+            </MediaIntent>
+        </ResourcePool>
+        <ResourceLinkPool>
+            <LayoutIntentLink Usage="Input" rRef="LAI-1000687"/>
+            <ColorIntentLink Usage="Input" rRef="COI-1000117">
+                <Part SignatureName="Signature-1000687"/>
+            </ColorIntentLink>
+            <MediaIntentLink Usage="Input" rRef="MEIP-1000687"/>
+            <ComponentLink Usage="Output" rRef="FoldedSheets-1000117">
+                <Part SignatureName="Signature-1000687"/>
+            </ComponentLink>
+        </ResourceLinkPool>
+        <JDF Category="PrePress" DescriptiveName="Prepress: Inhalt: 16 Seiten, 4/4 farbig" ID="PREPRESS-1000687" JobPartID="JP20" Status="Waiting" Type="ProcessGroup">
+            <NodeInfo FirstStart="2005-01-25T17:49:49+01:00" LastEnd="2005-02-04T17:49:49+01:00"/>
+            <ResourcePool/>
+            <JDF Category="ProofImaging" DescriptiveName="Imposition/Proof: Inhalt: 16 Seiten, 4/4 farbig" ID="IPROOFGB-1000687" JobPartID="JP21" Status="Waiting" Type="ProcessGroup" Types="Imposition ProofImaging">
+                <NodeInfo FirstStart="2005-01-25T17:49:49+01:00" LastEnd="2005-01-28T17:49:49+01:00" SetupDuration="P0DT0H7M12S" TotalDuration="P0DT1H12M0S"/>
+                <ResourceLinkPool>
+                    <LayoutLink Usage="Input" rRef="LAY-1000117"/>
+                    <RunListLink ProcessUsage="Document" Usage="Input" rRef="RLD-1000117"/>
+                    <RunListLink ProcessUsage="Marks" Usage="Input" rRef="RLM-1000117"/>
+                    <ColorantControlLink Usage="Input" rRef="CC-1000117"/>
+                    <MediaLink Usage="Input" rRef="IMPPM-1000117"/>
+                    <ExposedMediaLink Usage="Output" rRef="IMPP-1000117">
+                        <Part SheetName="Sheet-1001042" SignatureName="Signature-1000687"/>
+                    </ExposedMediaLink>
+                </ResourceLinkPool>
+            </JDF>
+            <JDF Category="FinalImaging" DescriptiveName="Platemaking: Inhalt: 16 Seiten, 4/4 farbig" ID="PMGB-1000687" JobPartID="JP22" Status="Waiting" Type="ProcessGroup" Types="Imposition RIPing PreviewGeneration ImageSetting">
+                <NodeInfo FirstStart="2005-01-25T17:49:49+01:00" LastEnd="2005-01-28T17:49:49+01:00" SetupDuration="P0DT0H19M12S" TotalDuration="P0DT3H12M0S"/>
+                <ResourceLinkPool>
+                    <LayoutLink Usage="Input" rRef="LAY-1000117"/>
+                    <RunListLink ProcessUsage="Document" Usage="Input" rRef="RLD-1000117"/>
+                    <RunListLink ProcessUsage="Marks" Usage="Input" rRef="RLM-1000117"/>
+                    <ColorantControlLink Usage="Input" rRef="CC-1000117"/>
+                    <ExposedMediaLink Usage="Output" rRef="EXP-1000117">
+                        <Part SheetName="Sheet-1001042" SignatureName="Signature-1000687"/>
+                    </ExposedMediaLink>
+                    <PreviewLink Usage="Output" rRef="PRV-1000117">
+                        <Part SheetName="Sheet-1001042" SignatureName="Signature-1000687"/>
+                    </PreviewLink>
+                </ResourceLinkPool>
+            </JDF>
+        </JDF>
+        <JDF DescriptiveName="Press: Inhalt: 16 Seiten, 4/4 farbig" ID="PRESS-1001042" JobPartID="JP23" Status="Waiting" Type="ProcessGroup">
+            <NodeInfo FirstStart="2005-01-25T17:49:49+01:00" LastEnd="2005-01-28T17:49:49+01:00" SetupDuration="P0DT0H37M12S" TotalDuration="P0DT6H12M0S"/>
+            <JDF DescriptiveName="Press: Inhalt: 16 Seiten, 4/4 farbig" ID="P11115-1001042-1" JobPartID="JP24" Status="Waiting" Type="ConventionalPrinting">
+                <Comment Name="Description">Anzahl Farben der 'u 8-FOM 72 x 102 cm 12'000 Bg/h Schichtarbeit' : 8; Druckart : S/WD in einem Durchgang (Worktype 'Perfecting'); Anzahl der berechneten Durchläufe : 1; Anzahl der JDF Durchläufe : 1; Anzahl Farben Vorderseite : 4; Anzahl Farben Rückseite : 4; </Comment>
+                <NodeInfo FirstStart="2005-01-25T17:49:49+01:00" LastEnd="2005-01-28T17:49:49+01:00" SetupDuration="P0DT0H18M28S" TotalDuration="P0DT3H4M48S"/>
+                <ResourceLinkPool>
+                    <MediaLink Usage="Input" rRef="MEP-1000687"/>
+                    <DeviceLink Usage="Input" rRef="DEV-481"/>
+                    <ConventionalPrintingParamsLink Usage="Input" rRef="CVPP-1001042"/>
+                    
+                    <ComponentLink Amount="10302" Usage="Output" rRef="PrintedSheets-1000117">
+                        <Part Condition="Good" SheetName="Sheet-1001042" SignatureName="Signature-1000687"/>
+                        <Part Condition="Waste" SheetName="Sheet-1001042" SignatureName="Signature-1000687"/>
+                        <AmountPool>
+                            <PartAmount Amount="1058">
+                                <Part Condition="Waste" SheetName="Sheet-1001042" SignatureName="Signature-1000687"/>
+                            </PartAmount>
+                            <PartAmount Amount="10302">
+                                <Part Condition="Good" SheetName="Sheet-1001042" SignatureName="Signature-1000687"/>
+                            </PartAmount>
+                        </AmountPool>
+                    </ComponentLink>
+                    <ExposedMediaLink ProcessUsage="Plate" Usage="Input" rRef="EXP-1000117">
+                        <Part SheetName="Sheet-1001042" SignatureName="Signature-1000687"/>
+                    </ExposedMediaLink>
+                    <ColorantControlLink Usage="Input" rRef="CC-1000117">
+                        <Part SheetName="Sheet-1001042" SignatureName="Signature-1000687"/>
+                    </ColorantControlLink>
+                    <InkLink Usage="Input" rRef="INK-1000117">
+                        <Part SheetName="Sheet-1001042" SignatureName="Signature-1000687"/>
+                    </InkLink>
+                </ResourceLinkPool>
+                <ResourcePool>
+                    <ConventionalPrintingParams Class="Parameter" ID="CVPP-1001042" Locked="false" PrintingType="SheetFed" Status="Available" WorkStyle="Perfecting"/>
+                </ResourcePool>
+            </JDF>
+            <JDF DescriptiveName="Folding: Inhalt: 16 Seiten, 4/4 farbig" ID="FOL-1001042" JobPartID="JP25" Status="Waiting" Type="Folding">
+                <NodeInfo FirstStart="2005-01-25T17:49:49+01:00" LastEnd="2005-01-28T17:49:49+01:00" SetupDuration="P0DT0H25M12S" TotalDuration="P0DT4H12M0S"/>
+                <ResourcePool>
+                    
+                    <FoldingParams Class="Parameter" DescriptionType="FoldCatalog" FoldCatalog="F4-1" ID="FPP-1001042" Status="Available"/>
+                </ResourcePool>
+                <ResourceLinkPool>
+                    <FoldingParamsLink Usage="Input" rRef="FPP-1001042"/>
+                    <DeviceLink Usage="Input" rRef="DEV-481"/>
+                    <ComponentLink Usage="Input" rRef="PrintedSheets-1000117">
+                        <Part Condition="Good" SheetName="Sheet-1001042" SignatureName="Signature-1000687"/>
+                    </ComponentLink>
+                    <ComponentLink Usage="Output" rRef="FoldedSheets-1000117">
+                        <Part SheetName="Sheet-1001042" SignatureName="Signature-1000687"/>
+                    </ComponentLink>
+                </ResourceLinkPool>
+            </JDF>
+        </JDF>
+    </JDF>
+    <JDF Category="PostPress" DescriptiveName="Saddle-Stitching" ID="POSTPRESS-1000117" JobPartID="JP26" Status="Waiting" Type="ProcessGroup">
+        <NodeInfo FirstStart="2005-01-25T17:49:49+01:00" LastEnd="2005-01-28T17:49:49+01:00" SetupDuration="P0DT0H25M12S" TotalDuration="P0DT4H12M0S"/>
+        <ResourcePool>
+            <Component Class="Quantity" ComponentType="PartialProduct" DescriptiveName="CollectedSheets-1000117" ID="CollectedSheets-1000117" Locked="false" Status="Unavailable"/>
+            <Component Class="Quantity" ComponentType="PartialProduct" DescriptiveName="StitchedSheets-1000117" ID="StitchedSheets-1000117" Locked="false" Status="Unavailable"/>
+        </ResourcePool>
+        <JDF DescriptiveName="Collecting" ID="Collecting" JobPartID="JP27" Status="Waiting" Type="Collecting">
+            <NodeInfo FirstStart="2005-01-25T17:49:49+01:00" LastEnd="2005-01-28T17:49:49+01:00" SetupDuration="P0DT0H14M24S" TotalDuration="P0DT2H24M0S"/>
+            <ResourceLinkPool>
+                <ComponentLink Usage="Input" rRef="FoldedSheets-1000117">
+                    <Part SheetName="Sheet-1001042" SignatureName="Signature-1000687"/>
+                    <Part SheetName="Sheet-1001041" SignatureName="Signature-1000686"/>
+                    <Part SheetName="Sheet-1001040" SignatureName="Signature-1000685"/>
+                </ComponentLink>
+                <ComponentLink Usage="Output" rRef="CollectedSheets-1000117"/>
+            </ResourceLinkPool>
+        </JDF>
+        <JDF Category="PostPress" DescriptiveName="Stitching" ID="Stitching" JobPartID="JP28" Status="Waiting" Type="Stitching">
+            <NodeInfo FirstStart="2005-01-25T17:49:49+01:00" LastEnd="2005-01-28T17:49:49+01:00" SetupDuration="P0DT0H25M12S" TotalDuration="P0DT4H12M0S"/>
+            <ResourcePool>
+                
+                <StitchingParams Class="Parameter" ID="StitchingParams" NumberOfStitches="2" StapleShape="Butted" Status="Available" StitchPositions="137.559 320.315 547.087 739.843" StitchWidth="28.346" WireBrand="Steel" WireGauge="2.268"/>
+            </ResourcePool>
+            <ResourceLinkPool>
+                <StitchingParamsLink Usage="Input" rRef="StitchingParams"/>
+                <ComponentLink Usage="Input" rRef="CollectedSheets-1000117"/>
+                <ComponentLink Usage="Output" rRef="StitchedSheets-1000117"/>
+            </ResourceLinkPool>
+        </JDF>
+        <JDF DescriptiveName="Trimming" ID="Trimming" JobPartID="JP29" Status="Waiting" Type="Trimming">
+            <NodeInfo FirstStart="2005-01-25T17:49:49+01:00" LastEnd="2005-01-28T17:49:49+01:00" SetupDuration="P0DT0H25M12S" TotalDuration="P0DT4H12M0S"/>
+            <ResourcePool>
+                
+                <TrimmingParams Class="Parameter" Height="841.890" ID="TrimmingParams" Status="Available" TrimmingOffset="14.173" TrimmingType="Detailed" Width="595.276"/>
+            </ResourcePool>
+            <ResourceLinkPool>
+                <TrimmingParamsLink Usage="Input" rRef="TrimmingParams"/>
+                <ComponentLink Usage="Input" rRef="StitchedSheets-1000117"/>
+                <ComponentLink Usage="Output" rRef="FinalProduct-1000117"/>
+            </ResourceLinkPool>
+        </JDF>
+    </JDF>
+</JDF>
