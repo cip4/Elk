@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JDF xmlns="http://www.CIP4.org/JDFSchema_1_1" DescriptiveName="16pp Text, A4, Saddle Stitched" Type="Product" Version="1.1" ID="UpFront_16pp_SaddleStitched" JobID="16pp_SaddleStitched" Activation="Active" Status="Waiting" xmlns:Creo="http://www.creo.com">
+<ResourcePool>
+<Component ID="CutIPLO001PSH1" ComponentType="Sheet" Class="Quantity" Status="Unavailable" IsWaste="false" Dimensions="2551.1811 1814.1732 0.0000"/>
+<Component ID="CutOPRT01SCT001" ComponentType="Block" Class="Quantity" Status="Unavailable" IsWaste="false" Dimensions="2551.1811 1814.1732 0.0000"/>
+<Component ID="FldOPRT01SCT001" ComponentType="Block" ProductType="Body" Class="Quantity" Status="Unavailable" IsWaste="false" Dimensions="907.0866 651.9685 0.0000" SurfaceCount="16" Overfold="28.3465" OverfoldSide="Back"/>
+<Component ID="CllOPRT01" ComponentType="PartialProduct" Class="Quantity" Status="Unavailable" IsWaste="false" Dimensions="907.0866 651.9685 0.0000" SurfaceCount="16"/>
+<Component ID="StiOPRT01" ComponentType="PartialProduct" Class="Quantity" Status="Unavailable" IsWaste="false" Dimensions="907.0866 651.9685 0.0000" SurfaceCount="16"/>
+<Component ID="TrmOPRT01" ComponentType="FinalProduct" Class="Quantity" Status="Unavailable" IsWaste="false" Dimensions="595.2756 841.8898 0.0000" SurfaceCount="16"/>
+<Component ID="StaOPRT01" ComponentType="PartialProduct" Class="Quantity" Status="Unavailable" IsWaste="false"/>
+</ResourcePool>
+<ResourceLinkPool>
+<ComponentLink rRef="TrmOPRT01" Usage="Output"/>
+</ResourceLinkPool>
+<JDF Type="ProcessGroup" ID="CuttingPRT01" Status="Waiting">
+<ResourceLinkPool>
+<ComponentLink rRef="CutIPLO001PSH1" Usage="Input"/>
+<ComponentLink rRef="CutOPRT01SCT001" Usage="Output"/>
+</ResourceLinkPool>
+<JDF Type="Cutting" ID="Cutting_PLO001PSH1" Status="Waiting" JobPartID="CutPLO001PSH1">
+<ResourcePool>
+<CuttingParams ID="Res0" Class="Parameter" Status="Available">
+<CutBlock ID="CtBNPLO001PSH1DIV01" Class="Parameter" BlockType="CutBlock" BlockName="CtBNPLO001PSH1DIV01" BlockSize="2551.1811 1814.1732" BlockTrf="1 0 0 1 0.0000 0.0000"/>
+</CuttingParams>
+</ResourcePool>
+<ResourceLinkPool>
+<CuttingParamsLink Usage="Input" rRef="Res0"/>
+<ComponentLink rRef="CutIPLO001PSH1" Usage="Input"/>
+<ComponentLink rRef="CutOPRT01SCT001" Usage="Output"/>
+</ResourceLinkPool>
+</JDF>
+</JDF>
+<JDF Type="ProcessGroup" ID="PrePressPRT01" Status="Waiting">
+<JDF Type="Stripping" ID="Stripping_PRT01" Status="Waiting">
+<ResourcePool>
+<Assembly ID="AssPPRT01" Class="Parameter" Status="Available" BindingSide="Left" AssemblyID="UFP01" Order="Collecting"/>
+<BinderySignature ID="BsgPPRT01SCT001" Class="Parameter" Status="Available" NumberUp="4 2" BindingEdge="Left">
+<SignatureCell FrontPages="7 8 11 4" BackPages="6 9 10 5" Orientation="Up"/>
+<SignatureCell FrontPages="0 15 12 3" BackPages="1 14 13 2" Orientation="Down"/>
+</BinderySignature>
+<StrippingParams ID="StrPPRT01" Class="Parameter" Status="Available" PartIDKeys="SignatureName SheetName BinderySignatureName">
+<StrippingParams SignatureName="SgnNPLO001" WorkStyle="WorkAndBack">
+<Device DeviceID="Speedmaster 102"/>
+<StrippingParams SheetName="ShtNPLO001PSH1">
+<Media Dimension="2551.1811 1814.1732" MediaType="Paper"/>
+<StrippingParams BinderySignatureName="BndNPLO001PSH1DIV01" AssemblyID="UFP01" SectionList="0">
+<BinderySignatureRef rRef="BsgPPRT01SCT001"/>
+<StripCellParams TrimFace="28.3465" TrimHead="14.1732" TrimFoot="51.0236" FrontOverfold="0.0000" BackOverfold="28.3465" MillingDepth="0.0000" TrimSize="595.2756 841.8898" Spine="0.0" CutWidthHead="0.0" CutWidthFoot="0.0"/>
+<Position RelativeBox="0.0000 0.0000 1.0000 1.0000" Orientation="Rotate0"/>
+</StrippingParams>
+</StrippingParams>
+</StrippingParams>
+</StrippingParams>
+</ResourcePool>
+<ResourceLinkPool>
+<LayoutLink Usage="Output" rRef="LayPPRT01"/>
+<AssemblyLink Usage="Input" rRef="AssPPRT01"/>
+<StrippingParamsLink Usage="Input" rRef="StrPPRT01"/>
+</ResourceLinkPool>
+</JDF>
+<JDF Type="Imposition" Status="Waiting" Version="1.2" ID="783b3b8b-68aa-4200-94f1-77381b6af983" xmlns:SSi="//SSiJDFExtensions.xsd" xmlns:CPC="http://www.creo.com/CPC/JDFExtensions.xsd">
+	<AuditPool>
+		<Created Author="Creo Preps Version 5.1  (166)" TimeStamp="2005-01-19T11:00:54-08:00"/>
+	</AuditPool>
+	<ResourcePool>
+		<Layout ID="LayPPRT01" Class="Parameter" Status="Available">
+			<Signature SSi:PressRunNo="1" SSi:SignatureName="SgnNPLO001">
+				<Sheet Name="Sheet-1" SurfaceContentsBox="0 0 3169.134 2304.567" SSi:WorkStyle="SW">
+					<Surface Side="Front" SurfaceContentsBox="0 0 3169.134 2304.567" SSi:Dimension="2834.6458 1842.5196" SSi:MediaOrigin="167.2441 231.0237">
+						<MarkObject CTM="1 0 0 1 0 0" ClipBox="0 0 3169.134 2304.567" Ord="0"/>
+						<ContentObject CTM="-1 0. 0. -1 861.7323 2016.8506" TrimCTM="-1 0. 0. -1 861.7323 2016.8506" TrimSize="595.2756 841.8898" ClipBox="257.4567 1165.9608 861.7323 2025.8506" Ord="0" SSi:TrimBox="0 0 595.2756 841.8898" SourceTrimBox="0 0 595.2756 841.8898"/>
+						<ContentObject CTM="-1 0. 0. -1 2902.6773 2016.8506" TrimCTM="-1 0. 0. -1 2902.6773 2016.8506" TrimSize="595.2756 841.8898" ClipBox="2307.4017 1165.9608 2911.6773 2025.8506" Ord="3" SSi:TrimBox="0 0 595.2756 841.8898" SourceTrimBox="0 0 595.2756 841.8898"/>
+						<ContentObject CTM="1 0 0 1 2307.4017 287.7166" TrimCTM="1 0 0 1 2307.4017 287.7166" TrimSize="595.2756 841.8898" ClipBox="2307.4017 278.7166 2911.6773 1138.6064" Ord="4" SSi:TrimBox="0 0 595.2756 841.8898" SourceTrimBox="0 0 595.2756 841.8898"/>
+						<ContentObject CTM="1 0 0 1 266.4567 287.7166" TrimCTM="1 0 0 1 266.4567 287.7166" TrimSize="595.2756 841.8898" ClipBox="257.4567 278.7166 861.7323 1138.6064" Ord="7" SSi:TrimBox="0 0 595.2756 841.8898" SourceTrimBox="0 0 595.2756 841.8898"/>
+						<ContentObject CTM="1 0 0 1 861.7323 287.7166" TrimCTM="1 0 0 1 861.7323 287.7166" TrimSize="595.2756 841.8898" ClipBox="861.7323 278.7166 1466.0079 1138.6064" Ord="8" SSi:TrimBox="0 0 595.2756 841.8898" SourceTrimBox="0 0 595.2756 841.8898"/>
+						<ContentObject CTM="1 0 0 1 1712.1261 287.7166" TrimCTM="1 0 0 1 1712.1261 287.7166" TrimSize="595.2756 841.8898" ClipBox="1703.1261 278.7166 2307.4017 1138.6064" Ord="11" SSi:TrimBox="0 0 595.2756 841.8898" SourceTrimBox="0 0 595.2756 841.8898"/>
+						<ContentObject CTM="-1 0. 0. -1 2307.4017 2016.8506" TrimCTM="-1 0. 0. -1 2307.4017 2016.8506" TrimSize="595.2756 841.8898" ClipBox="1703.1261 1165.9608 2307.4017 2025.8506" Ord="12" SSi:TrimBox="0 0 595.2756 841.8898" SourceTrimBox="0 0 595.2756 841.8898"/>
+						<ContentObject CTM="-1 0. 0. -1 1457.0079 2016.8506" TrimCTM="-1 0. 0. -1 1457.0079 2016.8506" TrimSize="595.2756 841.8898" ClipBox="861.7323 1165.9608 1466.0079 2025.8506" Ord="15" SSi:TrimBox="0 0 595.2756 841.8898" SourceTrimBox="0 0 595.2756 841.8898"/>
+						<MarkObject CTM="1 0 0 1 0 0" ClipBox="0 0 3169.134 2304.567" Ord="1"/>
+					</Surface>
+					<Surface Side="Back" SurfaceContentsBox="0 0 3169.134 2304.567" SSi:Dimension="2834.6458 1842.5196" SSi:MediaOrigin="167.2441 231.0237">
+						<MarkObject CTM="1 0 0 1 0 0" ClipBox="0 0 3169.134 2304.567" Ord="2"/>
+						<ContentObject CTM="-1 0. 0. -1 2902.6773 2016.8506" TrimCTM="-1 0. 0. -1 2902.6773 2016.8506" TrimSize="595.2756 841.8898" ClipBox="2307.4017 1165.9608 2911.6773 2025.8506" Ord="1" SSi:TrimBox="0 0 595.2756 841.8898" SourceTrimBox="0 0 595.2756 841.8898"/>
+						<ContentObject CTM="-1 0. 0. -1 861.7323 2016.8506" TrimCTM="-1 0. 0. -1 861.7323 2016.8506" TrimSize="595.2756 841.8898" ClipBox="257.4567 1165.9608 861.7323 2025.8506" Ord="2" SSi:TrimBox="0 0 595.2756 841.8898" SourceTrimBox="0 0 595.2756 841.8898"/>
+						<ContentObject CTM="1 0 0 1 266.4567 287.7166" TrimCTM="1 0 0 1 266.4567 287.7166" TrimSize="595.2756 841.8898" ClipBox="257.4567 278.7166 861.7323 1138.6064" Ord="5" SSi:TrimBox="0 0 595.2756 841.8898" SourceTrimBox="0 0 595.2756 841.8898"/>
+						<ContentObject CTM="1 0 0 1 2307.4017 287.7166" TrimCTM="1 0 0 1 2307.4017 287.7166" TrimSize="595.2756 841.8898" ClipBox="2307.4017 278.7166 2911.6773 1138.6064" Ord="6" SSi:TrimBox="0 0 595.2756 841.8898" SourceTrimBox="0 0 595.2756 841.8898"/>
+						<ContentObject CTM="1 0 0 1 1712.1261 287.7166" TrimCTM="1 0 0 1 1712.1261 287.7166" TrimSize="595.2756 841.8898" ClipBox="1703.1261 278.7166 2307.4017 1138.6064" Ord="9" SSi:TrimBox="0 0 595.2756 841.8898" SourceTrimBox="0 0 595.2756 841.8898"/>
+						<ContentObject CTM="1 0 0 1 861.7323 287.7166" TrimCTM="1 0 0 1 861.7323 287.7166" TrimSize="595.2756 841.8898" ClipBox="861.7323 278.7166 1466.0079 1138.6064" Ord="10" SSi:TrimBox="0 0 595.2756 841.8898" SourceTrimBox="0 0 595.2756 841.8898"/>
+						<ContentObject CTM="-1 0. 0. -1 1457.0079 2016.8506" TrimCTM="-1 0. 0. -1 1457.0079 2016.8506" TrimSize="595.2756 841.8898" ClipBox="861.7323 1165.9608 1466.0079 2025.8506" Ord="13" SSi:TrimBox="0 0 595.2756 841.8898" SourceTrimBox="0 0 595.2756 841.8898"/>
+						<ContentObject CTM="-1 0. 0. -1 2307.4017 2016.8506" TrimCTM="-1 0. 0. -1 2307.4017 2016.8506" TrimSize="595.2756 841.8898" ClipBox="1703.1261 1165.9608 2307.4017 2025.8506" Ord="14" SSi:TrimBox="0 0 595.2756 841.8898" SourceTrimBox="0 0 595.2756 841.8898"/>
+						<MarkObject CTM="1 0 0 1 0 0" ClipBox="0 0 3169.134 2304.567" Ord="3"/>
+					</Surface>
+				</Sheet>
+			</Signature>
+		</Layout>
+		<RunList ID="79676427-36d3-4890-a33a-f68bffceeb57" Class="Parameter" Status="Available" PartIDKeys="Run">
+			<RunList Run="0" Pages="0~0">
+				<LayoutElement ElementType="Reservation">
+				</LayoutElement>
+			</RunList>
+			<RunList Run="1" Pages="0~0">
+				<LayoutElement ElementType="Reservation">
+				</LayoutElement>
+			</RunList>
+			<RunList Run="2" Pages="0~0">
+				<LayoutElement ElementType="Reservation">
+				</LayoutElement>
+			</RunList>
+			<RunList Run="3" Pages="0~0">
+				<LayoutElement ElementType="Reservation">
+				</LayoutElement>
+			</RunList>
+			<RunList Run="4" Pages="0~0">
+				<LayoutElement ElementType="Reservation">
+				</LayoutElement>
+			</RunList>
+			<RunList Run="5" Pages="0~0">
+				<LayoutElement ElementType="Reservation">
+				</LayoutElement>
+			</RunList>
+			<RunList Run="6" Pages="0~0">
+				<LayoutElement ElementType="Reservation">
+				</LayoutElement>
+			</RunList>
+			<RunList Run="7" Pages="0~0">
+				<LayoutElement ElementType="Reservation">
+				</LayoutElement>
+			</RunList>
+			<RunList Run="8" Pages="0~0">
+				<LayoutElement ElementType="Reservation">
+				</LayoutElement>
+			</RunList>
+			<RunList Run="9" Pages="0~0">
+				<LayoutElement ElementType="Reservation">
+				</LayoutElement>
+			</RunList>
+			<RunList Run="10" Pages="0~0">
+				<LayoutElement ElementType="Reservation">
+				</LayoutElement>
+			</RunList>
+			<RunList Run="11" Pages="0~0">
+				<LayoutElement ElementType="Reservation">
+				</LayoutElement>
+			</RunList>
+			<RunList Run="12" Pages="0~0">
+				<LayoutElement ElementType="Reservation">
+				</LayoutElement>
+			</RunList>
+			<RunList Run="13" Pages="0~0">
+				<LayoutElement ElementType="Reservation">
+				</LayoutElement>
+			</RunList>
+			<RunList Run="14" Pages="0~0">
+				<LayoutElement ElementType="Reservation">
+				</LayoutElement>
+			</RunList>
+			<RunList Run="15" Pages="0~0">
+				<LayoutElement ElementType="Reservation">
+				</LayoutElement>
+			</RunList>
+		</RunList>
+		<RunList ID="90f11ced-7be4-42ab-9b5b-2a1520b1fe96" Class="Parameter" Status="Available" PartIDKeys="Run">
+			<RunList Run="0" Pages="0~3">
+				<LayoutElement>
+					<FileSpec URL="file://localhost/D%3A/Anduin/Eng/SSiPDF/prepsitf/proj/JDFImportTest/Batch%20Test/JDFMarksFlats/16pp_SaddleStitched-MIS.ps" MimeType="application/postscript"/>
+				</LayoutElement>
+			</RunList>
+		</RunList>
+		<RunList ID="0e6a3791-50a0-4b40-9fec-84030ba92108" Class="Parameter" Status="Unavailable">
+			<LayoutElement>
+				<FileSpec URL="file:///outputFile"/>
+			</LayoutElement>
+		</RunList>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<LayoutLink rRef="LayPPRT01" Usage="Input"/>
+		<RunListLink rRef="79676427-36d3-4890-a33a-f68bffceeb57" Usage="Input" ProcessUsage="Document"/>
+		<RunListLink rRef="90f11ced-7be4-42ab-9b5b-2a1520b1fe96" Usage="Input" ProcessUsage="Marks"/>
+		<RunListLink rRef="0e6a3791-50a0-4b40-9fec-84030ba92108" Usage="Output"/>
+	</ResourceLinkPool>
+</JDF>
+</JDF>
+<JDF ID="PrtTPRT01" Type="Product" Status="Waiting" JobPartID="UFP01">
+<ResourcePool>
+<BindingIntent ID="BndIPRT01" Class="Intent" Status="Available">
+<BindingType DataType="EnumerationSpan" Actual="SaddleStitch"/>
+</BindingIntent>
+<LayoutIntent ID="LayIPRT01" Class="Intent" Status="Available">
+<FinishedDimensions DataType="ShapeSpan" Actual="595.2756 841.8898 0"/>
+<Pages DataType="IntegerSpan" Actual="16"/>
+<Layout ID="LayIPRT01_PrepsFiles" Class="Parameter" Status="Available" Automated="true" Creo:Preps_Template_File="file:///C:/Documents%20and%20Settings/PVandenp/Desktop/UpFront%20samples/16pp%20SaddleStitched/16pp_SaddleStitched.tpl" Creo:Preps_Job_File="file:///C:/Documents%20and%20Settings/PVandenp/Desktop/UpFront%20samples/16pp%20SaddleStitched/16pp_SaddleStitched.job"/>
+</LayoutIntent>
+<MediaIntent ID="MedIPRT01" Class="Intent" Status="Available">
+<StockBrand DataType="StringSpan" Actual="Sample Stock"/>
+<Dimensions DataType="XYPairSpan" Actual="2551.1811 1814.1732"/>
+</MediaIntent>
+<ColorIntent ID="ColIPRT01" Class="Intent" Status="Available">
+<ColorsUsed>
+<SeparationSpec Name="Cyan"/>
+<SeparationSpec Name="Magenta"/>
+<SeparationSpec Name="Yellow"/>
+<SeparationSpec Name="Black"/>
+</ColorsUsed>
+</ColorIntent>
+<FoldingIntent ID="FldIPRT01" Class="Intent" Status="Available" PartIDKeys="SheetName BlockName">
+<FoldingIntent SheetName="ShtNPLO001PSH1" BlockName="CtBNPLO001PSH1DIV01">
+<FoldingCatalog DataType="NameSpan" Actual="F-?"/>
+</FoldingIntent>
+</FoldingIntent>
+</ResourcePool>
+<ResourceLinkPool>
+<BindingIntentLink Usage="Input" rRef="BndIPRT01"/>
+<LayoutIntentLink Usage="Input" rRef="LayIPRT01"/>
+<MediaIntentLink Usage="Input" rRef="MedIPRT01"/>
+<ColorIntentLink Usage="Input" rRef="ColIPRT01"/>
+<FoldingIntentLink Usage="Input" rRef="FldIPRT01"/>
+<ComponentLink rRef="CutOPRT01SCT001" Usage="Input"/>
+<ComponentLink rRef="TrmOPRT01" Usage="Output"/>
+</ResourceLinkPool>
+<JDF Type="ProcessGroup" ID="FoldingPRT01" Status="Waiting">
+<ResourceLinkPool>
+<ComponentLink rRef="CutOPRT01SCT001" Usage="Input"/>
+<ComponentLink rRef="FldOPRT01SCT001" Usage="Output"/>
+</ResourceLinkPool>
+<JDF Type="Folding" ID="Folding_PRT01SCT001" Status="Waiting" JobPartID="UFP01FoldPRT01SCT001">
+<ResourcePool>
+<FoldingParams ID="Res1" Class="Parameter" Status="Available" DescriptionType="FoldCatalog" FoldCatalog=" "/>
+</ResourcePool>
+<ResourceLinkPool>
+<FoldingParamsLink Usage="Input" rRef="Res1"/>
+<ComponentLink rRef="CutOPRT01SCT001" Usage="Input"/>
+<ComponentLink rRef="FldOPRT01SCT001" Usage="Output"/>
+</ResourceLinkPool>
+</JDF>
+</JDF>
+<JDF Type="ProcessGroup" ID="FinishingPRT01" Status="Waiting">
+<ResourceLinkPool>
+<ComponentLink rRef="FldOPRT01SCT001" Usage="Input"/>
+<ComponentLink rRef="TrmOPRT01" Usage="Output"/>
+</ResourceLinkPool>
+<JDF Type="Collecting" ID="Collecting_PRT01" Status="Waiting" JobPartID="UFP01Collect">
+<ResourceLinkPool>
+<ComponentLink rRef="FldOPRT01SCT001" Usage="Input"/>
+<ComponentLink rRef="CllOPRT01" Usage="Output"/>
+</ResourceLinkPool>
+</JDF>
+<JDF Type="Stitching" ID="Stitching_PRT01" Status="Waiting" JobPartID="UFP01Stitch">
+<ResourcePool>
+<StitchingParams ID="Res2" Class="Parameter" Status="Available" NumberOfStitches="2" StapleShape="Crown"/>
+</ResourcePool>
+<ResourceLinkPool>
+<StitchingParamsLink Usage="Input" rRef="Res2"/>
+<ComponentLink rRef="CllOPRT01" Usage="Input"/>
+<ComponentLink rRef="StiOPRT01" Usage="Output"/>
+</ResourceLinkPool>
+</JDF>
+<JDF Type="Trimming" ID="Trimming_PRT01" Status="Waiting" JobPartID="UFP01Trim">
+<ResourcePool>
+<TrimmingParams ID="Res3" Class="Parameter" Status="Available" TrimmingType="Detailed" Height="841.8898" Width="595.2756" TrimmingOffset="14.1732"/>
+</ResourcePool>
+<ResourceLinkPool>
+<TrimmingParamsLink Usage="Input" rRef="Res3"/>
+<ComponentLink rRef="StiOPRT01" Usage="Input"/>
+<ComponentLink rRef="TrmOPRT01" Usage="Output"/>
+</ResourceLinkPool>
+</JDF>
+<JDF Type="Stacking" ID="Stacking_PRT01" Status="Waiting" JobPartID="UFP01Stack">
+<ResourcePool>
+<StackingParams ID="Res4" Class="Parameter" Status="Available" StandardAmount="1"/>
+</ResourcePool>
+<ResourceLinkPool>
+<StackingParamsLink Usage="Input" rRef="Res4"/>
+<ComponentLink rRef="TrmOPRT01" Usage="Input"/>
+<ComponentLink rRef="StaOPRT01" Usage="Output"/>
+</ResourceLinkPool>
+</JDF>
+</JDF>
+</JDF>
+</JDF>

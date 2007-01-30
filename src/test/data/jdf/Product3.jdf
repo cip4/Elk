@@ -1,0 +1,644 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JDF Activation="Active" DescriptiveName="Heidelberg Interop / Multi Sheet Brochure" ICSVersions="Base_L3-1.0 MIS_L03-1.0" ID="OptID00001" JobID="2903" JobPartID="0" MaxVersion="1.2" Status="Waiting" Type="Product" Version="1.2" xmlns="http://www.CIP4.org/JDFSchema_1_1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><AuditPool><Created AgentName="Optimus 2020" AgentVersion="v18" Author="Optimus 2020 UDMI" TimeStamp="2005-01-25T12:59:31Z"/>
+</AuditPool><NodeInfo End="2005-01-25T16:00:00Z" Start="2005-01-25T08:00:00Z">
+<Employee PersonalID="HENNY V E" Roles="CSR"/>
+</NodeInfo>
+<Comment Language="en-GB" Name="JobDescription">
+Repro:           Files supplied
+Finished size:   A4 Portrait (297mm deep x 210mm wide)
+Printing:        64 pages in 4 colour process throughout
+Paper:           100 gsm Coated Gloss
+Binding:         Saddle Stitched
+</Comment>
+<ResourcePool>
+<Contact Class="Parameter" ContactTypes="Customer" ID="OptID00002" Status="Available">
+<Company OrganizationName="Optichrome Computer Systems Lt"/>
+<ComChannel ChannelType="Phone" Locator="01483 740233"/>
+<Address City="Woking" PostalCode="GU21 5HX" Region="" Street="Maybury Road"/>
+<Person FamilyName="Henny van Esch">
+<ComChannel ChannelType="Phone" Locator="01483 740233"/>
+<ComChannel ChannelType="Email" Locator="henny@optchrome.com"/>
+</Person>
+</Contact>
+<BindingIntent BindingOrder="Collecting" Class="Intent" ID="OptID00003" Status="Available">
+<BindingType Actual="SaddleStitch" DataType="EnumerationSpan"/>
+<BindingSide Actual="Left" DataType="EnumerationSpan"/>
+</BindingIntent>
+<Component Class="Quantity" ComponentType="PartialProduct" DescriptiveName="1 Text 16 pages (FOLDING)" Dimensions="644.881890 907.086614 2.721260" ID="OptID00044" IsWaste="false" Overfold="14.173228" OverfoldSide="Front" PartIDKeys="SignatureName SheetName" ProductType="Body" ReaderPageCount="64" Status="Unavailable" SurfaceCount="64">
+<Component SignatureName="Sig#1">
+<Component DescriptiveName="1.1 Text 16 pages - Sht 1" ProductID="E01P01S01" ReaderPageCount="16" SheetName="Sig#1Sheet#1" Status="Unavailable"/>
+<Component DescriptiveName="1.2 Text 16 pages - Sht 2" ProductID="E01P01S02" ReaderPageCount="16" SheetName="Sig#1Sheet#2" Status="Unavailable"/>
+<Component DescriptiveName="1.3 Text 16 pages - Sht 3" ProductID="E01P01S03" ReaderPageCount="16" SheetName="Sig#1Sheet#3" Status="Unavailable"/>
+<Component DescriptiveName="1.4 Text 16 pages - Sht 4" ProductID="E01P01S04" ReaderPageCount="16" SheetName="Sig#1Sheet#4" Status="Unavailable"/>
+</Component>
+</Component>
+<Component Class="Quantity" ComponentType="Block" DescriptiveName="Gathering Output" Dimensions="644.881890 907.086614 10.885039" ID="OptID00057" IsWaste="false" Status="Unavailable"/>
+<Component Class="Quantity" ComponentType="Block" DescriptiveName="Stitching Output" Dimensions="644.881890 907.086614 10.885039" ID="OptID00060" IsWaste="false" Status="Unavailable"/>
+<Component Class="Quantity" ComponentType="FinalProduct" DescriptiveName="Trimming Output" Dimensions="595.275591 841.889764 10.885039" ID="OptID00063" IsWaste="false" Status="Unavailable"/>
+<DeliveryIntent Class="Intent" ID="OptID00064" Status="Available">
+<DropIntent>
+<Required Actual="2005-01-25T16:00:00Z" DataType="TimeSpan"/>
+<Method Actual="BestWay" DataType="NameSpan"/>
+<ContactRef rRef="OptID00002"/>
+<DropItemIntent Amount="5000">
+<ComponentRef rRef="OptID00063"/>
+</DropItemIntent>
+</DropIntent>
+</DeliveryIntent>
+</ResourcePool>
+<ResourceLinkPool>
+<BindingIntentLink Usage="Input" rRef="OptID00003"/>
+<ComponentLink Usage="Input" rRef="OptID00044"/>
+<ComponentLink Amount="5000" Usage="Output" rRef="OptID00063"/>
+<DeliveryIntentLink Usage="Input" rRef="OptID00064"/>
+</ResourceLinkPool>
+<!--Optimus 2020 : Customer Details for Estimate Header-->
+<CustomerInfo CustomerID="OCSL" CustomerOrderID="">
+<ContactRef rRef="OptID00002"/>
+</CustomerInfo>
+<!--Optimus 2020 : Start of new Estimating Pro ELEMENT "Text"-->
+<JDF DescriptiveName="Text" ID="OptID00004" JobPartID="1" Status="Waiting" Type="Product">
+<ResourcePool>
+<LayoutIntent Class="Intent" ID="OptID00005" Sides="TwoSidedHeadToHead" Status="Available">
+<FinishedDimensions Actual="595.275591 841.889764 0.0" DataType="ShapeSpan"/>
+<Pages Actual="64" DataType="IntegerSpan"/>
+</LayoutIntent>
+<ArtDeliveryIntent Class="Intent" ID="OptID00006" Status="Available">
+<ArtDelivery ArtDeliveryType="DigitalMedia"/>
+</ArtDeliveryIntent>
+<ColorIntent Class="Intent" ID="OptID00007" PartIDKeys="Side" Status="Available">
+<ColorIntent Side="Front">
+<ColorsUsed>
+<SeparationSpec Name="Black"/>
+<SeparationSpec Name="Cyan"/>
+<SeparationSpec Name="Magenta"/>
+<SeparationSpec Name="Yellow"/>
+</ColorsUsed>
+</ColorIntent>
+<ColorIntent Side="Back">
+<ColorsUsed>
+<SeparationSpec Name="Black"/>
+<SeparationSpec Name="Cyan"/>
+<SeparationSpec Name="Magenta"/>
+<SeparationSpec Name="Yellow"/>
+</ColorsUsed>
+</ColorIntent>
+</ColorIntent>
+<MediaIntent Class="Intent" ID="OptID00008" Status="Available">
+<StockBrand Actual="Coated Gloss" DataType="StringSpan"/>
+<Weight Actual="100" DataType="NumberSpan"/>
+<Thickness Actual="120" DataType="NumberSpan"/>
+</MediaIntent>
+<FoldingIntent Class="Intent" ID="OptID00009" Status="Available">
+<FoldingCatalog Actual="F64" DataType="NameSpan"/>
+</FoldingIntent>
+<RunList Class="Parameter" DescriptiveName="Document - Output of GB Preparation" ID="OptID00012" Status="Unavailable"/>
+<BinderySignature Class="Parameter" DescriptiveName="Signature for part 1" FoldCatalog="F16-6" ID="OptID00014" NumberUp="4 2" Status="Available"/>
+<Layout Class="Parameter" DescriptiveName="Layout from GB Imposition Prep" ID="OptID00020" Status="Unavailable">
+<Signature Name="Sig#1">
+<Sheet Name="Sig#1Sheet#1">
+<Surface Side="Front"/>
+<Surface Side="Back"/>
+</Sheet>
+<Sheet Name="Sig#1Sheet#2">
+<Surface Side="Front"/>
+<Surface Side="Back"/>
+</Sheet>
+<Sheet Name="Sig#1Sheet#3">
+<Surface Side="Front"/>
+<Surface Side="Back"/>
+</Sheet>
+<Sheet Name="Sig#1Sheet#4">
+<Surface Side="Front"/>
+<Surface Side="Back"/>
+</Sheet>
+</Signature>
+</Layout>
+<RunList Class="Parameter" DescriptiveName="Marks - Output of GB Imposition Prep" ID="OptID00021" Status="Unavailable"/>
+<Media Brand="Agfa" Class="Consumable" Dimension="1000 1000" ID="OptID00016" MediaType="Plate" SpawnIDs="Sp76375519_000003 Sp76434073_000007 Sp76605550_000011" SpawnStatus="SpawnedRO" Status="Unavailable"/>
+<ExposedMedia Class="Handling" DescriptiveName="Plates" ID="OptID00023" PartIDKeys="SignatureName SheetName Side Separation" SpawnIDs="Sp76375519_000003 Sp76434073_000007 Sp76605550_000011" SpawnStatus="SpawnedRO" Status="Unavailable">
+<MediaRef rRef="OptID00016"/>
+<ExposedMedia SignatureName="Sig#1">
+<ExposedMedia Locked="false" SheetName="Sig#1Sheet#1" SpawnIDs="Sp76375519_000003 Sp76434073_000007 Sp76605550_000011" SpawnStatus="SpawnedRO">
+<ExposedMedia Side="Front">
+<ExposedMedia Separation="Black"/>
+<ExposedMedia Separation="Cyan"/>
+<ExposedMedia Separation="Magenta"/>
+<ExposedMedia Separation="Yellow"/>
+</ExposedMedia>
+<ExposedMedia Side="Back">
+<ExposedMedia Separation="Black"/>
+<ExposedMedia Separation="Cyan"/>
+<ExposedMedia Separation="Magenta"/>
+<ExposedMedia Separation="Yellow"/>
+</ExposedMedia>
+</ExposedMedia>
+<ExposedMedia SheetName="Sig#1Sheet#2">
+<ExposedMedia Side="Front">
+<ExposedMedia Separation="Black"/>
+<ExposedMedia Separation="Cyan"/>
+<ExposedMedia Separation="Magenta"/>
+<ExposedMedia Separation="Yellow"/>
+</ExposedMedia>
+<ExposedMedia Side="Back">
+<ExposedMedia Separation="Black"/>
+<ExposedMedia Separation="Cyan"/>
+<ExposedMedia Separation="Magenta"/>
+<ExposedMedia Separation="Yellow"/>
+</ExposedMedia>
+</ExposedMedia>
+<ExposedMedia SheetName="Sig#1Sheet#3">
+<ExposedMedia Side="Front">
+<ExposedMedia Separation="Black"/>
+<ExposedMedia Separation="Cyan"/>
+<ExposedMedia Separation="Magenta"/>
+<ExposedMedia Separation="Yellow"/>
+</ExposedMedia>
+<ExposedMedia Side="Back">
+<ExposedMedia Separation="Black"/>
+<ExposedMedia Separation="Cyan"/>
+<ExposedMedia Separation="Magenta"/>
+<ExposedMedia Separation="Yellow"/>
+</ExposedMedia>
+</ExposedMedia>
+<ExposedMedia SheetName="Sig#1Sheet#4">
+<ExposedMedia Side="Front">
+<ExposedMedia Separation="Black"/>
+<ExposedMedia Separation="Cyan"/>
+<ExposedMedia Separation="Magenta"/>
+<ExposedMedia Separation="Yellow"/>
+</ExposedMedia>
+<ExposedMedia Side="Back">
+<ExposedMedia Separation="Black"/>
+<ExposedMedia Separation="Cyan"/>
+<ExposedMedia Separation="Magenta"/>
+<ExposedMedia Separation="Yellow"/>
+</ExposedMedia>
+</ExposedMedia>
+</ExposedMedia>
+</ExposedMedia>
+<ColorPool Class="Parameter" ID="OptID00025" SpawnIDs="Sp76375519_000003 Sp76434073_000007 Sp76605550_000011" SpawnStatus="SpawnedRO" Status="Available">
+<Color CMYK="0 0 0 1" Name="Black"/>
+<Color CMYK="1 0 0 0" Name="Cyan"/>
+<Color CMYK="0 1 0 0" Name="Magenta"/>
+<Color CMYK="0 0 1 0" Name="Yellow"/>
+</ColorPool>
+<ColorantControl Class="Parameter" ID="OptID00024" Locked="false" PartIDKeys="Side" SpawnIDs="Sp76375519_000003 Sp76434073_000007 Sp76605550_000011" SpawnStatus="SpawnedRO" Status="Available">
+<ColorPoolRef rRef="OptID00025"/>
+<ColorantParams>
+<SeparationSpec Name="Black"/>
+<SeparationSpec Name="Cyan"/>
+<SeparationSpec Name="Magenta"/>
+<SeparationSpec Name="Yellow"/>
+</ColorantParams>
+<ColorantControl Side="Front">
+<ColorantOrder>
+<SeparationSpec Name="Black"/>
+<SeparationSpec Name="Cyan"/>
+<SeparationSpec Name="Magenta"/>
+<SeparationSpec Name="Yellow"/>
+</ColorantOrder>
+</ColorantControl>
+<ColorantControl Side="Back">
+<ColorantOrder>
+<SeparationSpec Name="Black"/>
+<SeparationSpec Name="Cyan"/>
+<SeparationSpec Name="Magenta"/>
+<SeparationSpec Name="Yellow"/>
+</ColorantOrder>
+</ColorantControl>
+</ColorantControl>
+<Preview Class="Parameter" ID="OptID00028" PartIDKeys="SignatureName SheetName Side Separation" PreviewUsage="Separation" SpawnIDs="Sp76375519_000003 Sp76434073_000007 Sp76605550_000011" SpawnStatus="SpawnedRO" Status="Incomplete">
+<Preview SignatureName="Sig#1">
+<Preview Locked="false" SheetName="Sig#1Sheet#1" SpawnIDs="Sp76375519_000003 Sp76434073_000007 Sp76605550_000011" SpawnStatus="SpawnedRO">
+<Preview Side="Front">
+<Preview Separation="Black"/>
+<Preview Separation="Cyan"/>
+<Preview Separation="Magenta"/>
+<Preview Separation="Yellow"/>
+</Preview>
+<Preview Side="Back">
+<Preview Separation="Black"/>
+<Preview Separation="Cyan"/>
+<Preview Separation="Magenta"/>
+<Preview Separation="Yellow"/>
+</Preview>
+</Preview>
+<Preview SheetName="Sig#1Sheet#2">
+<Preview Side="Front">
+<Preview Separation="Black"/>
+<Preview Separation="Cyan"/>
+<Preview Separation="Magenta"/>
+<Preview Separation="Yellow"/>
+</Preview>
+<Preview Side="Back">
+<Preview Separation="Black"/>
+<Preview Separation="Cyan"/>
+<Preview Separation="Magenta"/>
+<Preview Separation="Yellow"/>
+</Preview>
+</Preview>
+<Preview SheetName="Sig#1Sheet#3">
+<Preview Side="Front">
+<Preview Separation="Black"/>
+<Preview Separation="Cyan"/>
+<Preview Separation="Magenta"/>
+<Preview Separation="Yellow"/>
+</Preview>
+<Preview Side="Back">
+<Preview Separation="Black"/>
+<Preview Separation="Cyan"/>
+<Preview Separation="Magenta"/>
+<Preview Separation="Yellow"/>
+</Preview>
+</Preview>
+<Preview SheetName="Sig#1Sheet#4">
+<Preview Side="Front">
+<Preview Separation="Black"/>
+<Preview Separation="Cyan"/>
+<Preview Separation="Magenta"/>
+<Preview Separation="Yellow"/>
+</Preview>
+<Preview Side="Back">
+<Preview Separation="Black"/>
+<Preview Separation="Cyan"/>
+<Preview Separation="Magenta"/>
+<Preview Separation="Yellow"/>
+</Preview>
+</Preview>
+</Preview>
+</Preview>
+<Media Brand="Magnostar 100gsm 640x900mm" Class="Consumable" DescriptiveName="Magnostar 100gsm 640x900mm" Dimension="2551.181102 1814.173228" Grade="1" ID="OptID00017" Locked="false" MediaType="Paper" MediaUnit="Sheet" ProductID="MAG STA 100 SRA1" SpawnIDs="Sp76375519_000003 Sp76434073_000007 Sp76605550_000011" SpawnStatus="SpawnedRO" Status="Unavailable" Thickness="120" Weight="100.0"/>
+<Device Class="Implementation" DescriptiveName="Printing Machine" DeviceID="600" ID="OptID00018" Locked="false" SpawnIDs="Sp76375519_000003 Sp76434073_000007 Sp76605550_000011" SpawnStatus="SpawnedRO" Status="Available">
+<CostCenter CostCenterID="600"/>
+</Device>
+<Component Class="Quantity" ComponentType="Sheet" DescriptiveName="1 Text 16 pages" Dimensions="2551.181102 1814.173228 0.340157" ID="OptID00032" IsWaste="false" PartIDKeys="SignatureName SheetName" ProductType="PrintedSheet" SpawnIDs="Sp76375519_000003 Sp76434073_000007 Sp76605550_000011" SpawnStatus="SpawnedRO" Status="Unavailable">
+<Component SignatureName="Sig#1">
+<Component DescriptiveName="1.1 Text 16 pages - Sht 1" Locked="false" ProductID="E01P01S01" ReaderPageCount="16" SheetName="Sig#1Sheet#1" SpawnIDs="Sp76375519_000003 Sp76434073_000007 Sp76605550_000011" SpawnStatus="SpawnedRO" Status="Unavailable"/>
+<Component DescriptiveName="1.2 Text 16 pages - Sht 2" ProductID="E01P01S02" ReaderPageCount="16" SheetName="Sig#1Sheet#2" Status="Unavailable"/>
+<Component DescriptiveName="1.3 Text 16 pages - Sht 3" ProductID="E01P01S03" ReaderPageCount="16" SheetName="Sig#1Sheet#3" Status="Unavailable"/>
+<Component DescriptiveName="1.4 Text 16 pages - Sht 4" ProductID="E01P01S04" ReaderPageCount="16" SheetName="Sig#1Sheet#4" Status="Unavailable"/>
+</Component>
+</Component>
+</ResourcePool>
+<ResourceLinkPool>
+<LayoutIntentLink Usage="Input" rRef="OptID00005"/>
+<ArtDeliveryIntentLink Usage="Input" rRef="OptID00006"/>
+<ColorIntentLink Usage="Input" rRef="OptID00007"/>
+<MediaIntentLink Usage="Input" rRef="OptID00008"/>
+<FoldingIntentLink Usage="Input" rRef="OptID00009"/>
+<ComponentLink Amount="5090" Usage="Output" rRef="OptID00044"/>
+</ResourceLinkPool>
+<JDF Category="PrePressPreparation" DescriptiveName="Text - Heidelberg Interop / Multi Sheet Brochure" ID="OptID00010" JobPartID="4" Status="Waiting" Type="ProcessGroup" Types="PrePressPreparation">
+<AuditPool>
+<Created AgentName="Optimus 2020" AgentVersion="v18" Author="Optimus 2020 UDMI" TimeStamp="2005-01-25T12:59:31Z"/>
+</AuditPool>
+<ResourcePool>
+<RunList Class="Parameter" ID="OptID00011" NPage="64" Status="Unavailable"/>
+</ResourcePool>
+<ResourceLinkPool>
+<RunListLink ProcessUsage="Document" Usage="Input" rRef="OptID00011"/>
+<RunListLink ProcessUsage="Document" Usage="Output" rRef="OptID00012"/>
+</ResourceLinkPool>
+</JDF>
+<JDF Category="ImpositionPreparation" DescriptiveName="Text - Heidelberg Interop / Multi Sheet Brochure" ID="OptID00013" JobPartID="6" Status="Waiting" Type="ProcessGroup" Types="ImpositionPreparation">
+<AuditPool>
+<Created AgentName="Optimus 2020" AgentVersion="v18" Author="Optimus 2020 UDMI" TimeStamp="2005-01-25T12:59:31Z"/>
+</AuditPool>
+<ResourcePool>
+<StrippingParams Class="Parameter" DescriptiveName="Stripping" ID="OptID00015" PartIDKeys="SignatureName SheetName" Status="Available">
+<StrippingParams SignatureName="Sig#1">
+<StrippingParams SheetName="Sig#1Sheet#1" WorkStyle="Perfecting">
+<StripCellParams BleedFace="0.0" BleedFoot="0.0" BleedHead="0.0" Spine="0.0" TrimFace="8.50394" TrimFoot="8.50394" TrimHead="8.50394" TrimSize="595.27559 841.88976"/>
+<MediaRef DescriptiveName="Plates" rRef="OptID00016"/>
+<MediaRef DescriptiveName="Paper" rRef="OptID00017"/>
+<DeviceRef DescriptiveName="Press" rRef="OptID00018"/>
+<BinderySignatureRef rRef="OptID00014"/>
+<Position Orientation="Rotate0" RelativeBox="0.000000 0.000000 1.000000 1.000000"/>
+</StrippingParams>
+<StrippingParams SheetName="Sig#1Sheet#2" WorkStyle="Perfecting">
+<StripCellParams BleedFace="0.0" BleedFoot="0.0" BleedHead="0.0" Spine="0.0" TrimFace="8.50394" TrimFoot="8.50394" TrimHead="8.50394" TrimSize="595.27559 841.88976"/>
+<MediaRef DescriptiveName="Plates" rRef="OptID00016"/>
+<MediaRef DescriptiveName="Paper" rRef="OptID00017"/>
+<DeviceRef DescriptiveName="Press" rRef="OptID00018"/>
+<BinderySignatureRef rRef="OptID00014"/>
+<Position Orientation="Rotate0" RelativeBox="0.000000 0.000000 1.000000 1.000000"/>
+</StrippingParams>
+<StrippingParams SheetName="Sig#1Sheet#3" WorkStyle="Perfecting">
+<StripCellParams BleedFace="0.0" BleedFoot="0.0" BleedHead="0.0" Spine="0.0" TrimFace="8.50394" TrimFoot="8.50394" TrimHead="8.50394" TrimSize="595.27559 841.88976"/>
+<MediaRef DescriptiveName="Plates" rRef="OptID00016"/>
+<MediaRef DescriptiveName="Paper" rRef="OptID00017"/>
+<DeviceRef DescriptiveName="Press" rRef="OptID00018"/>
+<BinderySignatureRef rRef="OptID00014"/>
+<Position Orientation="Rotate0" RelativeBox="0.000000 0.000000 1.000000 1.000000"/>
+</StrippingParams>
+<StrippingParams SheetName="Sig#1Sheet#4" WorkStyle="Perfecting">
+<StripCellParams BleedFace="0.0" BleedFoot="0.0" BleedHead="0.0" Spine="0.0" TrimFace="8.50394" TrimFoot="8.50394" TrimHead="8.50394" TrimSize="595.27559 841.88976"/>
+<MediaRef DescriptiveName="Plates" rRef="OptID00016"/>
+<MediaRef DescriptiveName="Paper" rRef="OptID00017"/>
+<DeviceRef DescriptiveName="Press" rRef="OptID00018"/>
+<BinderySignatureRef rRef="OptID00014"/>
+<Position Orientation="Rotate0" RelativeBox="0.000000 0.000000 1.000000 1.000000"/>
+</StrippingParams>
+</StrippingParams>
+</StrippingParams>
+<Assembly BindingSide="Left" Class="Parameter" DescriptiveName="Assembly order" ID="OptID00019" Order="Collecting" Status="Available"/>
+</ResourcePool>
+<ResourceLinkPool>
+<StrippingParamsLink Usage="Input" rRef="OptID00015"/>
+<AssemblyLink Usage="Input" rRef="OptID00019"/>
+<LayoutLink Usage="Output" rRef="OptID00020"/>
+<RunListLink ProcessUsage="Marks" Usage="Output" rRef="OptID00021"/>
+</ResourceLinkPool>
+</JDF>
+<JDF Category="FinalImaging" DescriptiveName="Plate Making" ID="OptID00022" JobPartID="7" Status="Waiting" Type="ProcessGroup" Types="Imposition RIPing PreviewGeneration ImageSetting">
+<AuditPool>
+<Created AgentName="Optimus 2020" AgentVersion="v18" Author="Optimus 2020 UDMI" TimeStamp="2005-01-25T12:59:31Z"/>
+</AuditPool>
+<NodeInfo TotalDuration="PT272M"/>
+<ResourcePool>
+<InterpretingParams Class="Parameter" ID="OptID00026" Status="Available">
+<MediaRef DescriptiveName="Plates" rRef="OptID00016"/>
+<MediaRef DescriptiveName="Paper" rRef="OptID00017"/>
+</InterpretingParams>
+<Device Class="Implementation" DescriptiveName="Plate Setter (CTP)" DeviceID="CC_PLANNING" ID="OptID00027" Status="Available"/>
+</ResourcePool>
+<ResourceLinkPool>
+<RunListLink ProcessUsage="Document" Usage="Input" rRef="OptID00012"/>
+<RunListLink ProcessUsage="Marks" Usage="Input" rRef="OptID00021"/>
+<LayoutLink Usage="Input" rRef="OptID00020"/>
+<MediaLink Usage="Input" rRef="OptID00016"/>
+<ExposedMediaLink Usage="Output" rRef="OptID00023"/>
+<ColorantControlLink Usage="Input" rRef="OptID00024"/>
+<InterpretingParamsLink Usage="Input" rRef="OptID00026"/>
+<DeviceLink Usage="Input" rRef="OptID00027"/>
+<PreviewLink Usage="Output" rRef="OptID00028"/>
+</ResourceLinkPool>
+<Comment Language="en-GB" Name="Instruction">
+Plate Making
+------------
+numberPlates = 8
+</Comment>
+</JDF>
+<JDF DescriptiveName="4/4 Perfecting" ID="OptID00029" JobPartID="8" Status="Spawned" Type="ConventionalPrinting">
+<AuditPool>
+<Created AgentName="Optimus 2020" AgentVersion="v18" Author="Optimus 2020 UDMI" TimeStamp="2005-01-25T12:59:31Z"/>
+</AuditPool>
+<NodeInfo SetupDuration="PT170M" TotalDuration="PT299M"/>
+<ResourcePool>
+<Ink Class="Consumable" DescriptiveName="Printing Inks" ID="OptID00030" Locked="false" SpawnIDs="Sp76375519_000003 Sp76434073_000007 Sp76605550_000011" SpawnStatus="SpawnedRO" Status="Available"/>
+<ConventionalPrintingParams Class="Parameter" DescriptiveName="Printing Setup" ID="OptID00031" Locked="false" PrintingType="SheetFed" SpawnIDs="Sp76375519_000003 Sp76434073_000007 Sp76605550_000011" SpawnStatus="SpawnedRO" Status="Available" WorkStyle="Perfecting"/>
+</ResourcePool>
+<ResourceLinkPool>
+<ExposedMediaLink ProcessUsage="Plate" Usage="Input" rRef="OptID00023">
+<Part SheetName="Sig#1Sheet#1" SignatureName="Sig#1"/>
+</ExposedMediaLink>
+<PreviewLink Usage="Input" rRef="OptID00028">
+<Part SheetName="Sig#1Sheet#1" SignatureName="Sig#1"/>
+</PreviewLink>
+<MediaLink Amount="5500" Usage="Input" rRef="OptID00017"/>
+<InkLink Usage="Input" rRef="OptID00030"/>
+<ConventionalPrintingParamsLink Usage="Input" rRef="OptID00031"/>
+<DeviceLink Usage="Input" rRef="OptID00018"/>
+<ColorantControlLink Usage="Input" rRef="OptID00024"/>
+<ComponentLink Amount="5141" Usage="Output" rRef="OptID00032">
+<Part SheetName="Sig#1Sheet#1" SignatureName="Sig#1"/>
+</ComponentLink>
+</ResourceLinkPool>
+</JDF>
+<JDF DescriptiveName="4/4 Perfecting" ID="OptID00033" JobPartID="9" Status="Waiting" Type="ConventionalPrinting">
+<AuditPool>
+<Created AgentName="Optimus 2020" AgentVersion="v18" Author="Optimus 2020 UDMI" TimeStamp="2005-01-25T12:59:31Z"/>
+</AuditPool>
+<NodeInfo SetupDuration="PT170M" TotalDuration="PT299M"/>
+<ResourcePool>
+<Ink Class="Consumable" DescriptiveName="Printing Inks" ID="OptID00034" Status="Available"/>
+<ConventionalPrintingParams Class="Parameter" DescriptiveName="Printing Setup" ID="OptID00035" PrintingType="SheetFed" Status="Available" WorkStyle="Perfecting"/>
+</ResourcePool>
+<ResourceLinkPool>
+<ExposedMediaLink ProcessUsage="Plate" Usage="Input" rRef="OptID00023">
+<Part SheetName="Sig#1Sheet#2" SignatureName="Sig#1"/>
+</ExposedMediaLink>
+<PreviewLink Usage="Input" rRef="OptID00028">
+<Part SheetName="Sig#1Sheet#2" SignatureName="Sig#1"/>
+</PreviewLink>
+<MediaLink Amount="5500" Usage="Input" rRef="OptID00017"/>
+<InkLink Usage="Input" rRef="OptID00034"/>
+<ConventionalPrintingParamsLink Usage="Input" rRef="OptID00035"/>
+<DeviceLink Usage="Input" rRef="OptID00018"/>
+<ColorantControlLink Usage="Input" rRef="OptID00024"/>
+<ComponentLink Amount="5141" Usage="Output" rRef="OptID00032">
+<Part SheetName="Sig#1Sheet#2" SignatureName="Sig#1"/>
+</ComponentLink>
+</ResourceLinkPool>
+</JDF>
+<JDF DescriptiveName="4/4 Perfecting" ID="OptID00036" JobPartID="10" Status="Waiting" Type="ConventionalPrinting">
+<AuditPool>
+<Created AgentName="Optimus 2020" AgentVersion="v18" Author="Optimus 2020 UDMI" TimeStamp="2005-01-25T12:59:32Z"/>
+</AuditPool>
+<NodeInfo SetupDuration="PT170M" TotalDuration="PT299M"/>
+<ResourcePool>
+<Ink Class="Consumable" DescriptiveName="Printing Inks" ID="OptID00037" Status="Available"/>
+<ConventionalPrintingParams Class="Parameter" DescriptiveName="Printing Setup" ID="OptID00038" PrintingType="SheetFed" Status="Available" WorkStyle="Perfecting"/>
+</ResourcePool>
+<ResourceLinkPool>
+<ExposedMediaLink ProcessUsage="Plate" Usage="Input" rRef="OptID00023">
+<Part SheetName="Sig#1Sheet#3" SignatureName="Sig#1"/>
+</ExposedMediaLink>
+<PreviewLink Usage="Input" rRef="OptID00028">
+<Part SheetName="Sig#1Sheet#3" SignatureName="Sig#1"/>
+</PreviewLink>
+<MediaLink Amount="5500" Usage="Input" rRef="OptID00017"/>
+<InkLink Usage="Input" rRef="OptID00037"/>
+<ConventionalPrintingParamsLink Usage="Input" rRef="OptID00038"/>
+<DeviceLink Usage="Input" rRef="OptID00018"/>
+<ColorantControlLink Usage="Input" rRef="OptID00024"/>
+<ComponentLink Amount="5141" Usage="Output" rRef="OptID00032">
+<Part SheetName="Sig#1Sheet#3" SignatureName="Sig#1"/>
+</ComponentLink>
+</ResourceLinkPool>
+</JDF>
+<JDF DescriptiveName="4/4 Perfecting" ID="OptID00039" JobPartID="11" Status="Waiting" Type="ConventionalPrinting">
+<AuditPool>
+<Created AgentName="Optimus 2020" AgentVersion="v18" Author="Optimus 2020 UDMI" TimeStamp="2005-01-25T12:59:32Z"/>
+</AuditPool>
+<NodeInfo SetupDuration="PT170M" TotalDuration="PT299M"/>
+<ResourcePool>
+<Ink Class="Consumable" DescriptiveName="Printing Inks" ID="OptID00040" Status="Available"/>
+<ConventionalPrintingParams Class="Parameter" DescriptiveName="Printing Setup" ID="OptID00041" PrintingType="SheetFed" Status="Available" WorkStyle="Perfecting"/>
+</ResourcePool>
+<ResourceLinkPool>
+<ExposedMediaLink ProcessUsage="Plate" Usage="Input" rRef="OptID00023">
+<Part SheetName="Sig#1Sheet#4" SignatureName="Sig#1"/>
+</ExposedMediaLink>
+<PreviewLink Usage="Input" rRef="OptID00028">
+<Part SheetName="Sig#1Sheet#4" SignatureName="Sig#1"/>
+</PreviewLink>
+<MediaLink Amount="5500" Usage="Input" rRef="OptID00017"/>
+<InkLink Usage="Input" rRef="OptID00040"/>
+<ConventionalPrintingParamsLink Usage="Input" rRef="OptID00041"/>
+<DeviceLink Usage="Input" rRef="OptID00018"/>
+<ColorantControlLink Usage="Input" rRef="OptID00024"/>
+<ComponentLink Amount="5141" Usage="Output" rRef="OptID00032">
+<Part SheetName="Sig#1Sheet#4" SignatureName="Sig#1"/>
+</ComponentLink>
+</ResourceLinkPool>
+</JDF>
+<JDF DescriptiveName="Folding" ID="OptID00042" JobPartID="12" Status="Waiting" Type="Folding">
+<AuditPool>
+<Created AgentName="Optimus 2020" AgentVersion="v18" Author="Optimus 2020 UDMI" TimeStamp="2005-01-25T12:59:32Z"/>
+</AuditPool>
+<NodeInfo SetupDuration="PT30M" TotalDuration="PT188M"/>
+<ResourcePool>
+<FoldingParams Class="Parameter" DescriptionType="FoldCatalog" DescriptiveName="Folding Setup" FoldCatalog="F16-6" ID="OptID00043" Status="Available"/>
+<Device Class="Implementation" DescriptiveName="Folding Machine" DeviceID="CC_FOLDER" ID="OptID00045" Status="Available">
+<CostCenter CostCenterID="CC_FOLDER"/>
+</Device>
+</ResourcePool>
+<ResourceLinkPool>
+<ComponentLink Usage="Input" rRef="OptID00032">
+<Part SheetName="Sig#1Sheet#1" SignatureName="Sig#1"/>
+</ComponentLink>
+<FoldingParamsLink Usage="Input" rRef="OptID00043"/>
+<ComponentLink Amount="5090" Usage="Output" rRef="OptID00044">
+<Part SheetName="Sig#1Sheet#1" SignatureName="Sig#1"/>
+</ComponentLink>
+<DeviceLink Usage="Input" rRef="OptID00045"/>
+</ResourceLinkPool>
+<Comment Language="en-GB" Name="Instruction">
+SI for Text 16 pages
+</Comment>
+</JDF>
+<JDF DescriptiveName="Folding" ID="OptID00046" JobPartID="13" Status="Waiting" Type="Folding">
+<AuditPool>
+<Created AgentName="Optimus 2020" AgentVersion="v18" Author="Optimus 2020 UDMI" TimeStamp="2005-01-25T12:59:32Z"/>
+</AuditPool>
+<NodeInfo SetupDuration="PT30M" TotalDuration="PT188M"/>
+<ResourcePool>
+<FoldingParams Class="Parameter" DescriptionType="FoldCatalog" DescriptiveName="Folding Setup" FoldCatalog="F16-6" ID="OptID00047" Status="Available"/>
+<Device Class="Implementation" DescriptiveName="Folding Machine" DeviceID="CC_FOLDER" ID="OptID00048" Status="Available">
+<CostCenter CostCenterID="CC_FOLDER"/>
+</Device>
+</ResourcePool>
+<ResourceLinkPool>
+<ComponentLink Usage="Input" rRef="OptID00032">
+<Part SheetName="Sig#1Sheet#2" SignatureName="Sig#1"/>
+</ComponentLink>
+<FoldingParamsLink Usage="Input" rRef="OptID00047"/>
+<ComponentLink Amount="5090" Usage="Output" rRef="OptID00044">
+<Part SheetName="Sig#1Sheet#2" SignatureName="Sig#1"/>
+</ComponentLink>
+<DeviceLink Usage="Input" rRef="OptID00048"/>
+</ResourceLinkPool>
+<Comment Language="en-GB" Name="Instruction">
+SI for Text 16 pages
+</Comment>
+</JDF>
+<JDF DescriptiveName="Folding" ID="OptID00049" JobPartID="14" Status="Waiting" Type="Folding">
+<AuditPool>
+<Created AgentName="Optimus 2020" AgentVersion="v18" Author="Optimus 2020 UDMI" TimeStamp="2005-01-25T12:59:32Z"/>
+</AuditPool>
+<NodeInfo SetupDuration="PT30M" TotalDuration="PT188M"/>
+<ResourcePool>
+<FoldingParams Class="Parameter" DescriptionType="FoldCatalog" DescriptiveName="Folding Setup" FoldCatalog="F16-6" ID="OptID00050" Status="Available"/>
+<Device Class="Implementation" DescriptiveName="Folding Machine" DeviceID="CC_FOLDER" ID="OptID00051" Status="Available">
+<CostCenter CostCenterID="CC_FOLDER"/>
+</Device>
+</ResourcePool>
+<ResourceLinkPool>
+<ComponentLink Usage="Input" rRef="OptID00032">
+<Part SheetName="Sig#1Sheet#3" SignatureName="Sig#1"/>
+</ComponentLink>
+<FoldingParamsLink Usage="Input" rRef="OptID00050"/>
+<ComponentLink Amount="5090" Usage="Output" rRef="OptID00044">
+<Part SheetName="Sig#1Sheet#3" SignatureName="Sig#1"/>
+</ComponentLink>
+<DeviceLink Usage="Input" rRef="OptID00051"/>
+</ResourceLinkPool>
+<Comment Language="en-GB" Name="Instruction">
+SI for Text 16 pages
+</Comment>
+</JDF>
+<JDF DescriptiveName="Folding" ID="OptID00052" JobPartID="15" Status="Waiting" Type="Folding">
+<AuditPool>
+<Created AgentName="Optimus 2020" AgentVersion="v18" Author="Optimus 2020 UDMI" TimeStamp="2005-01-25T12:59:32Z"/>
+</AuditPool>
+<NodeInfo SetupDuration="PT30M" TotalDuration="PT188M"/>
+<ResourcePool>
+<FoldingParams Class="Parameter" DescriptionType="FoldCatalog" DescriptiveName="Folding Setup" FoldCatalog="F16-6" ID="OptID00053" Status="Available"/>
+<Device Class="Implementation" DescriptiveName="Folding Machine" DeviceID="CC_FOLDER" ID="OptID00054" Status="Available">
+<CostCenter CostCenterID="CC_FOLDER"/>
+</Device>
+</ResourcePool>
+<ResourceLinkPool>
+<ComponentLink Usage="Input" rRef="OptID00032">
+<Part SheetName="Sig#1Sheet#4" SignatureName="Sig#1"/>
+</ComponentLink>
+<FoldingParamsLink Usage="Input" rRef="OptID00053"/>
+<ComponentLink Amount="5090" Usage="Output" rRef="OptID00044">
+<Part SheetName="Sig#1Sheet#4" SignatureName="Sig#1"/>
+</ComponentLink>
+<DeviceLink Usage="Input" rRef="OptID00054"/>
+</ResourceLinkPool>
+<Comment Language="en-GB" Name="Instruction">
+SI for Text 16 pages
+</Comment>
+</JDF>
+<AuditPool><Spawned AgentName="CIP4 JDF Writer Java" AgentVersion="1.2.42 alpha" Author="" NewSpawnID="Sp76375519_000003" Status="Waiting" TimeStamp="2005-08-09T10:32:55+02:00" URL="file://file:/c:/program1/jdfeditor/Product3.ID_OptID00029.jdf" jRef="OptID00029" rRefsROCopied="OptID00023 OptID00016 OptID00028 OptID00017 OptID00018 OptID00024 OptID00025 OptID00032"/><Spawned AgentName="CIP4 JDF Writer Java" AgentVersion="1.2.42 alpha" Author="" NewSpawnID="Sp76434073_000007" Status="Spawned" TimeStamp="2005-08-09T10:33:54+02:00" URL="file://file:/c:/program1/jdfeditor/Product3.ID_OptID00029.jdf" jRef="OptID00029" rRefsROCopied="OptID00023 OptID00016 OptID00028 OptID00017 OptID00018 OptID00024 OptID00025 OptID00032"/><Spawned AgentName="CIP4 JDF Writer Java" AgentVersion="1.2.42 alpha" Author="" NewSpawnID="Sp76605550_000011" Status="Spawned" TimeStamp="2005-08-09T10:36:45+02:00" URL="file://file:/E:/minadokument/eclipse/current/Elk/src/test/data/jdf/Product3.ID_OptID00029.jdf" jRef="OptID00029" rRefsROCopied="OptID00023 OptID00016 OptID00028 OptID00017 OptID00018 OptID00024 OptID00025 OptID00032"/></AuditPool></JDF>
+<JDF DescriptiveName="SaddleStitching" ID="OptID00055" Status="Waiting" Type="ProcessGroup">
+<ResourceLinkPool>
+<ComponentLink Usage="Input" rRef="OptID00044"/>
+<ComponentLink Amount="5000" Usage="Output" rRef="OptID00063"/>
+</ResourceLinkPool>
+<JDF DescriptiveName="Collating" ID="OptID00056" JobPartID="16" Status="Waiting" Type="Collecting">
+<AuditPool>
+<Created AgentName="Optimus 2020" AgentVersion="v18" Author="Optimus 2020 UDMI" TimeStamp="2005-01-25T12:59:32Z"/>
+</AuditPool>
+<NodeInfo SetupDuration="PT30M" TotalDuration="PT60M"/>
+<ResourceLinkPool>
+<ComponentLink Usage="Input" rRef="OptID00044">
+<Part SheetName="Sig#1Sheet#4" SignatureName="Sig#1"/>
+</ComponentLink>
+<ComponentLink Usage="Input" rRef="OptID00044">
+<Part SheetName="Sig#1Sheet#3" SignatureName="Sig#1"/>
+</ComponentLink>
+<ComponentLink Usage="Input" rRef="OptID00044">
+<Part SheetName="Sig#1Sheet#2" SignatureName="Sig#1"/>
+</ComponentLink>
+<ComponentLink Usage="Input" rRef="OptID00044">
+<Part SheetName="Sig#1Sheet#1" SignatureName="Sig#1"/>
+</ComponentLink>
+<ComponentLink Amount="5000" Usage="Output" rRef="OptID00057"/>
+</ResourceLinkPool>
+<Comment Language="en-GB" Name="Instruction">
+SI for Finishing
+</Comment>
+</JDF>
+<JDF DescriptiveName="Stitching" ID="OptID00058" JobPartID="17" Status="Waiting" Type="Stitching">
+<AuditPool>
+<Created AgentName="Optimus 2020" AgentVersion="v18" Author="Optimus 2020 UDMI" TimeStamp="2005-01-25T12:59:32Z"/>
+</AuditPool>
+<ResourcePool>
+<StitchingParams Class="Parameter" DescriptiveName="2 Butted Steel stitches of 0.8 wire at 113 and 193 mm" ID="OptID00059" NumberOfStitches="2" StapleShape="Butted" Status="Available" StitchPositions="320.3150 547.0866" StitchWidth="28.3464566929" WireBrand="Steel" WireGauge="2.26771653543"/>
+</ResourcePool>
+<ResourceLinkPool>
+<ComponentLink Usage="Input" rRef="OptID00057"/>
+<StitchingParamsLink Usage="Input" rRef="OptID00059"/>
+<ComponentLink Amount="5000" Usage="Output" rRef="OptID00060"/>
+</ResourceLinkPool>
+</JDF>
+<JDF DescriptiveName="3 Knife Trimmer" ID="OptID00061" JobPartID="18" Status="Waiting" Type="Trimming">
+<AuditPool>
+<Created AgentName="Optimus 2020" AgentVersion="v18" Author="Optimus 2020 UDMI" TimeStamp="2005-01-25T12:59:32Z"/>
+</AuditPool>
+<ResourcePool>
+<TrimmingParams Class="Parameter" DescriptiveName="Binding Setup" Height="841.889764" ID="OptID00062" Status="Available" Width="595.275591"/>
+</ResourcePool>
+<ResourceLinkPool>
+<ComponentLink Usage="Input" rRef="OptID00060"/>
+<TrimmingParamsLink Usage="Input" rRef="OptID00062"/>
+<ComponentLink Amount="5000" Usage="Output" rRef="OptID00063"/>
+</ResourceLinkPool>
+</JDF>
+</JDF>
+</JDF>

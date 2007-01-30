@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?> <!-- Created using Xerox JDFToolkit version 3.3 -->
+<JDF Category="DigitalPrinting" ICSVersions="Base_L0_1.0 IDP_L1_1.0" ID="_xsf_13_254_15_20015ede11_101a9137454_-7f93"
+	JobPartID="_xsf_13_254_15_20015ede11_101a9137454_-7f93" Status="Ready" Template="false"
+	Type="Combined" Types="LayoutPreparation Imposition Interpreting Rendering DigitalPrinting"
+	Version="1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.CIP4.org/JDFSchema_1_1">
+	<AuditPool>
+		<Created TimeStamp="2005-01-25T03:53:43.236-05:00" ref="_xsf_13_254_15_20015ede11_101a9137454_-7f93"></Created>
+	</AuditPool>
+	<CustomerInfo BillingCode="ADB145" CustomerID="Adobe_West0001" CustomerJobName="20 page brochure">
+		<Contact xsi:type="Contact_re" ID="_xsf_13_254_15_20015ede11_101a9137454_-7f87" ContactTypes="Pickup">
+			<Person xsi:type="Person_re" ID="_xsf_13_254_15_20015ede11_101a9137454_-7f86" FirstName="Joe"></Person>
+		</Contact>
+	</CustomerInfo>
+	<ResourcePool>
+		<DigitalPrintingParams ID="_xsf_13_254_15_20015ede11_101a9137454_-7f92" Locked="false" PartUsage="Implicit"
+			SpawnStatus="NotSpawned" Status="Available" PartIDKeys="RunIndex" Class="Parameter" NoOp="false" DirectProofAmount="0"
+			ManualFeed="false">
+			<DigitalPrintingParams xsi:type="DigitalPrintingParams_rp" ID="_xsf_13_254_15_20015ede11_101a9137454_-7f83"
+				RunIndex="2 ~ 9">
+				<MediaRef rRef="_xsf_13_254_15_20015ede11_101a9137454_-7f81"></MediaRef>
+			</DigitalPrintingParams>
+			<DigitalPrintingParams xsi:type="DigitalPrintingParams_rp" ID="_xsf_13_254_15_20015ede11_101a9137454_-7f7f"
+				RunIndex="10 ~ 13">
+				<MediaRef rRef="_xsf_13_254_15_20015ede11_101a9137454_-7f7d"></MediaRef>
+			</DigitalPrintingParams>
+			<DigitalPrintingParams xsi:type="DigitalPrintingParams_rp" ID="_xsf_13_254_15_20015ede11_101a9137454_-7f7b"
+				RunIndex="14 ~ 21">
+				<MediaRef rRef="_xsf_13_254_15_20015ede11_101a9137454_-7f79"></MediaRef>
+			</DigitalPrintingParams>
+		</DigitalPrintingParams>
+		<InterpretingParams ID="_xsf_13_254_15_20015ede11_101a9137454_-7f91" Locked="false" PartUsage="Explicit"
+			SpawnStatus="NotSpawned" Status="Available" Class="Parameter" NoOp="false" Center="false" MirrorAround="None"
+			Polarity="Positive" PrintQuality="Normal"></InterpretingParams>
+		<LayoutPreparationParams ID="_xsf_13_254_15_20015ede11_101a9137454_-7f90" Locked="false" PartUsage="Implicit"
+			SpawnStatus="NotSpawned" Status="Available" PartIDKeys="RunIndex" Class="Parameter" NoOp="false" FinishingOrder="GatherFold"
+			PageDistributionScheme="Sequential" PageOrder="Reader" Rotate="Rotate0" Sides="OneSidedFront">
+			<LayoutPreparationParams xsi:type="LayoutPreparationParams_rp" ID="_xsf_13_254_15_20015ede11_101a9137454_-7f89"
+				RunIndex="0 ~ 1" Sides="TwoSidedFlipY">
+				<Media xsi:type="Media_re" ID="_xsf_13_254_15_20015ede11_101a9137454_-7f88" BackCoatings="Glossy"
+					Dimension="595.275590551181 841.8897637795276" FrontCoatings="Glossy" MediaColorName="White"
+					MediaTypeDetails="Stationery" Weight="120.0" HoleType="None" MediaUnit="Sheet" PrePrinted="false"></Media>
+			</LayoutPreparationParams>
+			<LayoutPreparationParams xsi:type="LayoutPreparationParams_rp" ID="_xsf_13_254_15_20015ede11_101a9137454_-7f82"
+				RunIndex="2 ~ 9" Sides="TwoSidedFlipY">
+				<MediaRef rRef="_xsf_13_254_15_20015ede11_101a9137454_-7f81"></MediaRef>
+			</LayoutPreparationParams>
+			<LayoutPreparationParams xsi:type="LayoutPreparationParams_rp" ID="_xsf_13_254_15_20015ede11_101a9137454_-7f7e"
+				RunIndex="10 ~ 13" Sides="TwoSidedFlipY">
+				<MediaRef rRef="_xsf_13_254_15_20015ede11_101a9137454_-7f7d"></MediaRef>
+			</LayoutPreparationParams>
+			<LayoutPreparationParams xsi:type="LayoutPreparationParams_rp" ID="_xsf_13_254_15_20015ede11_101a9137454_-7f7a"
+				RunIndex="14 ~ 21" Sides="TwoSidedFlipY">
+				<MediaRef rRef="_xsf_13_254_15_20015ede11_101a9137454_-7f79"></MediaRef>
+			</LayoutPreparationParams>
+		</LayoutPreparationParams>
+		<RunList ID="_xsf_13_254_15_20015ede11_101a9137454_-7f8f" Locked="false" PartUsage="Explicit"
+			SpawnStatus="NotSpawned" Status="Available" PartIDKeys="Run" Class="Parameter" NoOp="false"
+			ComponentGranularity="Document" DocCopies="1" IsPage="true" PageCopies="1" SetCopies="1">
+			<RunList xsi:type="RunList_rp" Pages="0 ~ -1" ID="_xsf_13_254_15_20015ede11_101a9137454_-7f8e"
+				Run="1">
+				<LayoutElementRef rRef="_xsf_13_254_15_20015ede11_101a9137454_-7f8d"></LayoutElementRef>
+			</RunList>
+		</RunList>
+		<LayoutElement ID="_xsf_13_254_15_20015ede11_101a9137454_-7f8d" Locked="false" PartUsage="Explicit"
+			SpawnStatus="NotSpawned" Status="Available" Class="Parameter" NoOp="false" IgnorePDLCopies="false"
+			IgnorePDLImposition="true">
+			<FileSpecRef rRef="_xsf_13_254_15_20015ede11_101a9137454_-7f8c"></FileSpecRef>
+		</LayoutElement>
+		<FileSpec ID="_xsf_13_254_15_20015ede11_101a9137454_-7f8c" Locked="false" PartUsage="Explicit"
+			SpawnStatus="NotSpawned" Status="Available" Class="Parameter" NoOp="false" Compression="None"
+			Disposition="Delete" URL="content01/myFile.pdf">
+			<Disposition ID="_xsf_13_254_15_20015ede11_101a9137454_-7f8b" DispositionAction="Delete" Priority="0"></Disposition>
+		</FileSpec>
+		<Component ID="_xsf_13_254_15_20015ede11_101a9137454_-7f8a" Locked="false" PartUsage="Explicit"
+			SpawnStatus="NotSpawned" Status="Available" Class="Quantity" ComponentType="FinalProduct"
+			IsWaste="false"></Component>
+		<ColorantControl ID="_xsf_13_254_15_20015ede11_101a9137454_-7f84" Locked="false" PartUsage="Implicit"
+			SpawnStatus="NotSpawned" Status="Available" PartIDKeys="RunIndex" Class="Parameter" NoOp="false"
+			ForceSeparations="false">
+			<ColorantControl xsi:type="ColorantControl_rp" ID="_xsf_13_254_15_20015ede11_101a9137454_-7f85" RunIndex="2 ~ 9"
+				ProcessColorModel="DeviceCMYK"></ColorantControl>
+			<ColorantControl xsi:type="ColorantControl_rp" ID="_xsf_13_254_15_20015ede11_101a9137454_-7f80" RunIndex="10 ~ 13"
+				ProcessColorModel="DeviceGray"></ColorantControl>
+			<ColorantControl xsi:type="ColorantControl_rp" ID="_xsf_13_254_15_20015ede11_101a9137454_-7f7c" RunIndex="14 ~ 21"
+				ProcessColorModel="DeviceCMYK"></ColorantControl>
+		</ColorantControl>
+		<Media ID="_xsf_13_254_15_20015ede11_101a9137454_-7f81" Locked="false" PartUsage="Explicit"
+			SpawnStatus="NotSpawned" Status="Available" Class="Consumable" BackCoatings="Semigloss"
+			Dimension="595.275590551181 841.8897637795276" FrontCoatings="Semigloss" MediaColorName="White"
+			MediaType="Paper" MediaTypeDetails="Stationery" Weight="90.0" HoleType="None" MediaUnit="Sheet"
+			PrePrinted="false"></Media>
+		<Media ID="_xsf_13_254_15_20015ede11_101a9137454_-7f7d" Locked="false" PartUsage="Explicit"
+			SpawnStatus="NotSpawned" Status="Available" Class="Consumable" BackCoatings="Semigloss"
+			Dimension="595.275590551181 841.8897637795276" FrontCoatings="Semigloss" MediaColorName="White"
+			MediaType="Paper" MediaTypeDetails="Stationery" Weight="90.0" HoleType="None" MediaUnit="Sheet"
+			PrePrinted="false"></Media>
+		<Media ID="_xsf_13_254_15_20015ede11_101a9137454_-7f79" Locked="false" PartUsage="Explicit"
+			SpawnStatus="NotSpawned" Status="Available" Class="Consumable" BackCoatings="Semigloss"
+			Dimension="595.275590551181 841.8897637795276" FrontCoatings="Semigloss" MediaColorName="White"
+			MediaType="Paper" MediaTypeDetails="Stationery" Weight="90.0" HoleType="None" MediaUnit="Sheet"
+			PrePrinted="false"></Media>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<DigitalPrintingParamsLink CombinedProcessIndex="4" DraftOK="false" rRef="_xsf_13_254_15_20015ede11_101a9137454_-7f92"
+			Usage="Input"></DigitalPrintingParamsLink>
+		<InterpretingParamsLink CombinedProcessIndex="2" DraftOK="false" rRef="_xsf_13_254_15_20015ede11_101a9137454_-7f91"
+			Usage="Input"></InterpretingParamsLink>
+		<LayoutPreparationParamsLink CombinedProcessIndex="0" DraftOK="false" rRef="_xsf_13_254_15_20015ede11_101a9137454_-7f90"
+			Usage="Input"></LayoutPreparationParamsLink>
+		<RunListLink CombinedProcessIndex="0 1 4" DraftOK="false" rRef="_xsf_13_254_15_20015ede11_101a9137454_-7f8f"
+			Usage="Input"></RunListLink>
+		<ComponentLink CombinedProcessIndex="4" DraftOK="false" ProcessUsage="Good" rRef="_xsf_13_254_15_20015ede11_101a9137454_-7f8a"
+			Usage="Output" Amount="5000.0"></ComponentLink>
+		<ColorantControlLink CombinedProcessIndex="4" DraftOK="false" rRef="_xsf_13_254_15_20015ede11_101a9137454_-7f84"
+			Usage="Input"></ColorantControlLink>
+		<MediaLink CombinedProcessIndex="0 4" DraftOK="false" rRef="_xsf_13_254_15_20015ede11_101a9137454_-7f81"
+			Usage="Input"></MediaLink>
+		<MediaLink CombinedProcessIndex="0 4" DraftOK="false" rRef="_xsf_13_254_15_20015ede11_101a9137454_-7f7d"
+			Usage="Input"></MediaLink>
+		<MediaLink CombinedProcessIndex="0 4" DraftOK="false" rRef="_xsf_13_254_15_20015ede11_101a9137454_-7f79"
+			Usage="Input"></MediaLink>
+	</ResourceLinkPool>
+</JDF>

@@ -1,0 +1,5 @@
+<Command ID="M001" Type="SubmitQueueEntry">
+	<QueueSubmissionParams URL="file:C:\program1\jakarta-tomcat-5.0.28\webapps\samples\Approval.jdf"/>
+	<QueueFilter MaxEntries="4" QueueEntryDetails="Brief"/>
+</Command>
+<!--"file::C:\program1\jakarta-tomcat-5.0.28\webapps\samples"/> -->

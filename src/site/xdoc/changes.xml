@@ -1,0 +1,109 @@
+<document>
+    <properties>
+        <title>Changes</title>
+        <author email="clabu@itn.liu.se">Claes Buckwalter</author>
+    </properties>
+    <body>
+        <!-- action/@type can be add, fix, remove, update -->
+        <release version="elk-20060119" date="2006-01-19" description="JDFLib-J 2.1.3, validation, device capabilities checking, and bug fixes">
+            <action dev="clabu" type="update">
+                More information about changes, see the <a href="http://elk.itn.liu.se/maven/elk/distributions/README.txt">README</a> file.
+            </action>
+        </release>
+        <release version="elk-20050715" date="2005-07-15" description="MIME support, asynchronous messaging, and more">
+            <action dev="clabu" type="update">
+                More information about changes, see the <a href="http://elk.itn.liu.se/docs/README.txt">README</a> file.
+            </action>
+        </release>
+        <release version="elk-20050508" date="2005-05-08" description="New JDFLib (org.cip4.jdflib)">
+            <action dev="olast" type="update">
+                Migrated to the latest version of CIP4's JDFLib-J from CVS. This means that all dependencies on package <code>com.heidelberg.JDFLib</code> have been replaced with package <code>org.cip4.jdflib</code>.
+            </action>
+        </release>
+        <release version="elk-20050506" date="2005-05-06" description="Asynchronous processing.">
+            <action dev="olast" type="add">
+                Added support for asynchronous processing. For example, Elk now sends outgoing messages asynchronously. Elk's current implementation of asynchronous processing leverages <a href="http://mule.codehaus.org">Mule</a>.
+            </action>
+        </release>
+        <release version="elk-20050128" date="2005-01-28" description="Updated documentation.">
+            <action dev="clabu" type="add">
+                Added a quick start guide to the documentation.
+            </action>
+            <action dev="clabu" type="update">
+                Tweaked the Ant build script.
+            </action>
+        </release>
+        <release version="elk-20050127" date="2005-01-27" description="Added Ant build script">
+            <action dev="clabu" type="add">
+                Added an Ant build script and all third-party libraries used so that developers can easily use Ant instead of Maven for building Elk.
+            </action>
+        </release>
+        <release version="elk-20050126" date="2005-01-26" description="Updated Maven script">
+            <action dev="clabu" type="add">
+                Added new remote repositories to Maven's project.properties.
+            </action>
+        </release>
+        <release version="elk-20050125" date="2005-01-25" description="Updated Maven script">
+            <action dev="clabu" type="update">
+                Updated Maven project files.
+            </action>
+        </release>
+        <release version="elk-20041020" date="2004-10-20" description="Fixed bug in MIME test tool">
+            <action dev="clabu" type="fix">
+                Fixed a bug in <code>org.cip4.elk.impl.testtools.servlet.ElkMimeTestJMFServlet</code> that
+                caused the last phase of the MIME package extraction to fail. The JMF Response from <code>ElkMimeTestJMFServlet</code> still
+                does not include the JMF Commands <em>refID</em>, which is a bug that will be fixed.
+            </action>
+        </release>
+        <release version="elk-20041008" date="2004-10-08" description="Added subscription manager">
+            <action dev="clabu" type="add"> Added a basic implementation of a
+                subscription manager: <a href="apidocs/org/cip4/elk/impl/jmf/SimpleSubscriptionManager.html">
+                    <code>org.cip4.elk.impl.jmf.SimpleSubscriptionMananger</code>
+                </a>. See the JavaDocs for a list of its features and
+                limitations. </action>
+            <action dev="clabu" type="update"> Renamed
+                <code>org.cip4.elk.impl.jmf.servlet.ConfigurableMimeJMFServlet</code>
+                to <a href="apidocs/org/cip4/elk/impl/testtools/servlet/ElkMimeTestJMFServlet.html">
+                    <code>org.cip4.elk.impl.testtools.servlet.ElkMimeTestJMFServlet</code>
+                </a> since it not really part of the reference device
+                implementation, just a servlet for testing JMF clients that
+                send MIME packages. In the future this servlet will be
+                refactored so that it has no dependencies on
+                <code>org.cip4.elk.impl</code> and it will be moved to
+                <code>org.cip4.elk.testtools.servlet</code>. </action>
+        </release>
+        <release version="elk-20040929" date="2004-09-29">
+            <action dev="clabu" type="add"> Added support for receiving MIME
+                packages. An implementation that can be used for testing JMF
+                clients that send MIME can be found at
+                <code>http://cog.itn.liu.se:8080/elk/mime</code>. The contents
+                of MIME packages posted to the URL above will be extracted. URLs
+                to the extracted files can be found in the JMF Response. For
+                more information, see the Javadoc of
+                <code>org.cip4.elk.impl.jmf.servlet.ConfigurableMimeJMFServlet</code>. </action>
+            <action dev="clabu" type="add"> Added class for parsing MIME
+                packages and extracting their contents. See
+                <code>org.cip4.elk.jmf.mime.MimeReader</code> in Javadoc. </action>
+            <action dev="clabu" type="add"> All JMF servlets now extend an
+                abstract base servlet that does logging and delegates to methods
+                depending on request content-type. See
+                <code>org.cip4.elk.jmf.servlet.JMFServlet</code>. </action>
+            <action dev="clabu" type="add"> New queue implementation: <code>org.cip4.elk.impl.queue.StateQueueImpl</code>
+            </action>
+            <action dev="clabu" type="add"> Added JMFProcessor for
+                <em>HoldQueue</em> command. </action>
+            <action dev="clabu" type="add"> Added JMFProcessor for
+                <em>ResumeQueue</em> command. </action>
+            <action dev="clabu" type="fix"> All servlets now return the correct
+                Content-Type. </action>
+        </release>
+        <release version="elk-20040915" date="2004-09-15">
+            <action dev="clabu" type="add"> Another release with basic
+                functionality. The following JMF messages are supported:
+                KnownMessages, SubmitQueueEntry and QueueStatus. </action>
+        </release>
+        <release version="elk-20040909" date="2004-09-09">
+            <action dev="clabu" type="add"> This is the first release. </action>
+        </release>
+    </body>
+</document>

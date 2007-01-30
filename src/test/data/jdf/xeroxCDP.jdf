@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Created using Xerox JDFToolkit version 3.3 -->
+<JDF ID="_xsf_10_48_192_16115ede11_101a4fced4d_-8000" JobPartID="_xsf_10_48_192_16115ede11_101a4fced4d_-8000"
+	Status="Waiting" Template="false" Type="Combined" Types="LayoutPreparation Imposition Interpreting Rendering DigitalPrinting"
+	Version="1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.CIP4.org/JDFSchema_1_1">
+	<AuditPool>
+		<Created TimeStamp="2005-01-24T08:50:34.337-05:00" ref="_xsf_10_48_192_16115ede11_101a4fced4d_-8000"></Created>
+	</AuditPool>
+	<CustomerInfo CustomerJobName="myCustomerJob"></CustomerInfo>
+	<ResourcePool>
+		<DigitalPrintingParams ID="_xsf_10_48_192_16115ede11_101a4fced4d_-7fff" Locked="false" PartUsage="Explicit"
+			SpawnStatus="NotSpawned" Status="Available" Class="Parameter" NoOp="false" DirectProofAmount="0" ManualFeed="false">
+			<MediaRef rRef="_xsf_10_48_192_16115ede11_101a4fced4d_-7fe3"></MediaRef>
+		</DigitalPrintingParams>
+		<InterpretingParams ID="_xsf_10_48_192_16115ede11_101a4fced4d_-7ffe" Locked="false" PartUsage="Explicit"
+			SpawnStatus="NotSpawned" Status="Available" Class="Parameter" NoOp="false" Center="false" MirrorAround="None"
+			Polarity="Positive" PrintQuality="Normal"></InterpretingParams>
+		<LayoutPreparationParams ID="_xsf_10_48_192_16115ede11_101a4fced4d_-7ffd" Locked="false" PartUsage="Explicit"
+			SpawnStatus="NotSpawned" Status="Available" Class="Parameter" NoOp="false" FinishingOrder="GatherFold"
+			PageDistributionScheme="Sequential" PageOrder="Reader" Rotate="Rotate0" Sides="OneSidedFront">
+			<MediaRef rRef="_xsf_10_48_192_16115ede11_101a4fced4d_-7fe3"></MediaRef>
+		</LayoutPreparationParams>
+		<RunList ID="_xsf_10_48_192_16115ede11_101a4fced4d_-7ffc" Locked="false" PartUsage="Explicit"
+			SpawnStatus="NotSpawned" Status="Available" PartIDKeys="Run" Class="Parameter" NoOp="false"
+			ComponentGranularity="Document" DocCopies="1" IsPage="true" PageCopies="1" SetCopies="1">
+			<RunList xsi:type="RunList_rp" Pages="0" ComponentGranularity="Document" IsPage="true" PageCopies="1"
+				SetCopies="1" ID="_xsf_10_48_192_16115ede11_101a4fced4d_-7ff6" Run="1">
+				<LayoutElement xsi:type="LayoutElement_re" ID="_xsf_10_48_192_16115ede11_101a4fced4d_-7ff3" 
+					NoOp="false" IgnorePDLCopies="false"
+					IgnorePDLImposition="true">
+					<FileSpec xsi:type="FileSpec_re" ID="_xsf_10_48_192_16115ede11_101a4fced4d_-7ff2" 
+						NoOp="false" Compression="None"
+						URL="1JDFProdDef/SingleCombined.pdf"></FileSpec>
+				</LayoutElement>
+			</RunList>
+			<RunList xsi:type="RunList_rp" Pages="1 ~ 30" ComponentGranularity="Document" IsPage="true"
+				PageCopies="1" SetCopies="1" ID="_xsf_10_48_192_16115ede11_101a4fced4d_-7ff1" Run="2">
+				<LayoutElement xsi:type="LayoutElement_re" ID="_xsf_10_48_192_16115ede11_101a4fced4d_-7fee" 
+					NoOp="false" IgnorePDLCopies="false"
+					IgnorePDLImposition="true">
+					<FileSpec xsi:type="FileSpec_re" ID="_xsf_10_48_192_16115ede11_101a4fced4d_-7fed" 
+						NoOp="false" Compression="None"
+						URL="1JDFProdDef/SingleCombined.pdf"></FileSpec>
+				</LayoutElement>
+			</RunList>
+			<RunList xsi:type="RunList_rp" Pages="31" ComponentGranularity="Document" IsPage="true" PageCopies="1"
+				SetCopies="1" ID="_xsf_10_48_192_16115ede11_101a4fced4d_-7fec" Run="3">
+				<LayoutElement xsi:type="LayoutElement_re" ID="_xsf_10_48_192_16115ede11_101a4fced4d_-7fe9" 
+					NoOp="false" IgnorePDLCopies="false"
+					IgnorePDLImposition="true">
+					<FileSpec xsi:type="FileSpec_re" ID="_xsf_10_48_192_16115ede11_101a4fced4d_-7fe8" 
+						NoOp="false" Compression="None"
+						URL="1JDFProdDef/SingleCombined.pdf"></FileSpec>
+				</LayoutElement>
+			</RunList>
+		</RunList>
+		<LayoutElement ID="_xsf_10_48_192_16115ede11_101a4fced4d_-7ffa" Locked="false" PartUsage="Explicit"
+			SpawnStatus="NotSpawned" Status="Available" Class="Parameter" NoOp="false" IgnorePDLCopies="false"
+			IgnorePDLImposition="true"></LayoutElement>
+		<FileSpec ID="_xsf_10_48_192_16115ede11_101a4fced4d_-7ff9" Locked="false" PartUsage="Explicit"
+			SpawnStatus="NotSpawned" Status="Available" Class="Parameter" NoOp="false" Compression="None"
+			Disposition="Delete" URL="dummy.pdf">
+			<Disposition ID="_xsf_10_48_192_16115ede11_101a4fced4d_-7ff8" 
+				DispositionAction="Delete" Priority="0"></Disposition>
+		</FileSpec>
+		<Component ID="_xsf_10_48_192_16115ede11_101a4fced4d_-7ff7" Locked="false" PartUsage="Explicit"
+			SpawnStatus="NotSpawned" Status="Unavailable" Class="Quantity" ComponentType="FinalProduct"
+			IsWaste="false"></Component>
+		<Media ID="_xsf_10_48_192_16115ede11_101a4fced4d_-7fe3" Locked="false" PartUsage="Explicit"
+			SpawnStatus="NotSpawned" Status="Available" Class="Consumable" Dimension="612.0 792.0"
+			MediaType="Paper" HoleType="None" MediaUnit="Sheet" PrePrinted="false"></Media>
+	</ResourcePool>
+	<ResourceLinkPool>
+		<DigitalPrintingParamsLink CombinedProcessIndex="4" DraftOK="false" rRef="_xsf_10_48_192_16115ede11_101a4fced4d_-7fff"
+			Usage="Input"></DigitalPrintingParamsLink>
+		<InterpretingParamsLink CombinedProcessIndex="2" DraftOK="false" rRef="_xsf_10_48_192_16115ede11_101a4fced4d_-7ffe"
+			Usage="Input"></InterpretingParamsLink>
+		<LayoutPreparationParamsLink CombinedProcessIndex="0" DraftOK="false" rRef="_xsf_10_48_192_16115ede11_101a4fced4d_-7ffd"
+			Usage="Input"></LayoutPreparationParamsLink>
+		<RunListLink CombinedProcessIndex="0 1 4" DraftOK="false" rRef="_xsf_10_48_192_16115ede11_101a4fced4d_-7ffc"
+			Usage="Input"></RunListLink>
+		<ComponentLink CombinedProcessIndex="4" DraftOK="false" ProcessUsage="Good" rRef="_xsf_10_48_192_16115ede11_101a4fced4d_-7ff7"
+			Usage="Output" Amount="1.0"></ComponentLink>
+		<MediaLink CombinedProcessIndex="0 4" DraftOK="false" rRef="_xsf_10_48_192_16115ede11_101a4fced4d_-7fe3"
+			Usage="Input"></MediaLink>
+	</ResourceLinkPool>
+</JDF>
