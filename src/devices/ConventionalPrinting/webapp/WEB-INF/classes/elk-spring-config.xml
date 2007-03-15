@@ -391,9 +391,6 @@
 			<ref bean="deviceConfig"/>
 		</constructor-arg>
 		<constructor-arg index="4">
-			<ref bean="process"/>
-		</constructor-arg>
-		<constructor-arg index="5">
 			<ref bean="fileRepository"/>
 		</constructor-arg>
 	</bean>

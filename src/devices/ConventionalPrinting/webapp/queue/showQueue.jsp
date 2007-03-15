@@ -26,13 +26,14 @@
                  <th><fmt:message key='status'/></th>
                  <th><fmt:message key='priority'/></th>
                  <th><fmt:message key='submission.time'/></th>
-                 <th><fmt:message key='start.time'/></th>  
+                 <th><fmt:message key='start.time'/></th>
+                 <th></th>  
              </tr>
          </thead>
          <tbody>
              <c:forEach var='qe' items='${queue.queueEntryVector}'>                
                  <tr>
-                     <td><a href="<c:url value='/job?cmd=showJob&id=${qe.queueEntryID}'/>">${qe.jobID} (${qe.jobPartID})</a></td>
+                     <td><a href="<c:url value='/job?cmd=showJob&id=${qe.queueEntryID}'/>">${qe.jobID} (${qe.jobPartID})</a></td>                     
                      <td>${qe.queueEntryStatus.name}</td>
                      <td>${qe.priority}</td>
                      <td>${qe.submissionTime.dateTimeISO}</td>
@@ -44,6 +45,7 @@
                      <%= qe.getAttribute("StartTime") %>
                      <%-- ${qe.startTime==null} --%>
                      </td>
+                     <td><a href="<c:url value='/queue?cmd=showQueueSubmissionParams&qeid=${qe.queueEntryID}'/>"><fmt:message key='view.submission.params'/></a></td>
                  </tr>
              </c:forEach>
          </tbody>
