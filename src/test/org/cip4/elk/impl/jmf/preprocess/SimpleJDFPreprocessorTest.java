@@ -20,24 +20,23 @@ import org.cip4.elk.device.DeviceConfig;
 import org.cip4.elk.impl.device.SimpleDeviceConfig;
 import org.cip4.elk.impl.device.process.ApprovalProcess;
 import org.cip4.elk.impl.device.process.BaseProcess;
-
 import org.cip4.elk.impl.jmf.KnownDevicesJMFProcessor;
 import org.cip4.elk.impl.jmf.SubscribingIncomingJMFDispatcher;
 import org.cip4.elk.impl.jmf.SyncHttpOutgoingJMFDispatcher;
-import org.cip4.elk.impl.jmf.preprocess.SimpleJDFPreprocessor;
 import org.cip4.elk.impl.queue.MemoryQueue;
 import org.cip4.elk.impl.util.FileRepository;
 import org.cip4.elk.impl.util.Repository;
 import org.cip4.elk.impl.util.URLAccessTool;
-
 import org.cip4.elk.jmf.IncomingJMFDispatcher;
 import org.cip4.elk.jmf.JMFProcessor;
 import org.cip4.elk.jmf.OutgoingJMFDispatcher;
+import org.cip4.elk.queue.Queue;
 import org.cip4.jdflib.core.ElementName;
 import org.cip4.jdflib.jmf.JDFCommand;
 import org.cip4.jdflib.jmf.JDFJMF;
 import org.cip4.jdflib.jmf.JDFQueueSubmissionParams;
 import org.cip4.jdflib.jmf.JDFResponse;
+import org.cip4.jdflib.util.UrlUtil;
 
 /** 
  * 
@@ -45,7 +44,7 @@ import org.cip4.jdflib.jmf.JDFResponse;
  */
 public class SimpleJDFPreprocessorTest extends ElkTestCase {
 
-    static final String JDF_FILE = "Approval.jdf";
+    static final String JDF_FILE = "Elk_Approval.jdf";
 
     SimpleJDFPreprocessor _jdfpre;
 
@@ -55,7 +54,7 @@ public class SimpleJDFPreprocessorTest extends ElkTestCase {
 
     JDFElementFactory _factory;
 
-    MemoryQueue mq;
+    Queue mq;
 
     BaseProcess p;
 
@@ -63,14 +62,14 @@ public class SimpleJDFPreprocessorTest extends ElkTestCase {
      * @see TestCase#setUp()
      */
     public void setUp() throws Exception {
-
         super.setUp();
         _accessTool = new URLAccessTool();
         // Load configuration
-        File deviceFile = new File("src/test/" + _testDataPath + "Device.xml");
+        File deviceFile = new File("src/test/" + _testDataPath + "ApprovalDevice.xml");
         assertTrue("Tests that file exists: " + deviceFile, deviceFile.exists());
-        _deviceConfig = new SimpleDeviceConfig(deviceFile.toURI().toURL().toExternalForm(), _accessTool);
-        log.debug(_deviceConfig.getDeviceConfig());
+        _deviceConfig = new SimpleDeviceConfig(UrlUtil.fileToUrl(deviceFile, true), _accessTool);
+        assertNotNull(_deviceConfig.getDeviceConfig());        
+        
         // File repository
         Map contentTypes = new HashMap();
         contentTypes.put("text/xml", "xml");
@@ -81,17 +80,17 @@ public class SimpleJDFPreprocessorTest extends ElkTestCase {
         IncomingJMFDispatcher i = new SubscribingIncomingJMFDispatcher();
         i.setConfig(_deviceConfig);
         // Process
-        //p = new ApprovalProcess(_deviceConfig, mq, _accessTool, o);
         p = new ApprovalProcess(_deviceConfig, mq, _accessTool, o, r);
         // JMF processors
-        JMFProcessor knownDevices = new KnownDevicesJMFProcessor(p, _deviceConfig);        
+        JMFProcessor knownDevices = new KnownDevicesJMFProcessor(p);        
         i.registerProcessor("KnownDevices", knownDevices);
         _factory = JDFElementFactory.getInstance();
         // Preprocessor
         //_jdfpre = new SimpleJDFPreprocessor(mq, _accessTool, o, i, _deviceConfig, p, r);
-        _jdfpre = new SimpleJDFPreprocessor(mq, o, i, _deviceConfig, p, r);
+        _jdfpre = new SimpleJDFPreprocessor(mq, o, i, _deviceConfig, r);
         _jdfpre.setValidation(true);
-
+        
+        assertNotNull(p.getDeviceInfo(true));
     }
 
     public void testSimpleJDFPreprocessor() {
@@ -224,7 +223,7 @@ public class SimpleJDFPreprocessorTest extends ElkTestCase {
      * @throws MalformedURLException
      */
     public void testPreProcessJDF_correctSubmission() 
-        throws NullPointerException, URISyntaxException, MalformedURLException {
+        throws NullPointerException, URISyntaxException {
         JDFResponse response = (JDFResponse) _factory
                 .createJDFElement(ElementName.RESPONSE);
         
@@ -233,7 +232,7 @@ public class SimpleJDFPreprocessorTest extends ElkTestCase {
             + " Notification is attached to the response.");
         JDFCommand incorrectCommand = createCommand("SubmitQueueEntry", null);
         JDFResponse rr = _jdfpre.preProcessJDF(incorrectCommand);
-        assertNotNull(rr.getNotification(0));
+        assertNotNull(rr.getNotification());
         log.debug("The Response looks like this: " + rr);
 
         // Correct command
@@ -252,7 +251,7 @@ public class SimpleJDFPreprocessorTest extends ElkTestCase {
 //        String ackURL = correctCommand.getAcknowledgeURL();
 //        assertNotNull(ackURL); // The above method never returns null
         JDFResponse correctResponse = _jdfpre.preProcessJDF(correctCommand);
-        log.debug("Response: " + correctResponse);
+        log.info("Response: " + correctResponse);
         assertNotNull(correctResponse.getQueueEntry(0));
         assertNotNull(correctResponse.getQueue(0));
         

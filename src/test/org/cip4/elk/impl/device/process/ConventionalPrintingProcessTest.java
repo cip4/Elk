@@ -20,6 +20,7 @@ import org.cip4.elk.impl.util.URLAccessTool;
 import org.cip4.elk.jmf.SubscriptionManager;
 import org.cip4.elk.queue.Queue;
 import org.cip4.elk.queue.QueueStatusListener;
+import org.cip4.elk.util.JDFUtil;
 import org.cip4.jdflib.auto.JDFAutoNotification.EnumClass;
 import org.cip4.jdflib.core.JDFPartAmount;
 import org.cip4.jdflib.core.JDFResourceLink;
@@ -36,7 +37,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * @author Ola Stering (olst6875@student.uu.se)
- * @version $Id: ConventionalPrintingProcessTest.java 907 2005-11-09 12:22:51Z ola.stering $
+ * @version $Id: ConventionalPrintingProcessTest.java,v 1.7 2006/11/29 15:22:04 buckwalter Exp $
  */
 public class ConventionalPrintingProcessTest extends ElkTestCase {
 
@@ -50,7 +51,7 @@ public class ConventionalPrintingProcessTest extends ElkTestCase {
         super.setUp();
         _fileUtil = new URLAccessTool(getResourceAsURL(".").toString());
         _jdfExecutable = _jdfFilesPath + "ConventionalPrintingGood.jdf";
-        _factory = (BeanFactory) new ClassPathXmlApplicationContext(
+        _factory = new ClassPathXmlApplicationContext(
                 _testDataPath + "elk-spring-config.xml");
 
         // Configure queue listeners
@@ -76,29 +77,12 @@ public class ConventionalPrintingProcessTest extends ElkTestCase {
                 null);
     }
 
-    public void testExecuteNode() {
-        log.debug("About to execute Node.");
-        JDFNode n = null;
-
-        try {
-            n = (JDFNode) getResourceAsJDF(_jdfExecutable);
-        } catch (Exception e) {
-            System.out.println("Unable to load Resource.");
-            assertTrue(false);
-            e.printStackTrace();
-        }
-        // _subManager.registerSubscription(q);
+    public void testExecuteNode() throws Exception {
+        final JDFNode jdf = (JDFNode) getResourceAsJDF(_jdfExecutable);
+        assertTrue(JDFUtil.processHandles(_process.getProcessType(), jdf, null) == 0);
         _process.setSpeed(1200000);
-        _process.executeNode(n);
-        
-        testAddConditionPart(n);
-
-        log.info("Testing JDFNode.isExecutable, following children...");
-        log.info("This test does not work as of JDFLib-J build 23, should"
-                + " be added when bug is fixed, 2005-09-03. Patched "
-                + "JDFLib-J build 23, now WORKS.");
-        log.info("assertTrue(true == testIsExecutable(n,true));");
-        assertTrue(true == testIsExecutable(n, true));
+        _process.executeNode(jdf);
+        assertTrue(JDFUtil.processHandles(_process.getProcessType(), jdf, null) != 0);        
     }
 
     /**
@@ -132,8 +116,8 @@ public class ConventionalPrintingProcessTest extends ElkTestCase {
         JDFAmountPool amountPool2 = resAmountOut2.getCreateAmountPool();
         log.debug("resAmountOut: " + resAmountOut);
         log.debug("resAmountOut: " + resAmountOut2);
-        JDFResource res = ((JDFResource) resAmountOut.getTarget());
-        JDFResource res2 = ((JDFResource) resAmountOut2.getTarget());
+        JDFResource res = resAmountOut.getTarget();
+        JDFResource res2 = resAmountOut2.getTarget();
         log.debug("TARGET res: " + res);
         log.debug("TARGET res2: " + res2);
 
@@ -157,10 +141,8 @@ public class ConventionalPrintingProcessTest extends ElkTestCase {
         int inAmount2 = (int) resAmountIn2.getAmount(emptyAttributeMap);
         int outAmount = (int) resAmountOut.getAmount(emptyAttributeMap);
         int outAmount2 = (int) resAmountOut2.getAmount(emptyAttributeMap);
-        int partAmountGoodAmount = (int) partAmountGood
-                .getAmount(emptyAttributeMap);
-        int partAmountGoodAmount2 = (int) partAmountGood2
-                .getAmount(emptyAttributeMap);
+        int partAmountGoodAmount = (int) partAmountGood.getAmount(null);
+        int partAmountGoodAmount2 = (int) partAmountGood2.getAmount(null);
         log.debug("inAmount: " + inAmount + " outAmount=" + outAmount
                 + " PartAmount/@Amount=" + partAmountGoodAmount);
         log.debug("inAmount2: " + inAmount2 + " outAmount2=" + outAmount2
@@ -197,29 +179,6 @@ public class ConventionalPrintingProcessTest extends ElkTestCase {
             EnumNodeStatus.Waiting));
     }
 
-    /**
-     * Testing the usage of PartAmount, getPartIDKeys and so on...
-     */
-    public void testAddConditionPart(JDFNode jdf) {
-        log.info("Testing: testAddConditionPart(...) method");
-        JDFResourceLink resAmountOut = _process
-                .getAmountResource("Output", jdf);
-        JDFAmountPool amountPool = resAmountOut.getCreateAmountPool();
-        JDFResource r = ((JDFResource) resAmountOut.getTarget());
-        JDFResource good = r.addPartition(JDFResource.EnumPartIDKey.Condition,
-            "Good");
-        JDFResource waste = r.addPartition(JDFResource.EnumPartIDKey.Condition,
-            "Waste");
-
-        log.debug("Testing of getPartMap(), the PartIDKey attribute is set "
-                + "automatically.");
-        JDFPartAmount pa = amountPool.getCreatePartAmount(good.getPartMap());
-        JDFPartAmount paW = amountPool.getCreatePartAmount(waste.getPartMap());
-        pa.setActualAmount(1039, new JDFAttributeMap());
-        paW.setActualAmount(200, new JDFAttributeMap());
-        // log.debug("Outputting the final AmountPool:\n" + amountPool);
-    }
-
     public void testGetOutputResourceLink() {
         log.info("Testing: testGetOutputResourceLink()");
         JDFNode jdf = JDFElementFactory.getInstance().createJDF();
@@ -230,48 +189,7 @@ public class ConventionalPrintingProcessTest extends ElkTestCase {
         log.info("Calling a get(0) on an empty List throws"
                 + " ArrayIndexOutOfBoundsException.");
     }
-    /**
-     * Tests the method isExecutable.
-     * 
-     * @param jdf
-     * @return true if the jdf was executable, false otherwise.
-     */
-    private boolean testIsExecutable(JDFNode jdf, boolean followingChildren) {        
-        if (jdf == null) {
-            log.error("The jdf was null");
-            throw new NullPointerException(
-                    "The JDF was null in testIsExecutable");
-        }
-        log.info("Testing JDFNode is executable with node '" + jdf.getID()
-                + "'.");
-        if (jdf.isExecutable(new JDFAttributeMap(), followingChildren)) {
-            log.info("The Node is executable.");
-            return true;
-        } else {
-            log.info("The Node is NOT executable.");
-            JDFResourceLink res;
-            JDFAttributeMap m = new JDFAttributeMap();
-            m.put("Usage", "Input");
-            List inputResources = jdf.getResourceLinks(m);
-            log.debug("Scanning " + inputResources.size()
-                    + " input resources for Amount attributes");
-
-            for (int i = 0, imax = inputResources.size(); i < imax; i++) {
-
-                res = (JDFResourceLink) inputResources.get(i);
-
-                if (res.isExecutable(new JDFAttributeMap(), false)) {
-                    log.debug("ResourceLink " + (i + 1)
-                            + " allows the node to execute");
-                } else {
-                    log.debug("ResourceLink " + (i + 1)
-                            + " disallows the node to execute");
-                }
-                log.debug("Resource " + res);
-            }
-            return false;
-        }
-    }
+    
 
     public void testGetCreateConditionPart() {        
         JDFNode jdf1 = null;        
@@ -308,6 +226,7 @@ public class ConventionalPrintingProcessTest extends ElkTestCase {
             return;
         }
 
+        /*
         // Creates an AmountPool
         log.info("Gets/Creates AmountPool for Output resource...");
         JDFAmountPool amountPool = resAmountOut.getCreateAmountPool();
@@ -326,6 +245,7 @@ public class ConventionalPrintingProcessTest extends ElkTestCase {
         log.info("amountPool: " + amountPool);
         log.info("goodPart: " + goodPart);      
         log.info("wastePart: " + wastePart);
+        */
         
     }
 

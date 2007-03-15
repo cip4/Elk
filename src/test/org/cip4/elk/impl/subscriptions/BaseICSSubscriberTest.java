@@ -14,7 +14,7 @@ import org.cip4.jdflib.jmf.JDFSubscription;
 
 /**
  * @author Ola Stering (olst6875@student.uu.se)
- * @version $Id: BaseICSSubscriberTest.java 591 2005-08-03 13:27:22Z ola.stering $
+ * @version $Id: BaseICSSubscriberTest.java,v 1.2 2006/08/24 11:56:02 buckwalter Exp $
  */
 public class BaseICSSubscriberTest extends ElkTestCase {
 
@@ -31,7 +31,7 @@ public class BaseICSSubscriberTest extends ElkTestCase {
         
 
         assertTrue(query.getOwnerDocument() == q2.getOwnerDocument());
-        assertNull(q2.getSubscription(0));
+        assertNull(q2.getSubscription());
                 
         JDFSubscription sub = q2.appendSubscription();        
         int repeatStep = sub.getRepeatStep();

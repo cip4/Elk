@@ -13,7 +13,7 @@ import org.cip4.jdflib.resource.JDFNotification;
  * Messages class.
  * 
  * @author Ola Stering (olst6875@student.uu.se)
- * @version $Id: MessagesTest.java 684 2005-09-10 11:24:56Z ola.stering $
+ * @version $Id: MessagesTest.java,v 1.4 2005/09/10 11:24:56 ola.stering Exp $
  */
 public class MessagesTest extends ElkTestCase {
 

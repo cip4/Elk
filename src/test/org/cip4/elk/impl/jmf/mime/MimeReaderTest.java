@@ -13,6 +13,7 @@ import java.util.Arrays;
 import org.cip4.elk.ElkTestCase;
 import org.cip4.elk.impl.mime.MimePackageException;
 import org.cip4.elk.impl.mime.MimeReader;
+import org.cip4.jdflib.util.UrlUtil;
 
 /**
  * @author Claes Buckwalter (clabu@itn.liu.se)
@@ -47,7 +48,7 @@ public class MimeReaderTest extends ElkTestCase {
         InputStream mimeStream = getResourceAsStream(mimeResource);
         MimeReader mimeReader = new MimeReader();
         String[] fileUrls = mimeReader.extractMimePackage(mimeStream,
-            outputDir.toURI().toURL().toExternalForm());
+            UrlUtil.fileToUrl(outputDir, true));
         log.debug("Extracted files: " + Arrays.asList(fileUrls).toString());
         assertTrue(fileUrls.length == 2);
         for (int i=0; i<fileUrls.length; i++) {
@@ -76,7 +77,7 @@ public class MimeReaderTest extends ElkTestCase {
         InputStream mimeStream = getResourceAsStream(mimeResource);
         MimeReader mimeReader = new MimeReader();
         String[] fileUrls = mimeReader.extractMimePackage(mimeStream,
-            outputDir.toURI().toURL().toExternalForm());
+            UrlUtil.fileToUrl(outputDir, true));
         log.debug("Extracted files: " + Arrays.asList(fileUrls).toString());
         assertTrue(fileUrls.length == 4);
         for (int i=0; i<fileUrls.length; i++) {

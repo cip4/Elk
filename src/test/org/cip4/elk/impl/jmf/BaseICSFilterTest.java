@@ -11,18 +11,18 @@ import org.cip4.jdflib.auto.JDFAutoDeviceInfo.EnumDeviceStatus;
 import org.cip4.jdflib.core.AttributeName;
 import org.cip4.jdflib.core.ElementName;
 import org.cip4.jdflib.core.JDFDoc;
-import org.cip4.jdflib.core.JDFElement;
 import org.cip4.jdflib.core.JDFParser;
+import org.cip4.jdflib.core.KElement;
+import org.cip4.jdflib.core.JDFElement.EnumNodeStatus;
 import org.cip4.jdflib.jmf.JDFDeviceFilter;
 import org.cip4.jdflib.jmf.JDFDeviceInfo;
 import org.cip4.jdflib.resource.JDFDevice;
 import org.cip4.jdflib.resource.JDFDeviceList;
-import org.cip4.jdflib.resource.JDFResource.EnumResStatus;
 
 /**
  * 
  * @author Ola Stering (olst6875@student.uu.se)
- * @version $Id: BaseICSFilterTest.java 1498 2006-08-03 09:48:26Z buckwalter $
+ * @version $Id: BaseICSFilterTest.java,v 1.6 2006/08/30 16:15:28 buckwalter Exp $
  */
 public class BaseICSFilterTest extends ElkTestCase {
 
@@ -34,7 +34,7 @@ public class BaseICSFilterTest extends ElkTestCase {
     }
 
     public JDFDevice createJDFDevice(String ID, String Class,
-            EnumResStatus status, String deviceID) {
+            EnumNodeStatus status, String deviceID) {
         //		Required attributes from the abstract resource element:
         //		ID
         //		Class
@@ -84,20 +84,11 @@ public class BaseICSFilterTest extends ElkTestCase {
      * @param list
      */
     private void testDeviceList(JDFDeviceList list) {
-
-        JDFElement deviceInfoElements[] = list.getChildElements();
+        final KElement deviceInfoElements[] = list.getChildElementArray();
         for (int i = 0; i < deviceInfoElements.length; i++) {
-            JDFDeviceInfo deviceInfo = (JDFDeviceInfo) deviceInfoElements[i];
-            JDFDevice device = deviceInfo.getDevice(0);
+            final JDFDeviceInfo deviceInfo = (JDFDeviceInfo) deviceInfoElements[i];
+            final JDFDevice device = deviceInfo.getDevice();
             assertTrue(deviceInfo.hasAttribute(AttributeName.DEVICESTATUS));
-
-            if (device != null) {
-                // Requirements for Base ICS.
-                System.out.println(device.toXML());
-                assertTrue(device.hasAttribute(AttributeName.JMFSENDERID));
-                assertTrue(device.hasAttribute(AttributeName.JMFURL));
-                assertTrue(device.hasAttribute(AttributeName.DEVICEID));
-            }
         }
 
     }
@@ -119,9 +110,9 @@ public class BaseICSFilterTest extends ElkTestCase {
         }
 
         JDFDevice d1 = createJDFDevice("Elk", "Implementation",
-                                       EnumResStatus.Available, "Elk");
+                                       EnumNodeStatus.Ready, "Elk");
         JDFDevice d2 = createJDFDevice("Gosta", "Implementation",
-                                       EnumResStatus.Complete, "Rolle");
+                                       EnumNodeStatus.Completed, "Rolle");
 
         JDFDeviceList list = (JDFDeviceList) _factory
                 .createJDFElement(ElementName.DEVICELIST);

@@ -4,7 +4,6 @@
 package org.cip4.elk.impl.queue;
 
 import java.io.InputStream;
-import java.util.Vector;
 
 import org.cip4.elk.Config;
 import org.cip4.elk.DefaultConfig;
@@ -12,12 +11,10 @@ import org.cip4.elk.ElkTestCase;
 import org.cip4.elk.impl.util.URLAccessTool;
 import org.cip4.elk.queue.Queue;
 import org.cip4.jdflib.core.JDFParser;
-import org.cip4.jdflib.datatypes.JDFAttributeMap;
+import org.cip4.jdflib.core.KElement.EnumValidationLevel;
 import org.cip4.jdflib.jmf.JDFQueue;
 import org.cip4.jdflib.jmf.JDFQueueEntry;
 import org.cip4.jdflib.jmf.JDFQueueSubmissionParams;
-import org.cip4.jdflib.node.JDFNode;
-import org.cip4.jdflib.pool.JDFAncestorPool;
 
 /**
  * NOTE: To run this test, a folder named data containing the file:
@@ -25,7 +22,7 @@ import org.cip4.jdflib.pool.JDFAncestorPool;
  * 
  * @author Claes Buckwalter (clabu@itn.liu.se)
  * @author Ola Stering (olst6875@student.uu.se)
- * @version $Id: MemoryQueueTest.java 681 2005-09-10 11:20:11Z ola.stering $
+ * @version $Id: MemoryQueueTest.java,v 1.11 2006/09/12 08:34:52 buckwalter Exp $
  */
 public class MemoryQueueTest extends ElkTestCase {
 
@@ -39,11 +36,10 @@ public class MemoryQueueTest extends ElkTestCase {
 
     public void testInitialValues() {        
         int maxQueueSize = 10;
-        Queue q = createQueue(maxQueueSize);
-        assertTrue(q.getMaxQueueSize() == maxQueueSize);
-        assertTrue(q.getQueueSize() == 0);
-        assertEquals(q.getQueueStatus(), JDFQueue.EnumQueueStatus.Waiting);
-        assertTrue(q.getTotalQueueSize() == 0);
+        Queue q = createQueue(maxQueueSize);        
+        assertTrue(q.getQueueSize() == maxQueueSize);
+        assertEquals(JDFQueue.EnumQueueStatus.Waiting, q.getQueueStatus());
+        assertTrue(q.getQueueEntryCount() == 0);
         assertNull(q.getFirstRunnableQueueEntry());
         assertNull(q.getQueueEntry("100"));
     }
@@ -51,12 +47,15 @@ public class MemoryQueueTest extends ElkTestCase {
     public void testAddQueueEntry() {
         // Loads a JMF that references a JDF file /tmp/Approval.jdf
         JDFQueueSubmissionParams qsp = loadQueueSubmissionParams();
-        assertTrue(qsp.isValid());
+        assertTrue(qsp.isValid(EnumValidationLevel.RecursiveComplete));
         Queue q = createQueue(10);
+        assertEquals(10, q.getQueueSize());
+        assertEquals(0, q.getQueueEntryCount());
         // Adds a queue entry
-         JDFQueueEntry qe1 = q.addQueueEntry(qsp);
-        assertTrue(qe1.isValid());
-        assertTrue(q.getQueueSize() == 1);
+        JDFQueueEntry qe1 = q.addQueueEntry(qsp);
+        assertNotNull(qe1);
+        assertTrue(qe1.isValid(EnumValidationLevel.RecursiveComplete));        
+        assertEquals(1, q.getQueueEntryCount());
         // Tests that the queue entry is copied before it is returned
         JDFQueueEntry qe2 = q.getQueueEntry(qe1.getQueueEntryID());
         assertNotSame(qe1, qe2);
@@ -77,15 +76,15 @@ public class MemoryQueueTest extends ElkTestCase {
         Queue q = createQueue(10);
         // Adds a queue entry
         JDFQueueEntry qe = q.addQueueEntry(qsp);
-        assertTrue(qe.isValid());
+        assertTrue(qe.isValid(EnumValidationLevel.RecursiveComplete));
         qe.setQueueEntryID("QueueEntryID");
         qe.setDescriptiveName("This queue entry was put");
         // Puts a new queue entry
         q.putQueueEntry(qe);
-        assertTrue(q.getQueueSize() == 2);
+        assertTrue(q.getQueueEntryCount() == 2);
         // Replaces an old queue entry
         q.putQueueEntry(qe);
-        assertTrue(q.getQueueSize() == 2);
+        assertTrue(q.getQueueEntryCount() == 2);
         log.info(q.getQueue());
     }
 
@@ -96,64 +95,19 @@ public class MemoryQueueTest extends ElkTestCase {
         JDFQueueEntry qe = q.addQueueEntry(qsp);
         q.addQueueEntry(qsp);
         q.addQueueEntry(qsp);
-        assertEquals(q.getQueueStatus(), JDFQueue.EnumQueueStatus.Full);
+        assertEquals(3, q.getQueueSize());
+        assertEquals(3, q.getQueueEntryCount());
+        assertEquals(JDFQueue.EnumQueueStatus.Full, q.getQueueStatus());
         // Remove 1 queue entry
         q.removeQueueEntry(qe.getQueueEntryID());
-        assertEquals(q.getQueueStatus(), JDFQueue.EnumQueueStatus.Waiting);
+        assertEquals(3, q.getQueueSize());
+        assertEquals(2, q.getQueueEntryCount());
+        assertEquals(JDFQueue.EnumQueueStatus.Waiting, q.getQueueStatus());
     }
 
-    public void testAncestorPool() {
-        JDFQueueSubmissionParams qsp = loadQueueSubmissionParams();
-        Queue q = createQueue(3);
-        JDFQueueEntry qe0 = q.addQueueEntry(qsp);
-        JDFQueueEntry qe1 = q.addQueueEntry(qsp);
-        JDFQueueEntry qe2 = q.addQueueEntry(qsp);
-
-        log.info("Tests the AncestorPool/Part...");
-
-        try {
-            JDFNode jdf0 = (JDFNode) getResourceAsJDF(fileAncectorPool0parts);
-            JDFNode jdf1 = (JDFNode) getResourceAsJDF(fileAncectorPool1parts);
-            JDFNode jdf2 = (JDFNode) getResourceAsJDF(fileAncectorPool2parts);
-
-            log.info("Testing with 0 Part elements.");
-            assertEquals(testParts(jdf0, qe0), 0);
-            log.info("Testing with 1 Part element.");
-            assertEquals(testParts(jdf1, qe1), 1);
-            log.info("Testing with 2 Part elements.");
-            assertEquals(testParts(jdf2, qe2), 2);
-
-        } catch (Exception e) {
-            log.error("One of the files '" + fileAncectorPool0parts + "', '"
-                    + fileAncectorPool1parts + "' and '"
-                    + fileAncectorPool2parts + "' is not on the classpath");
-            assertTrue(false);
-        }
-
+    public void testAncestorPool() throws Exception {
     }
 
-    /**
-     * @param jdf1
-     * @param q
-     */
-    private int testParts(JDFNode jdf1, JDFQueueEntry qe) {
-
-        JDFAncestorPool ancestorPool = jdf1.getAncestorPool();
-
-        if (ancestorPool != null) {
-            Vector partVector = ancestorPool.getPartMapVector().getVector();
-            int vsize = partVector.size();
-            log.debug("The JDFNode contained an AncestorPool with " + vsize
-                    + " Part elements.");
-            for (int i = 0; i < vsize; i++) {
-                qe.appendPart().setAttributes(
-                    (JDFAttributeMap) partVector.get(i));
-            }
-        }
-
-        return qe.getPartMapVector().size();
-
-    }
 
     public void testAddMaxEntries() {
         JDFQueueSubmissionParams qsp = loadQueueSubmissionParams();
@@ -163,16 +117,15 @@ public class MemoryQueueTest extends ElkTestCase {
         assertNotNull(q.addQueueEntry(qsp));
         assertNotNull(q.addQueueEntry(qsp));
         // Tests that the queue's size is exhausted
-        assertTrue(q.getQueueSize() == q.getTotalQueueSize());
-        assertTrue(q.getMaxQueueSize() == q.getQueueSize());
+        assertEquals(q.getQueueSize(), q.getQueueEntryCount());        
         // XXXq.setQueueStatus(JDFQueue.EnumQueueStatus.Full);
-        assertEquals(q.getQueueStatus(), JDFQueue.EnumQueueStatus.Full);
+        assertEquals(JDFQueue.EnumQueueStatus.Full, q.getQueueStatus());
         // Tests that another queue entry cannot be added
         assertNull(q.addQueueEntry(qsp));
-        log.info("Max size: " + q.getMaxQueueSize());
-        log.info("Current size: " + q.getQueueSize());
-        assertTrue(q.getMaxQueueSize() == q.getQueueSize());
-        assertEquals(q.getQueueStatus(), JDFQueue.EnumQueueStatus.Full);
+        log.info("Max size: " + q.getQueueSize());
+        log.info("Current size: " + q.getQueueEntryCount());
+        assertEquals(q.getQueueSize(), q.getQueueEntryCount());
+        assertEquals(JDFQueue.EnumQueueStatus.Full, q.getQueueStatus());
     }
 
     private JDFQueueSubmissionParams loadQueueSubmissionParams() {

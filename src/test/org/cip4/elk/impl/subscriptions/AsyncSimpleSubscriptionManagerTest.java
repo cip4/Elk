@@ -122,7 +122,7 @@ public class AsyncSimpleSubscriptionManagerTest extends ElkTestCase {
         JDFQuery query = getQuery(_testDataPath + "Events.jmf");
         assertTrue(sm.registerSubscription(query));
         // Set expected URL from the query URL
-        _outDisp.expectedUrl = query.getSubscription(0).getURL();
+        _outDisp.expectedUrl = query.getSubscription().getURL();
         sm.eventGenerated(new ElkEvent(ElkEvent.EVENT, this, "Broadcast me"));
     }
 
@@ -162,7 +162,7 @@ public class AsyncSimpleSubscriptionManagerTest extends ElkTestCase {
         JDFQuery query = getQuery(_testDataPath + "Events.jmf");
         assertTrue(sm.registerSubscription(query));
         // Set expected URL from the query URL
-        _outDisp.expectedUrl = query.getSubscription(0).getURL();
+        _outDisp.expectedUrl = query.getSubscription().getURL();
         sm.eventGenerated(new ElkEvent(ElkEvent.EVENT, this, "Broadcast me"));
     }
 
@@ -198,10 +198,10 @@ public class AsyncSimpleSubscriptionManagerTest extends ElkTestCase {
         assertTrue(sm.registerSubscription(query));
         // Unregister subscription
         JDFStopPersChParams stopParams = (JDFStopPersChParams) createJDFElement("StopPersChParams");
-        stopParams.setURL(query.getSubscription(0).getURL());
+        stopParams.setURL(query.getSubscription().getURL());
         sm.unregisterSubscription(stopParams);
         // Set expected URL from the query URL
-        _outDisp.expectedUrl = query.getSubscription(0).getURL();
+        _outDisp.expectedUrl = query.getSubscription().getURL();
         sm.eventGenerated(new ElkEvent(ElkEvent.EVENT, this,
                 "No subscription should broadcast me"));
     }
@@ -220,7 +220,7 @@ public class AsyncSimpleSubscriptionManagerTest extends ElkTestCase {
         DummyStatusJMFProcessor processor = new DummyStatusJMFProcessor();
         _inDisp.registerProcessor("Status", processor);
         // Set expected URL from the query URL
-        _outDisp.expectedUrl = query.getSubscription(0).getURL();
+        _outDisp.expectedUrl = query.getSubscription().getURL();
         ElkEvent event = new ProcessStatusEvent(ElkEvent.EVENT,
                 JDFDeviceInfo.EnumDeviceStatus.Running, new ApprovalProcess(
                         null, null, null, null,null), "Broadcast me");

@@ -17,7 +17,7 @@ import org.cip4.jdflib.jmf.JDFQuery;
 
 /**
  * @author Ola Stering (olst6875@student.uu.se)
- * @version $Id: SubscriptionContainerTest.java 887 2005-11-08 15:59:34Z buckwalter $
+ * @version $Id: SubscriptionContainerTest.java,v 1.2 2005/11/08 15:59:33 buckwalter Exp $
  */
 public class SubscriptionContainerTest extends ElkTestCase {
 

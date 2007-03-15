@@ -43,7 +43,7 @@ public class SimpleSubscriptionManagerTest extends ElkTestCase {
      */
     private JDFQuery getQuery(String resPath) throws Exception {
         JDFJMF jmf = (JDFJMF) getResourceAsJDF(resPath);
-        return jmf.getQuery();
+        return jmf.getQuery(0);
     }
     
     /**
@@ -96,7 +96,7 @@ public class SimpleSubscriptionManagerTest extends ElkTestCase {
         JDFQuery query = getQuery("data/Events.jmf");
         assertTrue(sm.registerSubscription(query));
         // Set expected URL from the query URL
-        _outDisp.expectedUrl = query.getSubscription(0).getURL();
+        _outDisp.expectedUrl = query.getSubscription().getURL();
         sm.eventGenerated(new ElkEvent(ElkEvent.EVENT, this, "Broadcast me"));
     }
     
@@ -133,7 +133,7 @@ public class SimpleSubscriptionManagerTest extends ElkTestCase {
         JDFQuery query = getQuery("data/Events.jmf");
         assertTrue(sm.registerSubscription(query));
         // Set expected URL from the query URL
-        _outDisp.expectedUrl = query.getSubscription(0).getURL();
+        _outDisp.expectedUrl = query.getSubscription().getURL();
         sm.eventGenerated(new ElkEvent(ElkEvent.EVENT, this, "Broadcast me"));
     }
     
@@ -162,10 +162,10 @@ public class SimpleSubscriptionManagerTest extends ElkTestCase {
         assertTrue(sm.registerSubscription(query));
         // Unregister subscription
         JDFStopPersChParams stopParams = (JDFStopPersChParams) createJDFElement("StopPersChParams");
-        stopParams.setURL(query.getSubscription(0).getURL());
+        stopParams.setURL(query.getSubscription().getURL());
         sm.unregisterSubscription(stopParams);
         // Set expected URL from the query URL
-        _outDisp.expectedUrl = query.getSubscription(0).getURL();
+        _outDisp.expectedUrl = query.getSubscription().getURL();
         sm.eventGenerated(new ElkEvent(ElkEvent.EVENT, this, "No subscription should broadcast me"));        
     }
     
@@ -181,7 +181,7 @@ public class SimpleSubscriptionManagerTest extends ElkTestCase {
         DummyStatusJMFProcessor processor = new DummyStatusJMFProcessor();
         _inDisp.registerProcessor("Status", processor);
         // Set expected URL from the query URL
-        _outDisp.expectedUrl = query.getSubscription(0).getURL();
+        _outDisp.expectedUrl = query.getSubscription().getURL();
         ElkEvent event = new ProcessStatusEvent(ElkEvent.EVENT, 
                 JDFDeviceInfo.EnumDeviceStatus.Running, 
                 new ApprovalProcess(null, null, null, null,null), 

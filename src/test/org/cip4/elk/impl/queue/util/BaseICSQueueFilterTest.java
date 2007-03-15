@@ -10,7 +10,7 @@ import org.cip4.elk.ElkTestCase;
 
 /**
  * @author Ola Stering (olst6875@student.uu.se)
- * @version $Id: BaseICSQueueFilterTest.java 682 2005-09-10 11:21:12Z ola.stering $
+ * @version $Id: BaseICSQueueFilterTest.java,v 1.2 2005/09/10 11:21:12 ola.stering Exp $
  */
 public class BaseICSQueueFilterTest extends ElkTestCase {
 

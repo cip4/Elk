@@ -19,7 +19,7 @@ public class DummyQueue implements Queue {
     /* (non-Javadoc)
      * @see org.cip4.elk.queue.Queue#setMaxQueueSize(int)
      */
-    public void setMaxQueueSize(int size) {
+    public void setQueueSize(int size) {
         // TODO Auto-generated method stub
 
     }
@@ -29,7 +29,7 @@ public class DummyQueue implements Queue {
      */
     public int getMaxQueueSize() {
         // TODO Auto-generated method stub
-        return 0;
+        return getQueueSize();
     }
 
     /* (non-Javadoc)
@@ -43,7 +43,7 @@ public class DummyQueue implements Queue {
     /* (non-Javadoc)
      * @see org.cip4.elk.queue.Queue#getTotalQueueSize()
      */
-    public int getTotalQueueSize() {
+    public int getQueueEntryCount() {
         // TODO Auto-generated method stub
         return 0;
     }
@@ -109,7 +109,7 @@ public class DummyQueue implements Queue {
      */
     public JDFQueue.EnumQueueStatus getQueueStatus() {
         // TODO Auto-generated method stub
-        return null;
+        return JDFQueue.EnumQueueStatus.Waiting;
     }
 
     /* (non-Javadoc)
@@ -182,6 +182,21 @@ public class DummyQueue implements Queue {
     public JDFJobPhase getJobPhase(String queueEntryId, boolean includeJDF) {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    public void abortQueueEntry(String queueEntryId) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    public int getTotalQueueSize() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    public void setMaxQueueSize(int size) {
+        // TODO Auto-generated method stub
+        
     }
 
 }

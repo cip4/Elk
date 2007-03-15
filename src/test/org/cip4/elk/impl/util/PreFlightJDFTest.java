@@ -21,7 +21,7 @@ import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 /**
  * @author Ola Stering (olst6875@student.uu.se)
- * @version $Id: PreFlightJDFTest.java 1077 2006-01-19 10:03:23Z buckwalter $
+ * @version $Id: PreFlightJDFTest.java,v 1.3 2006/01/19 10:03:23 buckwalter Exp $
  */
 public class PreFlightJDFTest extends ElkTestCase {
    

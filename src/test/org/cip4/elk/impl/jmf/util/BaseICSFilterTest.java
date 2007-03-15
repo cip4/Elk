@@ -22,7 +22,7 @@ import org.cip4.jdflib.resource.JDFResource.EnumResStatus;
 /**
  * 
  * @author Ola Stering (olst6875@student.uu.se)
- * @version $Id: BaseICSFilterTest.java 646 2005-09-04 19:23:46Z ola.stering $
+ * @version $Id: BaseICSFilterTest.java,v 1.4 2006/08/30 15:57:34 buckwalter Exp $
  */
 public class BaseICSFilterTest extends ElkTestCase {
 
@@ -96,17 +96,10 @@ public class BaseICSFilterTest extends ElkTestCase {
         JDFElement deviceInfoElements[] = list.getChildElements();
         for (int i = 0; i < deviceInfoElements.length; i++) {
             JDFDeviceInfo deviceInfo = (JDFDeviceInfo) deviceInfoElements[i];
-            JDFDevice device = deviceInfo.getDevice(0);
+            JDFDevice device = deviceInfo.getDevice();
 
             assertTrue(deviceInfo.hasAttribute(AttributeName.DEVICESTATUS));
-
-            if (device != null) {
-                assertTrue(device.hasAttribute(AttributeName.JMFSENDERID)
-                        && device.hasAttribute(AttributeName.JMFURL)
-                        && device.hasAttribute(AttributeName.DEVICEID));
-            }
         }
-
     }
 
     public void testFilterDeviceList() {

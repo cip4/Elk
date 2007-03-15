@@ -25,14 +25,14 @@ import org.cip4.jdflib.resource.JDFDevice;
 
 /**
  * @author Ola Stering (olst6875@student.uu.se)
- * @version $Id: KnownDevicesJMFProcessorTest.java 645 2005-09-04 19:21:40Z ola.stering $
+ * @version $Id: KnownDevicesJMFProcessorTest.java,v 1.3 2006/11/29 15:22:20 buckwalter Exp $
  */
 public class KnownDevicesJMFProcessorTest extends ElkTestCase {
 
     public void testProcessMessage() {
         log.info("Testing KnownDevicesJMFProcessor...");
         String filename = _testDataPath + "KnownDevices.jmf";
-        String theDeviceXMLfile = _testDataPath + "Device.xml";
+        String theDeviceXMLfile = _testDataPath + "Device_Elk_ConventionalPrinting.xml";
         JDFJMF jmf = null;
         JDFDevice device = null;
         try {
