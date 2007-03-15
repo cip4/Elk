@@ -14,7 +14,7 @@ import org.cip4.elk.device.process.ProcessAmountListener;
  * {@link org.cip4.elk.device.process.ProcessAmountEvent}s.
  * 
  * @author Ola Stering (olst6875@student.uu.se)
- * @version $Id: ProcessAmountListenerNotifier.java 575 2005-07-25 18:13:21Z ola.stering $
+ * @version $Id: ProcessAmountListenerNotifier.java,v 1.1 2005/07/25 18:13:21 ola.stering Exp $
  */
 public class ProcessAmountListenerNotifier {
     

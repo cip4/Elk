@@ -36,7 +36,7 @@ import org.cip4.jdflib.resource.JDFDeviceList;
  *      Specification Release 1.2, 5.5.1.2 KnownDevices </a>
  * 
  * @author Ola Stering (olst6875@student.uu.se)
- * @version $Id: KnownDevicesJMFProcessor.java 915 2005-11-11 10:16:55Z ola.stering $
+ * @version $Id: KnownDevicesJMFProcessor.java,v 1.6 2005/11/11 10:16:55 ola.stering Exp $
  */
 public class KnownDevicesJMFProcessor extends AbstractJMFProcessor {
 

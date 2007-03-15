@@ -18,7 +18,7 @@ import org.cip4.jdflib.jmf.JDFResponse;
  *      href="http://www.cip4.org/documents/jdf_specifications/JDF1.2.pdf">JDF
  *      Specification Release 1.2, 5.5.1.4 KnownMessage </a>
  * @author Claes Buckwalter (clabu@itn.liu.se)
- * @version $Id: KnownMessagesJMFProcessor.java 641 2005-09-04 19:07:07Z ola.stering $
+ * @version $Id: KnownMessagesJMFProcessor.java,v 1.6 2005/09/04 19:07:07 ola.stering Exp $
  */
 public class KnownMessagesJMFProcessor extends AbstractJMFProcessor {
 

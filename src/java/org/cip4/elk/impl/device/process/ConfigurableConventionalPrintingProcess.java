@@ -17,7 +17,7 @@ import org.cip4.elk.queue.Queue;
  * 
  * 
  * @author Ola Stering (olst6875@student.uu.se)
- * @version $Id: ConfigurableConventionalPrintingProcess.java 676 2005-09-10 11:09:16Z ola.stering $
+ * @version $Id: ConfigurableConventionalPrintingProcess.java,v 1.2 2005/09/10 11:09:16 ola.stering Exp $
  */
 public class ConfigurableConventionalPrintingProcess extends
         ConventionalPrintingProcess {

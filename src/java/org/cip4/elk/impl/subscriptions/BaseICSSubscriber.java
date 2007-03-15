@@ -35,7 +35,7 @@ import org.cip4.jdflib.jmf.JDFSubscription;
  *      Element</a>
  * 
  * @author Ola Stering (olst6875@student.uu.se)
- * @version $Id: BaseICSSubscriber.java 1514 2006-08-15 09:13:05Z prosi $
+ * @version $Id: BaseICSSubscriber.java,v 1.5 2006/08/15 09:09:05 prosi Exp $
  */
 public class BaseICSSubscriber {
 

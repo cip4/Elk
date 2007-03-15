@@ -22,7 +22,7 @@ import org.cip4.jdflib.jmf.JDFQueue;
  * @see org.cip4.jdflib.jmf.JDFQueue.EnumQueueStatus
  * @see <a href="http://www.cip4.org/documents/jdf_specifications/JDF1.2.pdf">JDF Specification Release 1.2, 5.6 Queue Support</a> 
  * @see <a href="http://www.cip4.org/documents/jdf_specifications/JDF1.2.pdf">JDF Specification Release 1.2, 5.6.4 Global Queue Handling</a>
- * @version $Id: QueueState.java 1514 2006-08-15 09:13:05Z prosi $
+ * @version $Id: QueueState.java,v 1.5 2006/08/30 15:48:12 buckwalter Exp $
  */
 public class QueueState {
 
@@ -65,10 +65,10 @@ public class QueueState {
      * @return the queue's old status
      * @see org.cip4.jdflib.jmf.JDFQueue.EnumQueueStatus
      */
-    private synchronized JDFQueue.EnumQueueStatus setQueueStatus(JDFQueue.EnumQueueStatus status) {
-        JDFQueue.EnumQueueStatus oldStatus = _queueStatus;
+    private synchronized JDFQueue.EnumQueueStatus setQueueStatus(final JDFQueue.EnumQueueStatus status) {
+        final JDFQueue.EnumQueueStatus oldStatus = _queueStatus;
         _queueStatus = status;
-        String msg = "Status Change: " + oldStatus.getName() + " -> " + _queueStatus.getName();
+        final String msg = "Status Change: " + oldStatus.getName() + " -> " + _queueStatus.getName();
         log.debug(msg);
         fireQueueStatusEvent(new QueueStatusEvent(QueueStatusEvent.EVENT, status, _queue, msg));        
         return oldStatus;
@@ -89,7 +89,7 @@ public class QueueState {
      * @see org.cip4.jdflib.jmf.JDFQueue.EnumQueueStatus
      */
     public final synchronized JDFQueue.EnumQueueStatus recalculateQueueStatus() {        
-        JDFQueue.EnumQueueStatus status;
+        final JDFQueue.EnumQueueStatus status;
         if (_queueClosed && _queueHeld) {
             status = BLOCKED;
         } else if (_queueClosed && !_queueHeld) {
@@ -164,7 +164,7 @@ public class QueueState {
      * accept any new queue entries.
      * @param queueFull <code>true</code> if the queue is full; <code>false</code> otherwise
      */    
-    public synchronized void setQueueFull(boolean queueFull) {
+    public synchronized void setQueueFull(final boolean queueFull) {
         log.debug("Set Queue Full to " + queueFull + "...");
         _queueFull = queueFull;
         recalculateQueueStatus();
@@ -197,7 +197,7 @@ public class QueueState {
      * processing a queue entry. 
      * @param processFull <code>true</code> if the process is full; <code>false</code> otherwise
      */ 
-    public synchronized void setProcessFull(boolean processFull) {
+    public synchronized void setProcessFull(final boolean processFull) {
         log.debug("Set Process Full to " + processFull + "...");
         _processFull = processFull;
         recalculateQueueStatus();
@@ -229,7 +229,7 @@ public class QueueState {
      * Adds a listener that listens to status changes.
      * @param listener
      */
-    public void addQueueStatusListener(QueueStatusListener listener) {
+    public void addQueueStatusListener(final QueueStatusListener listener) {
         _notifier.addListener(listener);
         log.debug("Added QueueStatusListener: " + listener);
     }
@@ -237,7 +237,7 @@ public class QueueState {
     /**
      * Removes a listener.
      */
-    public void removeQueueStatusListener(QueueStatusListener listener) {
+    public void removeQueueStatusListener(final QueueStatusListener listener) {
         _notifier.removeListener(listener);
         log.debug("Removed QueueStatusListener: " + listener);
     }
@@ -246,7 +246,7 @@ public class QueueState {
      * Sends the status change to all listeners.
      * @param event the event to fire
      */
-    protected void fireQueueStatusEvent(QueueStatusEvent event) {
+    protected void fireQueueStatusEvent(final QueueStatusEvent event) {
         _notifier.fireEvent(event);
         log.debug("Fired QueueStatusEvent.");
     }

@@ -19,7 +19,7 @@ import org.cip4.jdflib.resource.JDFNotification;
  * submitted if the queue is full or if the queue's status is closed.
  * 
  * @author Claes Buckwalter (clabu@itn.liu.se)
- * @version $Id: SubmitQueueEntryJMFProcessor.java 667 2005-09-10 02:28:39Z ola.stering $
+ * @version $Id: SubmitQueueEntryJMFProcessor.java,v 1.4 2005/09/10 02:28:38 ola.stering Exp $
  */
 public class SubmitQueueEntryJMFProcessor extends AbstractJMFProcessor {
 

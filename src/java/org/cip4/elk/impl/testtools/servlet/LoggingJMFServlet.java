@@ -34,7 +34,7 @@ import org.cip4.elk.jmf.servlet.JMFServlet;
  * @todo Return a valid JMF response.
  * 
  * @author Claes Buckwalter (clabu@itn.liu.se)
- * @version $Id: LoggingJMFServlet.java 690 2005-09-11 18:42:45Z buckwalter $
+ * @version $Id: LoggingJMFServlet.java,v 1.3 2005/09/11 18:42:45 buckwalter Exp $
  */
 public class LoggingJMFServlet extends JMFServlet {
 

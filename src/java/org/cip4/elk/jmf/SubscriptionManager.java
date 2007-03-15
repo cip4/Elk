@@ -19,7 +19,7 @@ import org.cip4.jdflib.resource.process.JDFNotificationFilter;
  * @see <a href="http://www.cip4.org/documents/jdf_specifications/JDF1.2.pdf">JDF Specification Release 1.2, 5.2.1.1 Query</a>
  * @see <a href="http://www.cip4.org/documents/jdf_specifications/JDF1.2.pdf">JDF Specification Release 1.2, 5.2.2.3 Persistent Channels</a>
  * @author Claes Buckwalter (clabu@itn.liu.se)
- * @version $Id: SubscriptionManager.java 887 2005-11-08 15:59:34Z buckwalter $
+ * @version $Id: SubscriptionManager.java,v 1.4 2005/11/08 15:59:11 buckwalter Exp $
  */
 public interface SubscriptionManager {
 

@@ -20,7 +20,7 @@ import EDU.oswego.cs.dl.util.concurrent.ThreadedExecutor;
  * 
  * @author Ola Stering (olst6875@student.uu.se)
  * @author Claes Buckwalter (clabu@itn.liu.se)
- * @version $Id: SubmitQueueEntryAsyncJMFProcessor.java 1052 2006-01-17 10:24:01Z buckwalter $
+ * @version $Id: SubmitQueueEntryAsyncJMFProcessor.java,v 1.7 2006/01/17 10:24:01 buckwalter Exp $
  */
 public class SubmitQueueEntryAsyncJMFProcessor extends AbstractJMFProcessor {
 

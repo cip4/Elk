@@ -42,7 +42,7 @@ import org.cip4.jdflib.node.JDFNode;
  *       thread safety.
  * @see org.cip4.jdflib.core.ElementName
  * @author Claes Buckwalter (clabu@itn.liu.se)
- * @version $Id: JDFElementFactory.java 419 2005-05-13 13:13:39Z ola.stering $
+ * @version $Id: JDFElementFactory.java,v 1.5 2006/08/24 11:55:31 buckwalter Exp $
  */
 public abstract class JDFElementFactory {
 

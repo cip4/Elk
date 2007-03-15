@@ -18,7 +18,7 @@ import org.cip4.jdflib.resource.JDFNotification;
  * submitted if the queue is full or if the queue's status is closed.
  * 
  * @author Claes Buckwalter (clabu@itn.liu.se)
- * @version $Id: RemoveQueueEntryJMFProcessor.java 1053 2006-01-17 10:25:12Z buckwalter $
+ * @version $Id: RemoveQueueEntryJMFProcessor.java,v 1.5 2006/01/17 10:25:12 buckwalter Exp $
  */
 public class RemoveQueueEntryJMFProcessor extends AbstractJMFProcessor {
 

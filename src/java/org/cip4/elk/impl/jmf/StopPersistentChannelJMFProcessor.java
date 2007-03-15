@@ -12,7 +12,7 @@ import org.cip4.jdflib.jmf.JDFStopPersChParams;
  *      href="http://www.cip4.org/documents/jdf_specifications/JDF1.2.pdf">JDF
  *      Specification Release 1.2, 5.5.1.6 StopPersistentChannel </a>
  * @author Claes Buckwalter (clabu@itn.liu.se)
- * @version $Id: StopPersistentChannelJMFProcessor.java 413 2005-05-10 16:56:47Z ola.stering $
+ * @version $Id: StopPersistentChannelJMFProcessor.java,v 1.4 2005/05/10 16:56:47 ola.stering Exp $
  */
 public class StopPersistentChannelJMFProcessor extends AbstractJMFProcessor {
 

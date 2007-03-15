@@ -16,7 +16,7 @@ import org.cip4.jdflib.jmf.JDFResponse;
  * queue's stauts to <em>Closed</em>.
  * 
  * @author Claes Buckwalter (clabu@itn.liu.se)
- * @version $Id: ResumeQueueJMFProcessor.java 667 2005-09-10 02:28:39Z ola.stering $
+ * @version $Id: ResumeQueueJMFProcessor.java,v 1.4 2005/09/10 02:28:39 ola.stering Exp $
  */
 public class ResumeQueueJMFProcessor extends AbstractJMFProcessor {
 

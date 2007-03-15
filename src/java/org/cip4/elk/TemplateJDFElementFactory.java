@@ -47,7 +47,7 @@ public class TemplateJDFElementFactory extends DefaultJDFElementFactory {
         if (stream == null) {
             return super.createJDFElement(elementName);
         }
-        return new JDFParser().parseStream(stream).getRoot();
+        return (JDFElement) new JDFParser().parseStream(stream).getRoot();
     }
 
 }

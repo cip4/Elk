@@ -11,7 +11,7 @@ import org.cip4.jdflib.resource.JDFNotification;
  * An event that is generated with a certain time interval.
  * 
  * @author Ola Stering (olst6875@student.uu.se)
- * @version $Id: TimeEvent.java 439 2005-05-27 19:27:34Z ola.stering $
+ * @version $Id: TimeEvent.java,v 1.1 2005/05/27 19:27:33 ola.stering Exp $
  */
 public class TimeEvent extends ElkEvent {
 

@@ -19,7 +19,7 @@ import EDU.oswego.cs.dl.util.concurrent.ConcurrentReaderHashMap;
  * elements.
  * 
  * @author Ola Stering (olst6875@student.uu.se)
- * @version $Id: SubscriptionContainer.java 887 2005-11-08 15:59:34Z buckwalter $
+ * @version $Id: SubscriptionContainer.java,v 1.4 2005/11/08 15:59:00 buckwalter Exp $
  */
 public class SubscriptionContainer {
 

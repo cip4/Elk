@@ -176,7 +176,7 @@ public class SecureDispatchingJMFServlet extends JMFServlet {
         if (log.isDebugEnabled()) {
             log.debug("Received JMF: " + jmfIn);
         }
-        List messages = jmfIn.getMessageVector();
+        List messages = jmfIn.getMessageVector (null, null);
         JDFMessage msgIn = (JDFMessage) messages.get(0);
         /////////////////////////////////////
         // RFA CHANGES

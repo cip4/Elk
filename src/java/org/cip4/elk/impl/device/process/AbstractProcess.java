@@ -13,24 +13,24 @@ import org.cip4.elk.device.process.ProcessQueueEntryEventListener;
 
 /**
  * This abstract class implements registering and unregistering of event
- * listeners for the Device. It also has methods to fire events to the
+ * listeners for the Process. It also has methods to fire events to the
  * registered listeners.
  * 
- * Currently there are three different kinds of events that the Device
- * (specifically its implemented <em>Process</em>) may fire:
+ * Currently there are three different kinds of events that the Process
+ * may fire:
  * <ul>
  * <li>{@link org.cip4.elk.device.process.ProcessAmountEvent}s which should be
- * fired when the Device's produced an Amount-change.</li>
+ * fired when the Process produces an Amount-change.</li>
  * <li>{@link org.cip4.elk.device.process.ProcessStatusEvent}s which should be
- * fired when the Device's Status changes.</li>
+ * fired when the Process' Status changes.</li>
  * <li>{@link org.cip4.elk.device.process.ProcessQueueEntryEvent}s which
- * should be fired when the Device modifies a QueueEntry (for example changes
+ * should be fired when the Process modifies a QueueEntry (for example changes
  * its Status).</li>
  * <ul>
  * 
  * @author Claes Buckwalter (clabu@itn.liu.se)
  * @author Ola Stering (olst6875@student.uu.se)
- * @version $Id: AbstractProcess.java 640 2005-09-04 19:05:58Z ola.stering $
+ * @version $Id: AbstractProcess.java,v 1.7 2006/11/06 18:32:08 buckwalter Exp $
  */
 public abstract class AbstractProcess implements Process {
 
@@ -39,11 +39,12 @@ public abstract class AbstractProcess implements Process {
     protected ProcessAmountListenerNotifier _amountNotifier;
 
     public AbstractProcess() {
+        //nop
     }
 
     // ProcessAmount events handling ///////////////////////////////
     /**
-     * Adds a listener that listens for ProcessAmount events from this device.
+     * Adds a listener that listens for ProcessAmount events from this Process.
      * 
      * @param listener the listener to be added.
      */
@@ -57,7 +58,7 @@ public abstract class AbstractProcess implements Process {
     /**
      * Removes an AmountListener.
      * 
-     * @param listener the object that has listened to this process.
+     * @param listener the object that has listened to this Process.
      */
     public void removeProcessAmountListener(ProcessAmountListener listener) {
         if (_amountNotifier != null) {
@@ -78,7 +79,7 @@ public abstract class AbstractProcess implements Process {
 
     // ProcessQueueEntry events handling ////////////////////////////
     /**
-     * Adds a listener that listens for QueueEntry events from this device.
+     * Adds a listener that listens for QueueEntry events from this Process.
      * 
      * @see org.cip4.elk.impl.device.process.ProcessQueueEntryListenerNotifier#addListener(ProcessQueueEntryEventListener)
      */
@@ -91,7 +92,7 @@ public abstract class AbstractProcess implements Process {
     }
 
     /**
-     * Removes a listener that listened for QueueEntry events from this device.
+     * Removes a listener that listened for QueueEntry events from this Process.
      * 
      * @see ProcessQueueEntryListenerNotifier#removeListener(ProcessQueueEntryEventListener)
      */
@@ -115,7 +116,7 @@ public abstract class AbstractProcess implements Process {
 
     // ProcessStatus events handling ////////////////////////////////
     /**
-     * Adds a listener that listens for events from this device.
+     * Adds a listener that listens for events from this Process.
      * 
      * @see org.cip4.elk.device.process.Process#addProcessStatusListener(ProcessStatusListener)
      */
@@ -127,7 +128,7 @@ public abstract class AbstractProcess implements Process {
     }
 
     /**
-     * Removes a listener that listened for events from this device.
+     * Removes a listener that listened for events from this Process.
      * 
      * @see org.cip4.elk.device.process.Process#removeProcessStatusListener(ProcessStatusListener)
      */

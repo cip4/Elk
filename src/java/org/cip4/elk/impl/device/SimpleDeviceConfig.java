@@ -5,19 +5,20 @@ package org.cip4.elk.impl.device;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Vector;
+import java.util.List;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.log4j.Logger;
 import org.cip4.elk.DefaultConfig;
 import org.cip4.elk.device.DeviceConfig;
 import org.cip4.elk.impl.util.URLAccessTool;
-import org.cip4.jdflib.core.JDFConstants;
-import org.cip4.jdflib.core.JDFDoc;
-import org.cip4.jdflib.core.JDFElement;
+import org.cip4.jdflib.core.ElementName;
 import org.cip4.jdflib.core.JDFParser;
-import org.cip4.jdflib.datatypes.JDFAttributeMap;
+import org.cip4.jdflib.node.JDFNode;
 import org.cip4.jdflib.resource.JDFDevice;
+import org.cip4.jdflib.resource.devicecapability.JDFDeviceCap;
 
 /**
  * An object that represents the configuration of a JDF <em>Device</em>.
@@ -29,14 +30,20 @@ import org.cip4.jdflib.resource.JDFDevice;
  *       configuration)
  * 
  * @author Claes Buckwalter (clabu@itn.liu.se)
- * @version $Id: SimpleDeviceConfig.java 579 2005-07-26 13:18:38Z ola.stering $
+ * @version $Id: SimpleDeviceConfig.java,v 1.14 2006/08/30 15:44:21 buckwalter
+ *          Exp $
  */
 public class SimpleDeviceConfig extends DefaultConfig implements DeviceConfig {
 
-    private JDFDevice _jdfDevice;
-    private String _deviceConfigUrl;
-    private URLAccessTool _urlAccessTool;
-    private String urlSchemes = "file ftp http https";
+    protected Logger log;
+
+    protected JDFDevice _jdfDevice;
+
+    protected String _deviceConfigUrl;
+
+    protected URLAccessTool _urlAccessTool;
+
+    protected String urlSchemes = "file ftp http https";
 
     /**
      * Instantiates a new <code>DeviceConfig</code>. Its configuration must
@@ -48,18 +55,45 @@ public class SimpleDeviceConfig extends DefaultConfig implements DeviceConfig {
 
     /**
      * Instantiates a new <code>DeviceConfig</code> that loads its
-     * configuration from the specified URL using the specified
-     * {@link org.cip4.elk.impl.util.URLAccessTool URLAccessTool}.
+     * configuration from the file pointed to by the specified URL.
      * 
-     * @param deviceConfigUrl the URL to the Device XML element
-     * @param urlAccessTool the <code>URLAccessTool</code> used to access the
-     *            URL
+     * The device configuration file pointed to by the URL must be an XML file
+     * with a <code>Device</code> resource element as the root element. The
+     * <code>Device</code> element and it's child elements represent the
+     * device's configuration. If the URL is not absolute it will be interpreted
+     * as relative to the base URL of the <code>URLAccessTool</code>, see
+     * {@link URLAccessTool#getBaseUrl()}.
+     * </p>
+     * 
+     * @param deviceConfigUrl
+     *            the URL to the Device XML element
+     * @param urlAccessTool
+     *            the <code>URLAccessTool</code> used to access the URL
      */
     public SimpleDeviceConfig(String deviceConfigUrl,
             URLAccessTool urlAccessTool) {
         super();
-        _deviceConfigUrl = deviceConfigUrl;
+        log = Logger.getLogger(this.getClass());
         _urlAccessTool = urlAccessTool;
+        setDeviceConfigURL(deviceConfigUrl);
+    }
+
+    /**
+     * Sets the URL that points the file containing the device's configuration.
+     * The file must be an XML file with a <code>Device</code> resource
+     * element as the root element. The <code>Device</code> element and it's
+     * child elements represent the device's configuration.
+     * <p>
+     * If the URL is not absolute it will be interpreted as relative to the base
+     * URL of the <code>URLAccessTool</code>, see
+     * {@link URLAccessTool#getBaseUrl()}.
+     * </p>
+     * 
+     * @see org.cip4.elk.impl.util.URLAccessTool
+     * @param deviceConfigUrl
+     */
+    public void setDeviceConfigURL(String deviceConfigUrl) {
+        _deviceConfigUrl = deviceConfigUrl;
     }
 
     /*
@@ -68,12 +102,9 @@ public class SimpleDeviceConfig extends DefaultConfig implements DeviceConfig {
     public synchronized JDFDevice getDeviceConfig() {
         if (_jdfDevice == null) {
             if (_urlAccessTool != null && _deviceConfigUrl != null) {
-                try {
-                    JDFDevice d = loadDeviceConfiguration(_deviceConfigUrl);
-                    _jdfDevice = (JDFDevice) convert2DOMLevel2(d);
-                } catch (IOException ioe) {
-                    ioe.printStackTrace();
-                }
+                // XXX JDFDevice d = loadDeviceConfiguration(_deviceConfigUrl);
+                // XXX _jdfDevice = (JDFDevice) convert2DOMLevel2(d);
+                _jdfDevice = loadDeviceConfiguration(_deviceConfigUrl);
             }
         }
         return _jdfDevice;
@@ -94,8 +125,9 @@ public class SimpleDeviceConfig extends DefaultConfig implements DeviceConfig {
      * 
      * @return the JMFURL of the Device.
      * @see org.cip4.elk.device.DeviceConfig#getJMFURL()
-     * @throws NullPointerExeception if the <em>JDFDevice</em> of this
-     *             configuration is <code>null</code>
+     * @throws NullPointerExeception
+     *             if the <em>JDFDevice</em> of this configuration is
+     *             <code>null</code>
      */
     public String getJMFURL() {
         JDFDevice d = getDeviceConfig();
@@ -109,66 +141,9 @@ public class SimpleDeviceConfig extends DefaultConfig implements DeviceConfig {
     /*
      * @see org.cip4.elk.device.DeviceConfig#setDeviceConfig(JDFDevice)
      */
-    public synchronized void setDeviceConfig(JDFDevice deviceConfig) {
-        _jdfDevice = (JDFDevice) convert2DOMLevel2(deviceConfig);
+    public synchronized void setDeviceConfig(final JDFDevice deviceConfig) {
+        _jdfDevice = deviceConfig;
         super.setID(_jdfDevice.getDeviceID());
-    }
-
-    /**
-     * This method initiates a JDFElement so that the namespace is set to
-     * http://www.CIP4.org/JDFSchema_1_1
-     * 
-     * This method is needed because there is no easy way to convert an element
-     * of DOM level 1 (like the incoming deviceConfig) and a JDFDevice with its
-     * (DOM level 2) which must be used to set the namespaces in a correct way.
-     * 
-     * @param source the KElement which can be DOM level 1 or 2.
-     * @param destination root of a DOM level 2 tree if
-     *            source.getNamespaceURI().equals("") then source is appended to
-     *            destination with the namespace of destination
-     * @throws NullPointer if destination is <code>null</code>.
-     */
-    private void convert2DOMLevel2(JDFElement source, JDFElement destination) {
-        if (source != null) {
-            if (source.getNamespaceURI().equals("")) {
-                JDFElement kElem = (JDFElement) destination
-                        .appendElement(source.getNodeName());
-                kElem.setAttributes(source.getAttributeMap());
-
-                Vector v = source.getChildElementVector(JDFConstants.WILDCARD,
-                    JDFConstants.NONAMESPACE, new JDFAttributeMap(), true, 0);
-
-                for (Iterator it = v.iterator(); it.hasNext();) {
-                    JDFElement e = (JDFElement) it.next();
-                    convert2DOMLevel2(e, kElem);
-                }
-            }
-        }
-    }
-
-    /**
-     * This method initiates a JDFElement so that the namespace is set to
-     * http://www.CIP4.org/JDFSchema_1_1
-     * 
-     * This method is needed because there is no easy way to convert an element
-     * of DOM level 1 (like the incoming deviceConfig) and a JDFDevice with its
-     * (DOM level 2) which must be used to set the namespaces in a correct way.
-     * 
-     * @param source the KElement which can be DOM level 1 or 2.
-     * @return the new JDFElement with its namespace set.
-     */
-    private JDFElement convert2DOMLevel2(JDFElement source) {
-        JDFElement kElem = source;
-        if (source != null && source.getNamespaceURI().length() == 0) {
-            kElem = new JDFDoc(source.getNodeName()).getRoot();
-            kElem.setAttributes(source.getAttributeMap());
-            Vector v = source.getChildElementVector(JDFConstants.WILDCARD,
-                JDFConstants.NONAMESPACE, new JDFAttributeMap(), true, 0);
-            for (Iterator it = v.iterator(); it.hasNext();) {
-                convert2DOMLevel2((JDFElement) it.next(), kElem);
-            }
-        }
-        return kElem;
     }
 
     /**
@@ -180,8 +155,10 @@ public class SimpleDeviceConfig extends DefaultConfig implements DeviceConfig {
      * 
      * @see org.cip4.elk.impl.device.DeviceConfig#getID()
      * 
-     * @param id the new id for the Device
-     * @throws NullPointerException if id == null
+     * @param id
+     *            the new id for the Device
+     * @throws NullPointerException
+     *             if id == null
      */
     public void setID(String id) {
 
@@ -197,12 +174,13 @@ public class SimpleDeviceConfig extends DefaultConfig implements DeviceConfig {
      * Returns a JDF <em>Device</em> resource element that is loaded from the
      * specified URL.
      * 
-     * @param deviceConfigUrl a URL to the <em>Device</em> element to return
+     * @param deviceConfigUrl
+     *            a URL to the <em>Device</em> element to return
      * @return the <code>JDFDevice</code> object loaded from the specified URL
-     * @throws IOException if an IO problem occurs
+     * @throws IOException
+     *             if an IO problem occurs
      */
-    private JDFDevice loadDeviceConfiguration(String deviceConfigUrl)
-            throws IOException {
+    private JDFDevice loadDeviceConfiguration(String deviceConfigUrl) {
         InputStream inStream = null;
         try {
             inStream = _urlAccessTool.getURLAsInputStream(deviceConfigUrl);
@@ -210,5 +188,98 @@ public class SimpleDeviceConfig extends DefaultConfig implements DeviceConfig {
         } finally {
             IOUtils.closeQuietly(inStream);
         }
+    }
+
+    /*
+     * @see org.cip4.elk.device.DeviceConfig#getProcessNodes(org.cip4.jdflib.node.JDFNode)
+     */
+    public List getProcessableNodes(JDFNode jdf) {
+        final JDFDevice dev = getDeviceConfig();
+        List matchingNodes = new ArrayList();                
+        if (dev == null) {
+            // No Device configuration; return all JDF nodes as matches
+            matchingNodes = jdf.getvJDFNode(null, null, false);
+            log.warn("The device configuration does not contain a Device element. All ("
+                    + matchingNodes.size()
+                    + ") JDF nodes will be accepted by the device.");
+        } else {
+            final List deviceCaps = dev.getChildElementVector(
+                    ElementName.DEVICECAP, null, null, true, 99999, true);
+            if (deviceCaps == null || deviceCaps.size() == 0) {
+                // No DeviceCap elements; return all JDF nodes as matches
+                matchingNodes = jdf.getvJDFNode(null, null, false);
+                log.warn("The device configuration does not contain a Device/DeviceCap element. All ("
+                        + matchingNodes.size()
+                        + ") JDF nodes will be accepted by the device.");
+            } else {
+                matchingNodes = getProcessableNodes(jdf, deviceCaps);
+            }
+        }
+        log.debug(matchingNodes.size() + " JDF nodes matched the device's capabilities.");
+        return matchingNodes;
+    }
+
+    /**
+     * Returns all JDF nodes that match the DeviceCap elements in the list.
+     * 
+     * @param jdf   the JDF instance to look for nodes in
+     * @param deviceCaps    a list of JDFDeviceCap objects
+     * @return  a list containing JDFNode objects that match thet DeviceCap elements
+     * @todo Reimplement using JDFLib-J's device capabilities. It does not seem to work right now.
+     */
+    private List getProcessableNodes(JDFNode jdf, final List deviceCaps) {
+        List matchingNodes = new ArrayList();
+        for (Iterator i=deviceCaps.iterator(); i.hasNext(); ) {
+            final JDFDeviceCap dc = (JDFDeviceCap) i.next();
+            final String dcCombinedMethod = dc.getAttribute("CombinedMethod");
+            final String dcTypeEx = dc.getTypeExpression(); // JDFLib automatically returns Types if TypeExpression is not defined in DeviceCap
+            if (dcTypeEx == null || dcTypeEx.length() == 0) {
+                // No DeviceCap/@Types or DeviceCap/@TypeExpression specified
+                matchingNodes = jdf.getvJDFNode(null, null, false);
+                log.warn("The device configuration does not contain a " +
+                        "Device/DeviceCap/@TypeExpression or Device/DeviceCap/@Types attribute. " +
+                        "All (" + matchingNodes.size() + ") JDF nodes will be accepted by the device.");
+            } else {
+                log.debug("Looking for JDF nodes with CombinedMethod='" + dcCombinedMethod + "' and Types that match regex '" + dcTypeEx + "'...");
+                
+                // Compare JDF nodes with DeviceCap
+                final List nodes = jdf.getvJDFNode(null, null, false);
+                for (Iterator j=nodes.iterator(); j.hasNext(); ) {
+                    final JDFNode node = (JDFNode) j.next();
+                    final String nodeType = node.getType();
+                    final String nodeTypes = node.getAttribute("Types"); // nodes.getTypes() would need to be converted from VString to String
+                    if (nodeType.matches(dcTypeEx)
+                            && (dcCombinedMethod.length() == 0 || dcCombinedMethod.equals("None"))) {
+                        // Process node
+                        matchingNodes.add(node);
+                        if (log.isDebugEnabled()) {
+                            log.debug("Accepted process node: " + node.buildXPath() + "/@Type='" + nodeType + "'");
+                        }
+                    } else if (nodeType.equals("Combined")
+                            && nodeTypes.matches(dcTypeEx)
+                            && dcCombinedMethod.equals("Combined")) {
+                        // Combined process node
+                        matchingNodes.add(node);
+                        if (log.isDebugEnabled()) {
+                            log.debug("Accepted combined process node: " + node.buildXPath() + "/@Types='" + nodeTypes + "'");
+                        }
+                    } else if (nodeType.equals("ProcessGroup")
+                            && nodeTypes.matches(dcTypeEx)
+                            && dcCombinedMethod.equals("GrayBox")) {
+                        // Gray box node
+                        matchingNodes.add(node);
+                        if (log.isDebugEnabled()) {
+                            log.debug("Accepted gray box node: " + node.buildXPath() + "/@Types='" + nodeTypes + "'");
+                        }
+                    }
+                }
+//                        // Add matches for all JDF nodes that match the DeviceCap
+//                        vMatchingNodes.appendUnique(dc.getMatchingTypeNodeVector(jdf));
+//                        vMatchingNodes = dc.getExecutableJDF(jdf,
+//                                EnumFitsValue.Allowed,
+//                                EnumValidationLevel.RecursiveComplete);
+            }
+        }
+        return matchingNodes;
     }
 }

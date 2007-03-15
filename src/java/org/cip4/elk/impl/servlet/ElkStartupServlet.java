@@ -27,6 +27,7 @@ import org.cip4.elk.queue.Queue;
 import org.cip4.elk.queue.QueueStatusListener;
 import org.cip4.jdflib.core.JDFParser;
 import org.cip4.jdflib.resource.JDFDevice;
+import org.cip4.jdflib.util.UrlUtil;
 import org.springframework.beans.factory.BeanFactory;
 
 /**
@@ -42,7 +43,7 @@ import org.springframework.beans.factory.BeanFactory;
  * </ul>
  * 
  * @author Claes Buckwalter (clabu@itn.liu.se)
- * @version $Id: ElkStartupServlet.java 1493 2006-08-02 12:45:03Z buckwalter $
+ * @version $Id: ElkStartupServlet.java,v 1.18 2006/12/04 23:37:59 buckwalter Exp $
  */
 public class ElkStartupServlet extends HttpServlet {
 
@@ -90,13 +91,11 @@ public class ElkStartupServlet extends HttpServlet {
         }
         // Stops file repository
         FileRepository fileRepo = (FileRepository) _beanFactory.getBean("fileRepository");
-        if (fileRepo instanceof Lifecycle) {
-            ((Lifecycle) fileRepo).destroy();
-        }        
+        fileRepo.destroy();
+                
         ElkAuthenticationHandler authHandler = (ElkAuthenticationHandler) _beanFactory.getBean("authHandler");
-        if (authHandler instanceof Lifecycle) {
-            ((Lifecycle)authHandler).destroy();
-        }        
+        authHandler.destroy();
+                
         super.destroy();
         log.debug(getServletName() + " destroyed.");
     }
@@ -132,8 +131,7 @@ public class ElkStartupServlet extends HttpServlet {
         URLAccessTool urlTool = (URLAccessTool) _beanFactory
                 .getBean("fileUtil");
         try {
-            urlTool.setBaseUrl(new File(getServletContext().getRealPath("/"))
-                    .toURI().toURL().toString());
+            urlTool.setBaseUrl(UrlUtil.fileToUrl(new File(getServletContext().getRealPath("/")), true));
         } catch (MalformedURLException mue) {
             log.warn("Base URL could not be configured.", mue);
         }
@@ -153,9 +151,10 @@ public class ElkStartupServlet extends HttpServlet {
             File tempDir = (File) getServletContext().getAttribute(
                 "javax.servlet.context.tempdir");
             try {
-                config.setJDFTempURL(tempDir.toURI().toURL().toString());
-                log.warn("Using default JDF temp directory: "
-                                + tempDir.toURI().toURL());
+               final String toUrl = UrlUtil.fileToUrl(tempDir, true);
+                config.setJDFTempURL(toUrl);
+                
+                log.warn("Using default JDF temp directory: "+ toUrl);
             } catch (MalformedURLException mue) {
                 log.error("Could not configure default JDF temp directory.", mue);
             }
@@ -165,18 +164,22 @@ public class ElkStartupServlet extends HttpServlet {
                     .getRealPath(OUTPUT_DIR));
             localDir.mkdir();
             try {
-                config.setLocalJDFOutputURL(localDir.toURI().toURL().toString());
-                log.warn("Using default local JDF directory: "
-                        + localDir.toURI().toURL());
+               final String toUrl = UrlUtil.fileToUrl(localDir, true);
+                config.setLocalJDFOutputURL(toUrl);
+                log.warn("Using default local JDF directory: "+ localDir);
             } catch (MalformedURLException mue) {
                 log.error("Could not configure default local JDF directory.", mue);
             }
         }
         // Configure public URL
-        try {            
-            String address = "http://" + InetAddress.getLocalHost().getHostAddress() +
-                ":8080" + "/elk" + OUTPUT_DIR;
-            config.setJDFOutputURL(address);
+        try {
+        	if (device.getJDFOutputURL() != null) {
+        		config.setJDFOutputURL(device.getJDFOutputURL());
+        	} else {
+	            String address = "http://" + InetAddress.getLocalHost().getHostAddress() +
+	                ":8080" + "/elk" + OUTPUT_DIR;
+	            config.setJDFOutputURL(address);
+        	}
         } catch (Exception e) {
             log.warn("Could not dynamically configure public JDF output URL.", e);
         }

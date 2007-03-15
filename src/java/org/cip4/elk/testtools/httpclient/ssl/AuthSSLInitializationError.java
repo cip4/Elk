@@ -1,7 +1,7 @@
 /*
- * $Header$
- * $Revision: 264 $
- * $Date: 2004-12-07 14:57:00 +0100 (Di, 07 Dez 2004) $
+ * $Header: /usr1/cvsroot/jdf/elk/src/java/org/cip4/elk/testtools/httpclient/ssl/AuthSSLInitializationError.java,v 1.1.1.1 2004/12/07 13:57:02 buckwalter Exp $
+ * $Revision: 1.1.1.1 $
+ * $Date: 2004/12/07 13:57:02 $
  *
  * ====================================================================
  *

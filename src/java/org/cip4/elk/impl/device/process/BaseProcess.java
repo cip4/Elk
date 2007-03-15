@@ -5,6 +5,7 @@ package org.cip4.elk.impl.device.process;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
@@ -14,10 +15,10 @@ import org.apache.log4j.Logger;
 import org.cip4.elk.ElkEvent;
 import org.cip4.elk.JDFElementFactory;
 import org.cip4.elk.device.DeviceConfig;
+import org.cip4.elk.device.process.Process;
 import org.cip4.elk.device.process.ProcessQueueEntryEvent;
 import org.cip4.elk.device.process.ProcessStatusEvent;
 import org.cip4.elk.impl.jmf.util.Messages;
-import org.cip4.elk.impl.util.PreFlightJDF;
 import org.cip4.elk.impl.util.Repository;
 import org.cip4.elk.impl.util.URLAccessTool;
 import org.cip4.elk.jmf.IncomingJMFDispatcher;
@@ -25,12 +26,14 @@ import org.cip4.elk.jmf.JMFProcessor;
 import org.cip4.elk.jmf.OutgoingJMFDispatcher;
 import org.cip4.elk.lifecycle.Lifecycle;
 import org.cip4.elk.queue.Queue;
+import org.cip4.elk.util.JDFUtil;
 import org.cip4.jdflib.core.ElementName;
 import org.cip4.jdflib.core.JDFComment;
 import org.cip4.jdflib.core.JDFElement;
 import org.cip4.jdflib.core.JDFNodeInfo;
 import org.cip4.jdflib.core.JDFParser;
 import org.cip4.jdflib.core.JDFResourceLink;
+import org.cip4.jdflib.core.KElement;
 import org.cip4.jdflib.core.VString;
 import org.cip4.jdflib.core.XMLDoc;
 import org.cip4.jdflib.core.JDFElement.EnumNodeStatus;
@@ -61,9 +64,11 @@ import org.cip4.jdflib.resource.process.JDFComponent;
 import org.cip4.jdflib.util.JDFDate;
 
 /**
+ * This class contains base functionality for the Elk's reference processes.
+ * 
  * @author Claes Buckwalter (clabu@itn.liu.se)
  * @author Ola Stering (olst6875@student.uu.se)
- * @version $Id: BaseProcess.java 1267 2006-05-16 08:09:37Z buckwalter $
+ * @version $Id: BaseProcess.java,v 1.24 2006/12/03 21:21:32 buckwalter Exp $
  */
 public abstract class BaseProcess extends AbstractProcess implements Runnable,
         Lifecycle {
@@ -78,18 +83,18 @@ public abstract class BaseProcess extends AbstractProcess implements Runnable,
 
     protected URLAccessTool _fileUtil;
 
-    protected PreFlightJDF _preFlightJDF;
-
     protected OutgoingJMFDispatcher _outgoingDispatcher;
 
     protected IncomingJMFDispatcher _incomingDispatcher;
 
     protected Thread _thread;
-
-    protected String _processType;
+    
+    protected String[] _processTypes;
 
     protected Repository _repository;
 
+    protected JDFQueueEntry _runningQueueEntry;
+    
     /**
      * @param config
      *            The configuration for this Device.
@@ -111,10 +116,30 @@ public abstract class BaseProcess extends AbstractProcess implements Runnable,
         _queue = queue;
         _fileUtil = fileUtil;
         _outgoingDispatcher = dispatcher;
-        _state = new ProcessState();
-        _preFlightJDF = new PreFlightJDF();
+        _state = new ProcessState();        
         _repository = repository;
+    }
 
+    /**
+     * initialize <this> based on deviceConfig
+     * 
+     * @param config
+     *            the config file to extract the information from
+     * @author prosirai
+     * @deprecated This method is no longer used and is deprecated together with
+     *             get/setProcessType. Instead, get/setProcessTypes should be
+     *             used, which return the JDF process types that the device can
+     *             execute. [Claes]
+     */
+    protected void initConfig(DeviceConfig config)
+    {
+        _config = config;
+        if(_config!=null)
+        {
+            JDFDevice dev =_config.getDeviceConfig();
+            if(dev!=null)
+                setProcessType(dev.getDeviceType());
+        }
     }
 
     public BaseProcess() {
@@ -123,7 +148,7 @@ public abstract class BaseProcess extends AbstractProcess implements Runnable,
     }
 
     public String toString() {
-        return getProcessId();
+        return "Executable processes: " + Arrays.asList(getProcessTypes());
     }
 
     /**
@@ -151,20 +176,41 @@ public abstract class BaseProcess extends AbstractProcess implements Runnable,
      * 
      * @param processType
      *            The type to be set.
+     * @deprecated Use {@link BaseProcess#setProcessTypes(String[])} instead.
      */
-    protected void setProcessType(String processType) {
-        _processType = processType;
+    protected void setProcessType(final String processType) {
+        if (processType == null) {
+            throw new IllegalArgumentException("Process type must not be null.");
+        }
+        final String[] processTypes = {processType};        
+        setProcessTypes(processTypes);
+    }
+    
+    /**
+     * Sets the JDF process types that this Process can execute.
+     * @param processTypes
+     */
+    protected void setProcessTypes(final String[] processTypes) {
+        if (processTypes == null || processTypes.length == 0) {
+            throw new IllegalArgumentException("Process types must be an non-empty array.");
+        }
+        _processTypes = processTypes;
     }
 
-    /*
-     * (non-Javadoc)
+    /**
+     * Returns the first element in the array of process types, see {@link Process#getProcessTypes()}.
      * 
      * @see org.cip4.elk.device.process.Process#getProcessType()
+     * @deprecated Use {@link #getProcessTypes()}
      */
     public String getProcessType() {
-        return _processType;
+        return getProcessTypes()[0];
     }
 
+    public String[] getProcessTypes() {
+        return _processTypes;
+    }
+    
     protected void setProcessState(ProcessState state) {
         _state = state;
     }
@@ -228,7 +274,7 @@ public abstract class BaseProcess extends AbstractProcess implements Runnable,
                     return;
                 }
                 // Runs the queue entry
-                runJob(qe);
+                runJob(qe, _queue.getQueueSubmissionParams(qe.getQueueEntryID()));
             } catch (Exception e) {
                 log.error("An error occurred while running queue entry '"
                         + qe.getQueueEntryID() + "': " + e);
@@ -237,32 +283,48 @@ public abstract class BaseProcess extends AbstractProcess implements Runnable,
         log.debug("Stopped running " + getProcessType() + ".");
     }
 
+    
+    
+    
     /**
      * Runs the job represented by the specified queue entry.
      * 
      * @param qe
      *            the job to run
      * @throws Exception
+     * @deprecated Use {@link #runJob(JDFQueueEntry, JDFQueueSubmissionParams)}
      */
     public void runJob(JDFQueueEntry qe) throws Exception {
+        runJob(qe, _queue.getQueueSubmissionParams(qe.getQueueEntryID()));
+    }
+    
+    
+    /**
+     * Runs the job represented by the specified queue entry.
+     *
+     * @see org.cip4.elk.device.process.Process#runJob(org.cip4.jdflib.jmf.JDFQueueEntry, org.cip4.jdflib.jmf.JDFQueueSubmissionParams)
+     */
+    public JDFNode runJob(JDFQueueEntry qe, JDFQueueSubmissionParams subParams)
+            throws Exception {        
         log.debug("Running queue entry '" + qe.getQueueEntryID() + "'...");
         // Check that the device is idle before running the job
         if (!_state.getState().equals(_state.IDLE)) {
             log.warn("Could not run queue entry '" + qe.getQueueEntryID()
                     + "' because the device is not idle.");
-            return;
+            return null;
         }
-
+        _runningQueueEntry = qe;
+        
         // Change the queue status
         qe.setStartTime(new JDFDate());
         qe.setQueueEntryStatus(JDFQueueEntry.EnumQueueEntryStatus.Running);
         fireEvent(new ProcessQueueEntryEvent(this, qe));
 
+        JDFNode jdf = null;
         try {
             // Runs the job
-            String jdfUrl = _queue.getQueueSubmissionParams(
-                    qe.getQueueEntryID()).getURL();
-            JDFNode jdf = runJob(jdfUrl);
+            final String jdfUrl = subParams.getURL();
+            jdf = runJob(jdfUrl);
             qe
                     .setQueueEntryStatus(JDFQueueEntry.EnumQueueEntryStatus.Completed);
             // Returns the job
@@ -281,11 +343,13 @@ public abstract class BaseProcess extends AbstractProcess implements Runnable,
             // TODO After an error, should the device become Idle?
         } finally {
             qe.setEndTime(new JDFDate());
+            _runningQueueEntry = null;
             fireEvent(new ProcessQueueEntryEvent(this, qe));
             _state.setState(_state.IDLE);
         }
         log.debug("Finished running queue entry '" + qe.getQueueEntryID()
                 + "'.");
+        return jdf;
     }
 
     /**
@@ -304,9 +368,8 @@ public abstract class BaseProcess extends AbstractProcess implements Runnable,
         _state.setJdfUrl(jdfUrl.toString());
         // Execution phase for Device
         _state.setState(_state.RUNNING);
-        List processNodes = _preFlightJDF.getProcessNodes(jdf,
-                getProcessType(), null);
-        if (processNodes.size() == 0) {
+        List processNodes = JDFUtil.getProcessNodes(getProcessType(), jdf, null);
+        if (processNodes==null || processNodes.size() == 0) {
             String err = "Could not execute process because there were no"
                     + " process nodes of type '" + getProcessType()
                     + "' to execute.";
@@ -317,7 +380,7 @@ public abstract class BaseProcess extends AbstractProcess implements Runnable,
             log.info("Found " + processNodes.size() + " nodes to execute.");
             for (int i = 0, imax = processNodes.size(); i < imax; i++) {
                 JDFNode jdfNode = (JDFNode) processNodes.get(i);
-                if (_preFlightJDF.isExecutableAndAvailbleResources(jdfNode,
+                if (JDFUtil.isExecutableAndAvailbleResources(jdfNode,
                         null)) {
                     executeNode(jdfNode);
                 }
@@ -489,7 +552,7 @@ public abstract class BaseProcess extends AbstractProcess implements Runnable,
     protected JDFSignal createSignal(
             JDFDeviceInfo.EnumDeviceStatus deviceState, String description) {
         // TODO Load Signal from template
-        JDFSignal sig = (JDFSignal) JDFElementFactory.getInstance().createJMF()
+        JDFSignal sig = JDFElementFactory.getInstance().createJMF()
                 .appendSignal();
         sig.setType(EnumType.Status.getName());
         sig.init();
@@ -599,7 +662,7 @@ public abstract class BaseProcess extends AbstractProcess implements Runnable,
     protected void writeJDFToURL(XMLDoc jdf, String url) throws IOException {
         log.debug("Writing JDF to URL: " + url);
         OutputStream out = _fileUtil.getURLAsOutputStream(url);
-        jdf.write2Stream(out, 0);
+        jdf.write2Stream(out, 0, true);
         IOUtils.closeQuietly(out);
         log.debug("Wrote JDF to URL: " + url);
     }
@@ -721,14 +784,14 @@ public abstract class BaseProcess extends AbstractProcess implements Runnable,
 
             for (Iterator it = v.iterator(); it.hasNext();) {
                 JDFJMF jmf = (JDFJMF) it.next();
-                Vector v2 = jmf.getMessageVector();
+                Vector v2 = jmf.getMessageVector (null, null);
                 for (Iterator it2 = v2.iterator(); it2.hasNext();) {
                     JDFMessage m = (JDFMessage) it2.next();
 
                     if (Messages.checkSubscriptionParameters(log, m) == 0) {
                         JDFQuery q = (JDFQuery) m;
                         String channelID = q.getID();
-                        String url = q.getSubscription(0).getURL();
+                        String url = q.getSubscription().getURL();
                         sendStopPeristenChannelMessage(channelID, url);
                         log.debug("Sending last Signal for query with id '"
                                 + channelID + "'.");
@@ -787,7 +850,7 @@ public abstract class BaseProcess extends AbstractProcess implements Runnable,
         // Create dummy query for JMFProcessor
         JDFQuery dummyQuery = (JDFQuery) query.cloneNode(false);
         // Copy original query's children
-        JDFElement[] queryChildren = query.getChildElements();
+        KElement[] queryChildren = query.getChildElementArray();
         for (int i = 0; i < queryChildren.length; i++) {
             if (!(queryChildren[i] instanceof JDFSubscription || queryChildren[i] instanceof JDFComment)) {
                 signal.copyElement(queryChildren[i], null);
@@ -799,15 +862,15 @@ public abstract class BaseProcess extends AbstractProcess implements Runnable,
 
         JDFResponse dummyResponse = Messages.createJMFMessage(
                 Messages.createResponse("dummy", queryType), "dummySenderID")
-                .getResponse();
+                .getResponse(0);
 
         // Send dummies to JMFProcessor
         JMFProcessor processor = _incomingDispatcher.getProcessor(queryType);
 
         int returnCode = processor.processJMF(dummyQuery, dummyResponse);
-        String url = query.getSubscription(0).getURL();
+        String url = query.getSubscription().getURL();
         if (returnCode == 0) { // Query okay
-            signal.copyElement(dummyResponse.getChildElements()[0], null);
+            signal.copyElement(dummyResponse.getChildElementArray()[0], null);
             // TODO
             // Vsignal.copyElement((KElement)dummyResponse.getChildElementVector(JDFConstants.WILDCARD,
             // JDFConstants.NONAMESPACE, null, false, 0, false).elementAt(0),
@@ -860,7 +923,8 @@ public abstract class BaseProcess extends AbstractProcess implements Runnable,
      *            the name of the file in the local file system
      */
     private void sendReturnQueueEntry(JDFQueueEntry qe, JDFNode jdf,
-            String filename) throws IOException {
+            String filename) 
+    {
 
         JDFQueueSubmissionParams submissionParams = _queue
                 .getQueueSubmissionParams(qe.getQueueEntryID());
@@ -875,8 +939,7 @@ public abstract class BaseProcess extends AbstractProcess implements Runnable,
                 .appendReturnQueueEntryParams();
 
         // Get nodes that are completed
-        List completedNodes = _preFlightJDF.getProcessNodes(jdf,
-                getProcessType(), JDFElement.EnumNodeStatus.Completed);
+        List completedNodes = JDFUtil.getProcessNodes(getProcessType(), jdf, JDFElement.EnumNodeStatus.Completed);
         if (completedNodes != null && completedNodes.size() > 0) {
             Vector completedIDs = new Vector();
             for (int i = 0, imax = completedNodes.size(); i < imax; i++) {
@@ -885,9 +948,8 @@ public abstract class BaseProcess extends AbstractProcess implements Runnable,
             returnParams.setCompleted(new VString(completedIDs));
         }
         // Get nodes that are aborted
-        List abortedNodes = _preFlightJDF.getProcessNodes(jdf,
-                getProcessType(), JDFElement.EnumNodeStatus.Aborted);
-        if (abortedNodes != null & abortedNodes.size() > 0) {
+        List abortedNodes = JDFUtil.getProcessNodes(getProcessType(), jdf, JDFElement.EnumNodeStatus.Aborted);
+        if (abortedNodes != null && abortedNodes.size() > 0) {
             Vector abortedIDs = new Vector();
             for (int i = 0, imax = abortedNodes.size(); i < imax; i++) {
                 abortedIDs.add(((JDFNode) abortedNodes.get(i)).getID());
@@ -928,6 +990,14 @@ public abstract class BaseProcess extends AbstractProcess implements Runnable,
     private String generateJDFFileName(JDFNode jdf) {
         return jdf.getID() + "_ELK" + System.currentTimeMillis() + ".jdf";
     }
+    
+    
+    /**
+     * @see org.cip4.elk.device.process.Process#getRunningQueueEntry()
+     */
+    public JDFQueueEntry getRunningQueueEntry() {
+        return _runningQueueEntry;
+    }
 
     // ******************************************************
     // Methods common to ALL Processes inherited from Process
@@ -960,14 +1030,12 @@ public abstract class BaseProcess extends AbstractProcess implements Runnable,
         return _config;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
+    /**
      * @see org.cip4.elk.device.process.Process#getProcessId()
+     * @deprecated Use {@link DeviceConfig#getDeviceConfig()}.getDeviceID() instead.
      */
     public String getProcessId() {
-        return getProcessType() + " Process";
-        // TODO Get the process's ID from config
+        return getDeviceConfig().getDeviceConfig().getDeviceID();
     }
 
     /*
@@ -1121,8 +1189,8 @@ public abstract class BaseProcess extends AbstractProcess implements Runnable,
             return jdf;
         }
 
-        protected void setJdfUrl(String jdfUrl) {
-            this.jdfUrl = jdfUrl;
+        protected void setJdfUrl(String _jdfUrl) {
+            this.jdfUrl = _jdfUrl;
             jdf = null;
         }
 
@@ -1223,7 +1291,7 @@ public abstract class BaseProcess extends AbstractProcess implements Runnable,
             JDFJobPhase phase = (JDFJobPhase) JDFElementFactory.getInstance()
                     .createJDFElement(ElementName.JOBPHASE);
             phase.setJobID(jdf.getJobID(true));
-            phase.setJobPartID(jdf.getJobPartID());
+            phase.setJobPartID(jdf.getJobPartID(false));
             phase.setStatus(jdf.getStatus());
             return phase;
         }

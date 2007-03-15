@@ -13,12 +13,17 @@ import org.cip4.jdflib.jmf.JDFResponse;
 import org.cip4.jdflib.resource.JDFNotification;
 
 /**
- * A processor that handles AbortQueueEntry commands. Aborting Runnig or Suspended 
- * queue entries returns a ReturnCode 5 (Query/Command not implemented)
- * since the appropriate functionality is not yet implemented.
+ * A processor that handles AbortQueueEntry commands. A queue entry will not 
+ * be aborted if it is in a Completed or Aborted state. 
+ * 
+ * Aborting a queue entry in a Running or Suspended state is not supported by
+ * this implementation.
+ * 
+ * @todo Implement aborting queue entries in a Running or Suspended state
  * 
  * @author Markus Nyman (markus@myman.se)
- * @version $Id: AbortQueueEntryJMFProcessor.java 1470 2006-08-01 13:42:41Z markus.nyman $
+ * @author Jos Potargent (jos.potargent@agfa.com)
+ * @version $Id: AbortQueueEntryJMFProcessor.java,v 1.3 2006/09/12 08:36:25 buckwalter Exp $
  */
 public class AbortQueueEntryJMFProcessor extends AbstractJMFProcessor {
 
@@ -46,8 +51,7 @@ public class AbortQueueEntryJMFProcessor extends AbstractJMFProcessor {
 
 	/**
 	 * Processes AbortQueueEntry commands. Queue entries will not be
-	 * aborted if entry has status <em>Completed</em>, <em>Removed</em> 
-	 * or <em>Aborted</em>. returnCodes are defined in JDF1.3 Appendix D.
+	 * aborted if entry has status <em>Completed</em> or <em>Aborted</em>. 
 	 * 
 	 * @param command
 	 * @param response
@@ -71,7 +75,7 @@ public class AbortQueueEntryJMFProcessor extends AbstractJMFProcessor {
 			// Queue entry is aborted
 			returnCode = 113;
 			String msg = "The queue entry '" + qeId
-					+ "' is already aborted.";
+					+ "' could not be aborted because it is already aborted.";
 			appendNotification(response, JDFNotification.EnumClass.Error,
 					returnCode, msg);
 			log.warn(msg);
@@ -84,26 +88,15 @@ public class AbortQueueEntryJMFProcessor extends AbstractJMFProcessor {
 			appendNotification(response, JDFNotification.EnumClass.Error,
 					returnCode, msg);
 			log.warn(msg);
-			/*
-		} else if (qe.getQueueEntryStatus().equals(
-				JDFQueueEntry.EnumQueueEntryStatus.Removed)) {
-			// NOT SPECIFIED in JDF specification
-			// Queue entry is removed
-			returnCode = 105;
-			String msg = "The queue entry '" + qeId
-					+ "' could not be aborted because it is removed.";
-			appendNotification(response, JDFNotification.EnumClass.Error,
-					returnCode, msg);
-			log.warn(msg);
-			*/
 		} else if (qe.getQueueEntryStatus().equals(
 				JDFQueueEntry.EnumQueueEntryStatus.Running)) {
 			// Queue entry is running. Abort the running process
 			// TODO implement the appropriate functionality
 			returnCode = 5;
 			String msg = "The queue entry '" + qeId
-					+ "' is Running and could not be aborted. "
-					+ "Functionality not yet implemented.";
+					+ "' could not be aborted because it is running. This queue " +
+                            "implementation does not support aborting queue " +
+                            "entries that are running.";
 			appendNotification(response, JDFNotification.EnumClass.Error,
 					returnCode, msg);
 			log.warn(msg);
@@ -113,20 +106,17 @@ public class AbortQueueEntryJMFProcessor extends AbstractJMFProcessor {
 			// TODO implement the appropriate functionality
 			returnCode = 5;
 			String msg = "The queue entry '" + qeId
-					+ "' is Suspended and could not be aborted. "
-					+ "Functionality not yet implemented.";
+					+ "' could not be aborted because it is suspended. This queue " +
+                            "implementation does not support aborting queue " +
+                            "entries that are suspended.";
 			appendNotification(response, JDFNotification.EnumClass.Error,
 					returnCode, msg);
 			log.warn(msg);
 		} else {
 			// Queue entry can be aborted. Status Waiting or Held
-			// See JDF1.3 Appendix D for supported error codes
 			returnCode = 0;
-			// set status aborted to queue element
-			qe.setQueueEntryStatus(JDFQueueEntry.EnumQueueEntryStatus.Aborted);
-			// put the updated queue element in queue
-			_queue.putQueueEntry(qe);		
-			log.info("Aborted the queue entry '" + qeId + "'.");
+			_queue.abortQueueEntry(qeId);            
+			log.info("Aborted queue entry '" + qeId + "'.");
 		}
 
 		// Returns a filtered queue

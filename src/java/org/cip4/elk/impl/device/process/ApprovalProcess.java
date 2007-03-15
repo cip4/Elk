@@ -33,17 +33,17 @@ import org.cip4.jdflib.util.JDFDate;
  *      Specification Release 1.2, 6.2.1 Approval </a>
  * @author Claes Buckwalter (clabu@itn.liu.se)
  * @author Ola Stering (olst6875@student.uu.se)
- * @version $Id: ApprovalProcess.java 1255 2006-05-15 02:26:36Z buckwalter $
+ * @version $Id: ApprovalProcess.java,v 1.11 2006/12/03 21:22:53 buckwalter Exp $
  */
 public class ApprovalProcess extends BaseProcess {
 
-    public static final String PROCESS_TYPE = "Approval";
+    public static final String[] PROCESS_TYPES = {"Approval"};
 
     public ApprovalProcess(DeviceConfig config, Queue queue,
             URLAccessTool fileUtil, OutgoingJMFDispatcher dispatcher,
             Repository repository) {
         super(config, queue, fileUtil, dispatcher, repository);
-        setProcessType(PROCESS_TYPE);
+        setProcessTypes(PROCESS_TYPES);
     }
     
     /**
@@ -135,7 +135,7 @@ public class ApprovalProcess extends BaseProcess {
         for (int i = 0, imax = approvalPersons.size(); i < imax; i++) {
             JDFApprovalPerson person = (JDFApprovalPerson) approvalPersons
                     .get(i);
-            approvalSuccess.refElement(person.getContact(0));
+            approvalSuccess.refElement(person.getContact());
         }
         // Set status of ApprovalSuccess
         if (allApproved) {

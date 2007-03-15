@@ -14,7 +14,7 @@ import EDU.oswego.cs.dl.util.concurrent.ThreadedExecutor;
  * JMF messages are dispatched synchronously.
  * 
  * @author Claes Buckwalter (clabu@itn.liu.se)
- * @version $Id: AsyncHttpOutgoingJMFDispatcher.java 553 2005-07-13 15:58:29Z buckwalter $
+ * @version $Id: AsyncHttpOutgoingJMFDispatcher.java,v 1.3 2005/07/13 15:58:29 buckwalter Exp $
  */
 public class AsyncHttpOutgoingJMFDispatcher extends
         SyncHttpOutgoingJMFDispatcher {

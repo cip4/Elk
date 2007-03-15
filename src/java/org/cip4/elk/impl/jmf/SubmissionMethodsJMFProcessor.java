@@ -6,6 +6,7 @@ package org.cip4.elk.impl.jmf;
 
 import org.cip4.elk.device.DeviceConfig;
 import org.cip4.jdflib.core.ElementName;
+import org.cip4.jdflib.core.JDFConstants;
 import org.cip4.jdflib.core.VString;
 import org.cip4.jdflib.jmf.JDFMessage;
 import org.cip4.jdflib.jmf.JDFResponse;
@@ -28,7 +29,7 @@ import org.cip4.jdflib.jmf.JDFSubmissionMethods;
  *      Specification Release 1.2, 5.6.4.8 SubmissionMethods </a>
  * 
  * @author Ola Stering, olst6875@student.uu.se
- * @version $Id: SubmissionMethodsJMFProcessor.java 397 2005-05-06 16:53:16Z buckwalter $
+ * @version $Id: SubmissionMethodsJMFProcessor.java,v 1.3 2006/08/24 09:01:27 prosi Exp $
  */
 public class SubmissionMethodsJMFProcessor extends AbstractJMFProcessor {
 
@@ -53,7 +54,7 @@ public class SubmissionMethodsJMFProcessor extends AbstractJMFProcessor {
     public int processMessage(JDFMessage input, JDFResponse output) {
         JDFSubmissionMethods sm = output.appendSubmissionMethods();
 
-        sm.setURLSchemes(new VString(_config.getURLSchemes()));
+        sm.setURLSchemes(new VString(_config.getURLSchemes(),null));
         int returnCode = 0;
         output.setType(getMessageType());
         output.setReturnCode(returnCode);

@@ -10,7 +10,7 @@ import org.cip4.jdflib.jmf.JDFStopPersChParams;
  * Implements a BaseICS level 3 class for unregistering subscriptions.
  * 
  * @author Ola Stering (olst6875@student.uu.se)
- * @version $Id: BaseICSUnsubscriber.java 1054 2006-01-17 10:26:34Z buckwalter $
+ * @version $Id: BaseICSUnsubscriber.java,v 1.3 2006/11/17 13:41:02 buckwalter Exp $
  */
 public class BaseICSUnsubscriber implements Unsubscriber {
 
@@ -93,7 +93,7 @@ public class BaseICSUnsubscriber implements Unsubscriber {
 
         // These three attributes need to be handled according to BaseICS:
         // ChannelID, MessageType, DeviceID
-        if (channelID != null) {
+        if (channelID != null && channelID.length() > 0) {
 
             boolean success = subscriptions.removeSubscription(urlKey,
                 channelID);
@@ -106,7 +106,7 @@ public class BaseICSUnsubscriber implements Unsubscriber {
                 messageType);
         } else {
             // Device ID
-            if (deviceID == null || _deviceID.equals(deviceID)) {
+            if (deviceID == null || deviceID.length() == 0 || _deviceID.equals(deviceID)) {
                 log
                         .debug("All subscriptions from " + urlKey
                                 + " to be removed");

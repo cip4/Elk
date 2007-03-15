@@ -14,7 +14,7 @@ import org.cip4.jdflib.resource.process.JDFNotificationFilter;
  * A processor for QueueStatus queries.
  * 
  * @author Claes Buckwalter (clabu@itn.liu.se)
- * @version $Id: EventsJMFProcessor.java 397 2005-05-06 16:53:16Z buckwalter $
+ * @version $Id: EventsJMFProcessor.java,v 1.4 2005/05/06 16:49:30 buckwalter Exp $
  */
 public class EventsJMFProcessor extends AbstractJMFProcessor {
 

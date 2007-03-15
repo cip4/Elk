@@ -18,13 +18,12 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.cip4.elk.impl.util.URLAccessTool;
-import org.cip4.jdflib.core.JDFAudit;
 import org.cip4.jdflib.core.JDFConstants;
-import org.cip4.jdflib.datatypes.JDFAttributeMap;
 import org.cip4.jdflib.jmf.JDFQueueEntry;
 import org.cip4.jdflib.jmf.JDFQueueSubmissionParams;
 import org.cip4.jdflib.node.JDFNode;
 import org.cip4.jdflib.pool.JDFAuditPool;
+import org.cip4.jdflib.util.UrlUtil;
 import org.jdom.Document;
 import org.jdom.input.SAXBuilder;
 import org.jdom.output.XMLOutputter;
@@ -142,7 +141,7 @@ public class JobServlet extends QueueServlet implements javax.servlet.Servlet {
      * @throws IOException
      */
     private void showJDF(HttpServletRequest req, HttpServletResponse res)
-    throws ServletException, IOException {
+    throws IOException {
         String qeID = req.getParameter("id");
         if (qeID == null || qeID.length() == 0) {
             res.sendError(HttpServletResponse.SC_BAD_REQUEST,
@@ -222,8 +221,7 @@ public class JobServlet extends QueueServlet implements javax.servlet.Servlet {
         // Stores JDF data in request
         JDFAuditPool auditPool = jdf.getAuditPool();
         if (auditPool != null) {
-            req.setAttribute("audits", auditPool.getAudits(
-                    JDFAudit.EnumAuditType.Unknown, new JDFAttributeMap()));
+            req.setAttribute("audits", auditPool.getAudits(null, null));
         }        
         req.setAttribute("inputLinks", jdf.getResourceLinkPool().getInOutLinks(
             true, true, JDFConstants.WILDCARD, JDFConstants.WILDCARD));
@@ -232,7 +230,7 @@ public class JobServlet extends QueueServlet implements javax.servlet.Servlet {
                     JDFConstants.WILDCARD));
         // Stores data for XSLT in request
         req.setAttribute("jdf", jdf);
-        req.setAttribute("xsl", _jdf2html.toURI().toURL());
+        req.setAttribute("xsl", UrlUtil.fileToUrl(_jdf2html, true));
         req.getRequestDispatcher("/job/showJob.jsp").forward(req, res);
     }
 

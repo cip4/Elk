@@ -14,7 +14,7 @@ import org.cip4.elk.device.process.ProcessQueueEntryEventListener;
  * {@link org.cip4.elk.device.process.ProcessQueueEntryEvent}s.
  * 
  * @author Ola Stering (olst6875@student.uu.se)
- * @version $Id: ProcessQueueEntryListenerNotifier.java 626 2005-08-31 20:21:40Z ola.stering $
+ * @version $Id: ProcessQueueEntryListenerNotifier.java,v 1.2 2005/08/31 20:21:40 ola.stering Exp $
  */
 public class ProcessQueueEntryListenerNotifier {
 

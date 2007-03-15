@@ -39,7 +39,7 @@ import org.springframework.beans.factory.access.SingletonBeanFactoryLocator;
  * 
  * @see <a href="http://www.springframework.com">Spring </a>
  * @author Claes Buckwalter (clabu@itn.liu.se)
- * @version $Id: ElkSpringConfiguration.java 446 2005-05-30 13:43:50Z buckwalter $
+ * @version $Id: ElkSpringConfiguration.java,v 1.1 2005/05/30 13:43:50 buckwalter Exp $
  */
 public class ElkSpringConfiguration {
 

@@ -4,9 +4,10 @@
 package org.cip4.elk.device.process;
 
 import org.cip4.elk.device.DeviceConfig;
-import org.cip4.elk.impl.jmf.preprocess.JDFPreprocessor;
 import org.cip4.jdflib.jmf.JDFDeviceInfo;
 import org.cip4.jdflib.jmf.JDFJobPhase;
+import org.cip4.jdflib.jmf.JDFQueueEntry;
+import org.cip4.jdflib.jmf.JDFQueueSubmissionParams;
 import org.cip4.jdflib.node.JDFNode;
 
 /**
@@ -25,8 +26,7 @@ import org.cip4.jdflib.node.JDFNode;
  * </p>
  * 
  * @author Claes Buckwalter (clabu@itn.lu.se)
- * @version
- * @version $Id: Process.java 1512 2006-08-15 08:53:16Z prosi $
+ * @version $Id: Process.java,v 1.11 2006/12/03 20:00:20 buckwalter Exp $
  * @see <a
  *      href="http://www.cip4.org/documents/jdf_specifications/JDF1.2.pdf">JDF
  *      Specification Release 1.2 </a>
@@ -69,10 +69,11 @@ public interface Process {
     public void setDeviceConfig(DeviceConfig config);
 
     /**
-     * Returns this process's configuration.
+     * Returns this configuration of the Elk device that this Process is a part
+     * of.
      * 
      * @see org.cip4.elk.DeviceConfig
-     * @return this process's configuration
+     * @return this parent Elk device's configuration
      */
     public DeviceConfig getDeviceConfig();
 
@@ -115,11 +116,39 @@ public interface Process {
      * {@link ProcessStatusEvent}s to its listeners reporting any status
      * changes that it goes through during the job run.
      * 
-     * @param jdfUrl the URL to the JDF job to execute
+     * @param jdfUrl
+     *            the URL to the JDF job to execute
      * @return the resulting JDF node after the job run has finish
+     * @deprecated This used to be the method that started the execution of a
+     *             job. However, it provided no information about the queue
+     *             entry that corresponds to the job, which is needed in order
+     *             to generate {@link ProcessQueueEntryEvent}s.
+     *             {@link #runJob(JDFQueueEntry, JDFQueueSubmissionParams)}
+     *             should be used instead.
      */
     public JDFNode runJob(String jdfUrl) throws Exception;
 
+    /**
+     * Runs a job identified by the <code>JDFQueueEntry</code>. The location
+     * of the JDF instance file is provided by the
+     * <code>JDFQueueSubmissionParams</code>.
+     * 
+     * This <code>Process</code> should send {@link ProcessStatusEvent}s and
+     * {@link ProcessQueueEntryEvent}s to registered listeners reporting status
+     * changes that occur during job exectution.
+     * 
+     * @param queueEntry
+     *            the queue entry to execute
+     * @param submissionParams
+     *            parameters submitted to the queue that provide the location of
+     *            the queue entry's JDF instance file, and information about where to
+     *            return the JDF instance file when finished executing
+     * @return the resulting JDF node after the job run has finish
+     * @throws Exception if a problem occurs during job exectution
+     */
+    public JDFNode runJob(JDFQueueEntry queueEntry,
+            JDFQueueSubmissionParams submissionParams) throws Exception;
+    
     /**
      * Suspends the job currently running. This process should send
      * {@link ProcessStatusEvent}s to its listeners reporting any status
@@ -164,27 +193,28 @@ public interface Process {
      * Specification Release 1.2, 6 Processes </a>.
      * 
      * @return a JDF process name
+     * @deprecated A device may support the execution of
+     *             <em>Combined Processes</em> - the execution of more than
+     *             one JDF process type. Use {@link #getProcessTypes()} instead.
      */
     public String getProcessType();
 
-    //    TODO Support a "Combined" Process
-    //    /**
-    //     * Returns an array of names of the JDF processes that this
-    // <code>Process</code>
-    //     * implements. The returned array is of length 1 if this
-    // <code>Process</code>
-    //     * only implements a single JDF process. A <code>Process</code> that
-    // executes
-    //     * more than one JDF process is called a <em>Combined Process</em>, see <a
-    // href="http://www.cip4.org/documents/jdf_specifications/JDF1.2.pdf">JDF
-    // Specification Release 1.2, 3.1.5 Combined Process Nodes</a>.
-    //     * The order of the array elements is should be the order in which this
-    //     * <code>Process</code> supports executing the JDF processes.
-    //     *
-    //     * @return an array of the JDF process names this <code>Process</code>
-    // implements
-    //     */
-    //    public String[] getProcessTypes();
+        
+    /**
+     * Returns an array of names of the JDF process types that this
+     * <code>Process</code> can execute. The returned array is of length 1
+     * if this <code>Process</code> only can execute a single type of JDF
+     * process. A <code>Process</code> that executes more than one JDF
+     * process is called a <em>Combined Process</em>, see <a
+     * href="http://www.cip4.org/documents/jdf_specifications/JDF1.2.pdf">JDF
+     * Specification Release 1.2, 3.1.5 Combined Process Nodes</a>. The
+     * order of the array elements must be the order in which this
+     * <code>Process</code> supports executing the JDF processes.
+     * 
+     * @return an array of the JDF process types that this <code>Process</code>
+     *         implements
+     */
+    public String[] getProcessTypes();
 
     /**
      * Returns the phase of the job currently running on this process.
@@ -193,14 +223,26 @@ public interface Process {
      *         if no job is active
      */
     public JDFJobPhase getJobPhase();
+    
 
     /**
-     * Returns the <em>DeviceInfo</em> of the Device including the
-     * <em>JobPhase</em> element in case the includeJobPhase parameter is set
-     * to true and the device is currently processing a job.
+     * Returns the queue entry that is currently being run by this
+     * <code>Process</code>.
      * 
-     * @param includeJobPhase Indicates if the <em>JobPhase</em> element
-     *            should be included in the <em>DeviceInfo</em> element.
+     * @return the queue entry currently being run; or <code>null</code> if no
+     *         queue entry is being run
+     */
+    public JDFQueueEntry getRunningQueueEntry();
+
+    /**
+     * Returns the <em>DeviceInfo</em>, optionally including the
+     * <em>JobPhase</em> element, of the Elk device that this Process is a
+     * part of.
+     * 
+     * @param includeJobPhase
+     *            If <code>true</code> and the Process is executing a job then
+     *            the <em>JobPhase</em> element should be included in the
+     *            <em>DeviceInfo</em> element.
      * @return The DeviceInfo element of the Device.
      */
     public JDFDeviceInfo getDeviceInfo(boolean includeJobPhase);
@@ -232,11 +274,8 @@ public interface Process {
      * Returns this process's ID.
      * 
      * @return this process's ID
+     * @deprecated Use {@link DeviceConfig#getDeviceConfig()}.getDeviceID()
+     *             instead. See issue {@linkplain http://www.cip4.org/jira/browse/ELK-63}.
      */
     public String getProcessId();
-    
-    /**
-     * set the local preprocessor to pre
-     */
-    public void setPreprocessor(JDFPreprocessor pre);
 }

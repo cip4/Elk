@@ -9,7 +9,7 @@ import java.util.EventListener;
  * A listener that listens for <code>QueueEntryStatusEvents</code>.
  * 
  * @author Ola Stering (olst6875@student.uu.se)
- * @version $Id: ProcessQueueEntryEventListener.java 532 2005-06-24 07:32:19Z ola.stering $
+ * @version $Id: ProcessQueueEntryEventListener.java,v 1.1 2005/06/24 07:32:19 ola.stering Exp $
  */
 public interface ProcessQueueEntryEventListener extends EventListener {
     /**

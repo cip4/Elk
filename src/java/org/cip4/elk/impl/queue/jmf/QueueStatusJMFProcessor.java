@@ -16,7 +16,7 @@ import org.cip4.jdflib.jmf.JDFResponse;
  * A processor for QueueStatus queries.
  * 
  * @author Claes Buckwalter (clabu@itn.liu.se)
- * @version $Id: QueueStatusJMFProcessor.java 667 2005-09-10 02:28:39Z ola.stering $
+ * @version $Id: QueueStatusJMFProcessor.java,v 1.4 2005/09/10 02:28:38 ola.stering Exp $
  */
 public class QueueStatusJMFProcessor extends AbstractJMFProcessor {
 

@@ -15,7 +15,7 @@ import org.cip4.jdflib.resource.JDFNotification;
  * @see <a href="http://www.cip4.org/documents/jdf_specifications/JDF1.2.pdf">JDF Specification Release 1.2, Table 5-18 Contents of the NotificationFilter element</a>
  * @see org.cip4.jdflib.resource.process.JDFNotification.EnumClass
  * @author Claes Buckwalter (clabu@itn.liu.se)
- * @version $Id: ElkEvent.java 419 2005-05-13 13:13:39Z ola.stering $
+ * @version $Id: ElkEvent.java,v 1.3 2005/05/13 13:12:25 ola.stering Exp $
  */
 public class ElkEvent extends EventObject {
     public static final JDFNotification.EnumClass EVENT = JDFNotification.EnumClass.Event;

@@ -9,7 +9,7 @@ import java.util.EventListener;
  * A listener that listens for process Amount changes.
  * 
  * @author Ola Stering (olst6875@student.uu.se)
- * @version $Id: ProcessAmountListener.java 437 2005-05-26 19:27:03Z ola.stering $
+ * @version $Id: ProcessAmountListener.java,v 1.1 2005/05/26 19:27:02 ola.stering Exp $
  */
 public interface ProcessAmountListener extends EventListener {
     

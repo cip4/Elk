@@ -29,7 +29,7 @@ import java.io.OutputStream;
  * </p>
  * 
  * @author Claes Buckwalter (clabu@itn.liu.se)
- * @version $Id: Repository.java 478 2005-06-08 14:31:50Z buckwalter $
+ * @version $Id: Repository.java,v 1.1 2005/06/08 14:31:50 buckwalter Exp $
  */
 public interface Repository {
     

@@ -38,12 +38,12 @@ import org.cip4.jdflib.util.JDFDate;
  *      href="http://www.cip4.org/document_archive/documents/ICS-Base-1.0.pdf">ICS-Base-1.0
  *      Specification, 5.4.1 KnownDevices </a>
  * @author Ola Stering (olst6875@student.uu.se)
- * @version $Id: ConventionalPrintingProcess.java 1255 2006-05-15 02:26:36Z buckwalter $
+ * @version $Id: ConventionalPrintingProcess.java,v 1.10 2006/12/03 21:22:53 buckwalter Exp $
  */
 public class ConventionalPrintingProcess extends BaseProcess {
 
     /** The type of this Process */
-    public static final String PROCESS_TYPE = "ConventionalPrinting";
+    public static final String[] PROCESS_TYPES = {"ConventionalPrinting"};
 
     private int _totalAmount = 0; // The total amount for each process node.
     // Reset in class State for each Node.
@@ -78,7 +78,7 @@ public class ConventionalPrintingProcess extends BaseProcess {
             URLAccessTool fileUtil, OutgoingJMFDispatcher dispatcher,
             Repository repository) {
         super(config, queue, fileUtil, dispatcher, repository);
-        setProcessType(PROCESS_TYPE);
+        setProcessTypes(PROCESS_TYPES);
         _waitingTimeMillis = 60000 / _pagesPerMinute;
     }
 

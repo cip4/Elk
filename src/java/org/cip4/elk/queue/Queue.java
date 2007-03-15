@@ -17,10 +17,11 @@ import org.cip4.jdflib.jmf.JDFQueueSubmissionParams;
  * </ul>
  * methods for manipulating the queue's data structures:
  * <ul>
+ * <li>{@link #abortQueueEntry(String)}</li>
  * <li>{@link #addQueueEntry(JDFQueueSubmissionParams)}</li>
  * <li>{@link #putQueueEntry(JDFQueueEntry)}</li>
  * <li>{@link #removeQueueEntry(String)}</li>
- * <li>{@link #setMaxQueueSize(int)}</li>
+ * <li>{@link #setQueueSize(int)}</li>
  * </ul>
  * and methods for retrieving the queue's contents and state:
  * <ul>
@@ -31,7 +32,7 @@ import org.cip4.jdflib.jmf.JDFQueueSubmissionParams;
  * <li>{@link #getQueueSubmissionParams(String)}</li>
  * <li>{@link #getQueueStatus()}</li>
  * <li>{@link #getQueueSize()}</li>
- * <li>{@link #getTotalQueueSize()}</li>
+ * <li>{@link #getQueueEntryCount()}</li>
  * </ul>
  * <strong>Note: </strong> The JMF messages <em>FlushQueue</em> and
  * <em>SubmissionMethods</em> to not have methods in the <code>Queue</code>
@@ -45,13 +46,15 @@ import org.cip4.jdflib.jmf.JDFQueueSubmissionParams;
  * being a <code>JMFProcessor</code> that handles one or more message types.
  * 
  * @author Claes Buckwalter (clabu@itn.liu.se)
+ * @author Jos Potargent (jos.potargent@agfa.com)
+ * 
  * @see <a
  *      href="http://www.cip4.org/documents/jdf_specifications/JDF1.2.pdf">JDF
  *      Specification Release 1.2, 5.6 Queue Support </a>
  * @see <a
  *      href="http://www.cip4.org/documents/jdf_specifications/JDF1.2.pdf">JDF
  *      Specification Release 1.2, 5.6.5 Queue-Handling Elements </a>
- * @version $Id: Queue.java 468 2005-06-07 18:47:14Z ola.stering $
+ * @version $Id: Queue.java,v 1.4 2006/09/12 08:34:53 buckwalter Exp $
  */
 public interface Queue {
 
@@ -62,27 +65,33 @@ public interface Queue {
      * @param size the queue's maximum size; use <code>-1</code> for an
      *            unrestricted queue size
      * @see #getQueueSize()
-     * @see #getTotalQueueSize()
+     * @see #getQueueEntryCount()
      * @throws IllegalStateException if this queue does not permit its size to
      *             be changed
      */
-    public void setMaxQueueSize(int size);
+    public void setQueueSize(int size);
+
+	/**
+	 * @deprecated See {@link #setQueueSize(int)} 
+     * @see #setQueueSize(int)
+	 */
+	public void setMaxQueueSize(int size);
 
     /**
      * Returns this queue's maximum size.
      * 
      * @return the queue's maximum size; <code>-1</code> if the queue's size
      *         is unrestricted
+     * @deprecated See {@link #getQueueSize()}
+     * @see #getQueueSize()
      */
     public int getMaxQueueSize();
 
     /**
-     * Returns the number of queue entries in this queue. This does not include
-     * the queue entries that have status <em>Aborted</em> or
-     * <em>Completed</em>.
+     * Returns the maximum number of queue entries allowed in this queue. 
      * 
-     * @return the number of queue entries in this queue that do not have status
-     *         <em>Aborted</em> or <em>Completed</em>
+     * @return the queue's maximum size; <code>-1</code> if the queue's size
+     *         is unrestricted
      * @see <a
      *      href="http://www.cip4.org/documents/jdf_specifications/JDF1.2.pdf">JDF
      *      Specification Release 1.2, Table 5-102: Contents of the Queue
@@ -95,7 +104,13 @@ public interface Queue {
      * 
      * @return the total number of queue entries in this queue
      */
-    public int getTotalQueueSize();
+    public int getQueueEntryCount();
+    
+    /**
+	 * @deprecated See {@link #getQueueEntryCount()}
+	 * @see #getQueueEntryCount()
+	 */
+    public int getTotalQueueSize();	
 
     /**
      * Adds a queue entry to this queue.
@@ -126,6 +141,13 @@ public interface Queue {
      * @return the queue entry's submission parameters
      */
     public JDFQueueSubmissionParams getQueueSubmissionParams(String queueEntryId);
+
+    /**
+     * Aborts a queue entry from this queue.
+     * 
+     * @param queueEntryId the ID of the queue entry to abort
+     */
+    public void abortQueueEntry(String queueEntryId);
 
     /**
      * Removes a queue entry from this queue.

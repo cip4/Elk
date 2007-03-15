@@ -1,7 +1,7 @@
 /*
- * $Header$
- * $Revision: 397 $
- * $Date: 2005-05-06 18:53:16 +0200 (Fr, 06 Mai 2005) $
+ * $Header: /usr1/cvsroot/jdf/elk/src/java/org/cip4/elk/testtools/httpclient/ssl/AuthSSLX509TrustManager.java,v 1.2 2005/05/06 16:49:31 buckwalter Exp $
+ * $Revision: 1.2 $
+ * $Date: 2005/05/06 16:49:31 $
  *
  * ====================================================================
  *

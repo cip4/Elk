@@ -48,7 +48,7 @@ import org.cip4.jdflib.util.JDFDate;
  *      Specification Release 1.2, Table 5-103 </a>
  * @author Claes Buckwalter (clabu@itn.liu.se)
  * @author Ola Stering (olst6875@student.uu.se)
- * @version $Id: QueueEntryComparator.java 540 2005-06-29 06:41:35Z ola.stering $
+ * @version $Id: QueueEntryComparator.java,v 1.3 2005/06/29 06:41:35 ola.stering Exp $
  */
 public class QueueEntryComparator implements Comparator {
 

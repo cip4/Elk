@@ -15,7 +15,7 @@ import org.cip4.jdflib.jmf.JDFResponse;
  * A processor for CloseQueue commands. All this processor does is changes the 
  * queue's stauts to <em>Closed</em>.
  * @author Claes Buckwalter (clabu@itn.liu.se)
- * @version $Id: CloseQueueJMFProcessor.java 667 2005-09-10 02:28:39Z ola.stering $
+ * @version $Id: CloseQueueJMFProcessor.java,v 1.4 2005/09/10 02:28:38 ola.stering Exp $
  */
 public class CloseQueueJMFProcessor extends AbstractJMFProcessor {
 

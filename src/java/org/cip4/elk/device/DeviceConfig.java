@@ -3,7 +3,10 @@
  */
 package org.cip4.elk.device;
 
+import java.util.List;
+
 import org.cip4.elk.Config;
+import org.cip4.jdflib.node.JDFNode;
 import org.cip4.jdflib.resource.JDFDevice;
 
 /**
@@ -12,11 +15,12 @@ import org.cip4.jdflib.resource.JDFDevice;
  * @see org.cip4.elk.Config
  * @author Claes Buckwalter (clabu@itn.liu.se)
  * @author Ola Stering (olst6875@student.uu.se)
- * @version $Id: DeviceConfig.java 397 2005-05-06 16:53:16Z buckwalter $  
+ * @author Rainer Prosi (rainer.prosi@heidelberg.com)
+ * @version $Id: DeviceConfig.java,v 1.5 2006/11/17 15:44:09 buckwalter Exp $
  */
 public interface DeviceConfig extends Config {
 
-   /**
+    /**
      * Returns a string containing a space separated list of schemes supported
      * for retrieving JDF files. Example: "file ftp http https".
      * 
@@ -64,4 +68,19 @@ public interface DeviceConfig extends Config {
      *      Specification Release 1.2, 7.2.50 Device </a>
      */
     public void setDeviceConfig(JDFDevice device);
+
+    /**
+     * Returns a list of all JDF nodes that match the device's capabilites. Note
+     * that this does not mean that all JDF nodes returned are executable; a
+     * node may match the device's capabilities, but all input resources may not
+     * be available.
+     * 
+     * @param jdf
+     *            the JDF instance to get process nodes from
+     * @return A list of <code>JDFNode</code>s that match the device's
+     *         capabilities. This list will be empty (size 0) if no nodes match.
+     * @author prosi
+     */
+    public List getProcessableNodes(JDFNode jdf);
+
 }

@@ -29,7 +29,7 @@ import org.cip4.jdflib.resource.JDFNotification;
  * site shortly.
  * 
  * @author Ola Stering (olst6875@student.uu.se)
- * @version $Id: PreFlightJDF.java 1514 2006-08-15 09:13:05Z prosi $
+ * @version $Id: PreFlightJDF.java,v 1.4 2006/08/15 09:09:16 prosi Exp $
  * @deprecated - functionality moved to JDFPreprocessor, use it instead
  */
 public class PreFlightJDF {

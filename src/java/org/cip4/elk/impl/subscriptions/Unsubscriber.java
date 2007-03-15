@@ -12,7 +12,7 @@ import org.cip4.jdflib.jmf.JDFStopPersChParams;
  * {@link org.cip4.elk.impl.subscriptions.SubscriptionContainer}.
  * 
  * @author Ola Stering (olst6875@student.uu.se)
- * @version $Id: Unsubscriber.java 439 2005-05-27 19:27:34Z ola.stering $
+ * @version $Id: Unsubscriber.java,v 1.1 2005/05/27 19:27:33 ola.stering Exp $
  */
 public interface Unsubscriber {
 

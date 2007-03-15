@@ -68,7 +68,7 @@ public class SortingQueueFilter implements QueueFilter {
             boolean copy) {
         // Sort the original queue's queue entries
         List qEntries = queue.getChildElementVector(ElementName.QUEUEENTRY,
-                JDFConstants.NONAMESPACE, new JDFAttributeMap(), false, 0, false);
+                null, new JDFAttributeMap(), false, 0, false);
         Collections.sort(qEntries, _comp);
         // Copy the sorted queue entries to the new queue
         if (copy) {

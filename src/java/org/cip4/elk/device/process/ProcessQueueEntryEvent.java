@@ -12,7 +12,7 @@ import org.cip4.jdflib.resource.JDFNotification;
  * status is changed.
  * 
  * @author Ola Stering (olst6875@student.uu.se)
- * @version $Id: ProcessQueueEntryEvent.java 532 2005-06-24 07:32:19Z ola.stering $
+ * @version $Id: ProcessQueueEntryEvent.java,v 1.1 2005/06/24 07:32:19 ola.stering Exp $
  */
 public class ProcessQueueEntryEvent extends ElkEvent {
 

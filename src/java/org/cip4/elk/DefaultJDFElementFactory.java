@@ -20,7 +20,7 @@ import org.cip4.jdflib.node.JDFNode;
  * 
  * @see org.cip4.jdflib.core.JDFDoc
  * @author Claes Buckwalter (clabu@itn.liu.se)
- * @version $Id: DefaultJDFElementFactory.java 418 2005-05-13 13:11:20Z ola.stering $
+ * @version $Id: DefaultJDFElementFactory.java,v 1.6 2006/08/24 11:55:30 buckwalter Exp $
  */
 public class DefaultJDFElementFactory extends JDFElementFactory {
     protected DefaultJDFElementFactory() {
@@ -33,7 +33,7 @@ public class DefaultJDFElementFactory extends JDFElementFactory {
      * @see org.cip4.elk.JDFElementFactory#createJDFElement(java.lang.String)
      */
     public JDFElement createJDFElement(String elementName) {
-        return new JDFDoc(elementName).getRoot();
+        return (JDFElement) new JDFDoc(elementName).getRoot();
     }
 
     /**

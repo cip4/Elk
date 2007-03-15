@@ -30,7 +30,7 @@ import org.cip4.jdflib.jmf.JDFQueueFilter;
  *      href="http://www.cip4.org/document_archive/documents/ICS-Base-1.0.pdf">ICS-Base-1.0
  *      Specification, Table 49 QueueFilter </a>
  * @author Ola Stering (olst6875@student.uu.se)
- * @version $Id: BaseICSQueueFilter.java 661 2005-09-08 23:57:09Z ola.stering $
+ * @version $Id: BaseICSQueueFilter.java,v 1.4 2005/09/08 23:57:09 ola.stering Exp $
  */
 public class BaseICSQueueFilter implements QueueFilter {
 

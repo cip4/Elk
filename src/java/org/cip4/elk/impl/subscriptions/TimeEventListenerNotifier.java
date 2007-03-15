@@ -10,7 +10,7 @@ import java.util.List;
  * A notifier that fires TimeEvents to all its listeners.
  * 
  * @author Ola Stering (olst6875@student.uu.se)
- * @version $Id: TimeEventListenerNotifier.java 439 2005-05-27 19:27:34Z ola.stering $
+ * @version $Id: TimeEventListenerNotifier.java,v 1.1 2005/05/27 19:27:33 ola.stering Exp $
  */
 public class TimeEventListenerNotifier {
     protected List _listeners;

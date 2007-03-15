@@ -32,7 +32,7 @@ import org.cip4.elk.impl.util.URLAccessTool;
  * A class that reads JMF/JDF MIME packages and extracts their contents. 
  * @see <a href="http://www.cip4.org/documents/jdf_specifications/JDF1.2.pdf">JDF Specification Release 1.2, 8.3 JDF Packaging</a>
  * @author Claes Buckwalter (clabu@itn.liu.se)
- * @version $Id: MimeReader.java 1265 2006-05-16 06:14:46Z buckwalter $
+ * @version $Id: MimeReader.java,v 1.5 2006/05/16 06:14:46 buckwalter Exp $
  */
 public class MimeReader {
    

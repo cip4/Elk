@@ -16,7 +16,7 @@ import org.cip4.jdflib.jmf.JDFResponse;
  * queue's status to <em>Closed</em>.
  * 
  * @author Claes Buckwalter (clabu@itn.liu.se)
- * @version $Id: HoldQueueJMFProcessor.java 667 2005-09-10 02:28:39Z ola.stering $
+ * @version $Id: HoldQueueJMFProcessor.java,v 1.4 2005/09/10 02:28:38 ola.stering Exp $
  */
 public class HoldQueueJMFProcessor extends AbstractJMFProcessor {
 

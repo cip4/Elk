@@ -34,6 +34,7 @@ import org.cip4.jdflib.jmf.JDFJMF;
 import org.cip4.jdflib.jmf.JDFMessage;
 import org.cip4.jdflib.jmf.JDFResponse;
 import org.cip4.jdflib.resource.JDFNotification;
+import org.cip4.jdflib.util.UrlUtil;
 
 /**
  * This servlet receives JMF messages, parses them, and forwards them to an
@@ -43,7 +44,7 @@ import org.cip4.jdflib.resource.JDFNotification;
  * {@link org.cip4.elk.impl.spring.ElkSpringConfiguration}.
  * 
  * @author Claes Buckwalter (clabu@itn.liu.se)
- * @version $Id: DispatchingJMFServlet.java 1379 2006-06-07 13:23:40Z buckwalter $
+ * @version $Id: DispatchingJMFServlet.java,v 1.8 2006/08/30 07:55:06 buckwalter Exp $
  */
 public class DispatchingJMFServlet extends JMFServlet {
 
@@ -214,7 +215,7 @@ public class DispatchingJMFServlet extends JMFServlet {
         InputStream mimeStream = null;
         JDFJMF jmfIn = null;
         try {
-            outputDirUrl = outputDir.toURI().toURL().toString();
+            outputDirUrl = UrlUtil.fileToUrl(outputDir, true);
             mimeStream = new FileInputStream(mimeFile);
             String[] fileUrls = _mimeReader.extractMimePackage(mimeStream,
                 outputDirUrl);

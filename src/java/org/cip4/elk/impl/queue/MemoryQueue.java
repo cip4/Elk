@@ -5,7 +5,6 @@ package org.cip4.elk.impl.queue;
 
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
@@ -14,10 +13,10 @@ import org.cip4.elk.Config;
 import org.cip4.elk.JDFElementFactory;
 import org.cip4.elk.JDFElementFactoryLoaderException;
 import org.cip4.elk.device.process.Process;
-import org.cip4.elk.device.process.ProcessStatusEvent;
-import org.cip4.elk.device.process.ProcessStatusListener;
 import org.cip4.elk.device.process.ProcessQueueEntryEvent;
 import org.cip4.elk.device.process.ProcessQueueEntryEventListener;
+import org.cip4.elk.device.process.ProcessStatusEvent;
+import org.cip4.elk.device.process.ProcessStatusListener;
 import org.cip4.elk.impl.queue.util.AttributeQueueFilter;
 import org.cip4.elk.impl.queue.util.BaseICSQueueFilter;
 import org.cip4.elk.impl.queue.util.SortingQueueFilter;
@@ -29,8 +28,8 @@ import org.cip4.elk.queue.util.QueueFilter;
 import org.cip4.jdflib.auto.JDFAutoJobPhase.EnumActivation;
 import org.cip4.jdflib.auto.JDFAutoQueue.EnumQueueStatus;
 import org.cip4.jdflib.core.ElementName;
-import org.cip4.jdflib.core.JDFConstants;
 import org.cip4.jdflib.core.JDFDoc;
+import org.cip4.jdflib.core.JDFElement.EnumNodeStatus;
 import org.cip4.jdflib.datatypes.JDFAttributeMap;
 import org.cip4.jdflib.jmf.JDFDeviceInfo;
 import org.cip4.jdflib.jmf.JDFJobPhase;
@@ -55,10 +54,11 @@ import org.cip4.jdflib.util.JDFDate;
  * 
  * @author Claes Buckwalter (clabu@itn.liu.se)
  * @author Ola Stering (olst6875@student.uu.se)
+ * @author Jos Potargent (jos.potargent@agfa.com)
  * 
  * @see org.cip4.elk.queue.Queue
  * @see org.cip4.elk.impl.queue.QueueState
- * @version $Id: MemoryQueue.java 1514 2006-08-15 09:13:05Z prosi $
+ * @version $Id: MemoryQueue.java,v 1.15 2006/09/12 08:34:52 buckwalter Exp $
  */
 public class MemoryQueue implements Queue, ProcessStatusListener,
         ProcessQueueEntryEventListener {
@@ -96,7 +96,7 @@ public class MemoryQueue implements Queue, ProcessStatusListener,
         _sortingFilter = new SortingQueueFilter();
         _baseICSFilter = new BaseICSQueueFilter(this);
         // Set queue size
-        setMaxQueueSize(maxQueueSize);
+        setQueueSize(maxQueueSize);
         log.debug("Instance of MemoryQueue created.");
     }
 
@@ -118,47 +118,33 @@ public class MemoryQueue implements Queue, ProcessStatusListener,
         _state.holdQueue();
     }
 
-    /*
-     * (non-Javadoc)
-     * 
+    /**
      * @see org.cip4.elk.queue.Queue#setMaxQueueSize(int)
      */
-    public void setMaxQueueSize(int size) {
+    public void setQueueSize(int size) {
         _maxQueueSize = size;
-        _state.setQueueFull(getQueueSize() >= _maxQueueSize);
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.cip4.elk.queue.Queue#getMaxQueueSize()
-     */
-    public int getMaxQueueSize() {
-        return _maxQueueSize;
+        _state.setQueueFull(getQueueEntryCount() >= _maxQueueSize);
     }
 
     /**
-     * Returns the number of queue entries in this queue. This does not include
-     * the queue entries that have status <em>Aborted</em> or
-     * <em>Completed</em>.
+     * @see org.cip4.elk.queue.Queue#getMaxQueueSize()
+     * @deprecated Use {@link #getQueueSize()} instead
+     */
+    public int getMaxQueueSize() {
+        return getQueueSize();
+    }
+
+    /**
+     * Returns the number of queue entries allowed in this queue. 
      * 
-     * @return the number of queue entries in this queue that do not have status
-     *         <em>Aborted</em> or <em>Completed</em>
+     * @return the number of queue entries allowed in this queue
      * @see org.cip4.elk.queue.Queue#getQueueSize()
      */
     public synchronized int getQueueSize() {
-        JDFAttributeMap statusAttr = new JDFAttributeMap("Status", "Completed");
-        List completedList = _queue.getChildElementVector(
-            ElementName.QUEUEENTRY, null, statusAttr,
-            false, 0, false);
-        statusAttr.put("Status", "Aborted");
-        List abortedList = _queue.getChildElementVector(ElementName.QUEUEENTRY,
-            null, statusAttr, false, 0, false);
-        completedList.addAll(abortedList);
-        return getTotalQueueSize() - completedList.size();
+        return _maxQueueSize;
     }
 
-    public synchronized int getTotalQueueSize() {
+    public synchronized int getQueueEntryCount() {
         return _queueEntriesMap.size();
     }
 
@@ -191,11 +177,12 @@ public class MemoryQueue implements Queue, ProcessStatusListener,
         } else {
             qe = createQueueEntry(params);
             putQueueEntry(qe);
+        
             // Keep a copy of submission parameters
             // TODO Make a defensive copy first
             _queueSubmissionParamsMap.put(qe.getQueueEntryID(), params);
             // Check if the queue was filled
-            _state.setQueueFull(getQueueSize() >= getMaxQueueSize());
+            _state.setQueueFull(getQueueEntryCount() >= getQueueSize());
         }
         return qe;
     }
@@ -224,6 +211,23 @@ public class MemoryQueue implements Queue, ProcessStatusListener,
     /*
      * (non-Javadoc)
      * 
+     * @see org.cip4.elk.queue.Queue#abortQueueEntry(java.lang.String)
+     */
+    public synchronized void abortQueueEntry(String queueEntryId) {
+        log.debug("Aborting queue entry '" + queueEntryId + "'...");
+        
+        // Get the queue entry element.
+        JDFQueueEntry qe = (JDFQueueEntry) _queueEntriesMap.get(queueEntryId);
+        if (qe == null) {
+        	log.error("Aborting error: cannot find queue entry '" + queueEntryId + "'.");
+        }
+        else {
+        	qe.setStatus(EnumNodeStatus.Aborted);
+        }
+    }
+
+    
+    /**
      * @see org.cip4.elk.queue.Queue#removeQueueEntry(java.lang.String)
      */
     public synchronized JDFQueueEntry removeQueueEntry(String queueEntryId) {
@@ -242,22 +246,19 @@ public class MemoryQueue implements Queue, ProcessStatusListener,
             qe = (JDFQueueEntry) owner.importNode(qe, true);
         }
 
-        _state.setQueueFull(getQueueSize() >= getMaxQueueSize());
+        _state.setQueueFull(getQueueEntryCount() >= getQueueSize());
         return qe;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.cip4.elk.queue.Queue#putQueueEntry(java.lang.String,
-     *      com.heidelberg.JDFLib.jmf.JDFQueueEntry)
+    /**
+     * @see org.cip4.elk.queue.Queue#putQueueEntry(JDFQueueEntry)
      */
     public synchronized JDFQueueEntry putQueueEntry(JDFQueueEntry queueEntry) {
         String qeId = queueEntry.getQueueEntryID();
         log.debug("Putting queue entry '" + qeId + "'...");
         // Checks if the queue is full
         if (!_queueEntriesMap.containsKey(qeId)
-                && getQueueSize() == getMaxQueueSize()) {
+                && getQueueSize() == getQueueEntryCount()) {
             return null;
         }
         // Creates a copy of the queue entry and appends it to the queue
@@ -401,7 +402,7 @@ public class MemoryQueue implements Queue, ProcessStatusListener,
                 jobID = "Unknown jobID";
             }
             qe.setJobID(jobID);
-            qe.setJobPartID(jdf.getJobPartID());
+            qe.setJobPartID(jdf.getJobPartID(false));
 
             JDFAncestorPool ancestorPool = jdf.getAncestorPool();
             if (ancestorPool != null) {
@@ -459,7 +460,7 @@ public class MemoryQueue implements Queue, ProcessStatusListener,
             log.error("Unable to load JDFElementFactory. Do you have the"
                     + " JDFElementFactory.properties in your class path?", e);
         }
-        queue.setQueueSize(getMaxQueueSize());
+        queue.setQueueSize(getQueueSize());
         queue.setQueueStatus(getQueueStatus());
         queue.setDeviceID(getDeviceID());
         return queue;
@@ -523,7 +524,7 @@ public class MemoryQueue implements Queue, ProcessStatusListener,
                 || status.equals(JDFDeviceInfo.EnumDeviceStatus.Setup)
                 || status.equals(JDFDeviceInfo.EnumDeviceStatus.Cleanup)) {
             _state.setProcessFull(true);
-            _state.setQueueFull(getQueueSize() == getMaxQueueSize());
+            _state.setQueueFull(getQueueSize() == getQueueEntryCount());
         } else if (status.equals(JDFDeviceInfo.EnumDeviceStatus.Idle)
                 || status.equals(JDFDeviceInfo.EnumDeviceStatus.Stopped)
                 || status.equals(JDFDeviceInfo.EnumDeviceStatus.Down)) {
@@ -585,7 +586,6 @@ public class MemoryQueue implements Queue, ProcessStatusListener,
             } else {
                 qe.copyElement(phase, null);
             }
-
         } else {
             log.debug("The QueueEntryID='" + qe.getQueueEntryID()
                     + "', JobID='" + qe.getJobID() + "'," + "JobPartID='"
@@ -610,8 +610,9 @@ public class MemoryQueue implements Queue, ProcessStatusListener,
                         + ". No JDF attached to the JobPhase."
                         + " Is the url '" + url + "' correct?");
             } else {
-                phase.setActivation(EnumActivation.getEnum(jdf.getActivation(true).getName()));
-                jdf.setActivation(JDFNode.Activation_Informative);
+                phase.setActivation(EnumActivation.getEnum(jdf
+                        .getActivation(true).getName()));
+                jdf.setActivation(JDFNode.EnumActivation.Informative);
                 phase.copyElement(jdf, null);
             }
         }
@@ -619,14 +620,28 @@ public class MemoryQueue implements Queue, ProcessStatusListener,
         return phase;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
+    /**
      * @see org.cip4.elk.queue.ProcessQueueEntryEventListener#queueEntryStatusChanged(org.cip4.elk.queue.ProcessQueueEntryEvent)
      */
     public void queueEntryStatusChanged(ProcessQueueEntryEvent event) {
         log.debug("Received ProcessQueueEntryEvent.");
         JDFQueueEntry qe = event.getQueueEntry();
         putQueueEntry(qe);
+    }
+
+    /**
+     * @deprecated Use {@link #getQueueEntryCount()} instead
+     * @see org.cip4.elk.queue.Queue#getTotalQueueSize()
+     */
+    public int getTotalQueueSize() {
+        return getQueueEntryCount();
+    }
+
+    /**
+     * @deprecated Use {@link #getQueueSize()} instead
+     * @see org.cip4.elk.queue.Queue#getMaxQueueSize()
+     */
+    public void setMaxQueueSize(int size) {
+        setQueueSize(size);
     }
 }

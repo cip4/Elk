@@ -24,7 +24,7 @@ import org.cip4.elk.lifecycle.Lifecycle;
  * TODO Implement caching
  * 
  * @author Claes Buckwalter (clabu@itn.liu.se)
- * @version $Id: FileRepository.java 498 2005-06-10 16:21:18Z buckwalter $
+ * @version $Id: FileRepository.java,v 1.2 2005/06/10 16:21:18 buckwalter Exp $
  */
 public class FileRepository implements Repository, Lifecycle {
 

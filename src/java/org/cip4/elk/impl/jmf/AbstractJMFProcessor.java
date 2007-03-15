@@ -29,7 +29,7 @@ import org.cip4.jdflib.resource.JDFNotification;
  *      Notification elements </a>
  * @author Claes Buckwalter (clabu@itn.liu.se)
  * @author Ola Stering (olst6875@student.uu.se)
- * @version $Id: AbstractJMFProcessor.java 431 2005-05-25 19:08:19Z ola.stering $
+ * @version $Id: AbstractJMFProcessor.java,v 1.6 2005/05/25 19:08:19 ola.stering Exp $
  */
 public abstract class AbstractJMFProcessor implements JMFProcessor {
     protected Logger log;

@@ -9,7 +9,7 @@ import org.cip4.elk.jmf.util.DeviceFilter;
 import org.cip4.jdflib.auto.JDFAutoDeviceFilter.EnumDeviceDetails;
 import org.cip4.jdflib.core.ElementName;
 import org.cip4.jdflib.core.JDFComment;
-import org.cip4.jdflib.core.KElement;
+import org.cip4.jdflib.core.VElement;
 import org.cip4.jdflib.jmf.JDFDeviceFilter;
 import org.cip4.jdflib.jmf.JDFDeviceInfo;
 import org.cip4.jdflib.jmf.JDFResponse;
@@ -27,7 +27,7 @@ import org.cip4.jdflib.resource.JDFDeviceList;
  *      Specification, Table 29 DeviceFilter </a>
  * 
  * @author Ola Stering, (olst6875@student.uu.se)
- * @version $Id: BaseICSDeviceFilter.java 1513 2006-08-15 09:05:41Z prosi $
+ * @version $Id: BaseICSDeviceFilter.java,v 1.6 2006/08/30 07:55:06 buckwalter Exp $
  */
 public class BaseICSDeviceFilter implements DeviceFilter {
 
@@ -273,7 +273,7 @@ public class BaseICSDeviceFilter implements DeviceFilter {
 			throw new NullPointerException("deviceList can not be null");
 		JDFDeviceList retDeviceList = (JDFDeviceList) deviceList
 				.cloneNode(true);
-		KElement deviceInfoElements[] = retDeviceList.getChildElementArray();
+		VElement deviceInfoElements = retDeviceList.getChildElementVector(ElementName.DEVICEINFO, null, null, true, 0, false);
 
 		EnumDeviceDetails edd;
 
@@ -285,15 +285,12 @@ public class BaseICSDeviceFilter implements DeviceFilter {
 			JDFComment c = retDeviceList.appendComment();
 			c.appendText(msg);
 			edd = EnumDeviceDetails.None;
-		} else
-			edd = filter.getDeviceDetails();
-
-		for (int i = 0; i < deviceInfoElements.length; i++) {
-
-			applyDetails((JDFDeviceInfo) deviceInfoElements[i], edd.getName());
-
-		}
-
+		} else {
+            edd = filter.getDeviceDetails();
+        }
+        for (int i = 0, imax = deviceInfoElements.size(); i < imax; i++) {
+            applyDetails((JDFDeviceInfo) deviceInfoElements.get(i), edd.getName());
+        }
 		return retDeviceList;
 	}
 }

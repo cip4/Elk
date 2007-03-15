@@ -108,7 +108,7 @@ import EDU.oswego.cs.dl.util.concurrent.QueuedExecutor;
  *      Specification Release 1.2, 5.2.2.3 Persistent Channels </a>
  * @author Claes Buckwalter (clabu@itn.liu.se)
  * @author Ola Stering (olst6875@student.uu.se)
- * @version $Id: AsyncSimpleSubscriptionManager.java 1514 2006-08-15 09:13:05Z prosi $
+ * @version $Id: AsyncSimpleSubscriptionManager.java,v 1.9 2006/08/15 09:09:06 prosi Exp $
  */
 public class AsyncSimpleSubscriptionManager implements SubscriptionManager,
         ElkEventListener, QueueStatusListener, ProcessStatusListener,

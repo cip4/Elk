@@ -86,7 +86,7 @@ public class SubscribingIncomingRFAJMFDispatcher  extends
         JDFJMF jmfOut = _factory.createJMF();
         jmfOut.setSenderID(_config.getID());
 
-        List msgsIn = jmfIn.getMessageVector();
+        List msgsIn = jmfIn.getMessageVector (null, null);
         for (int i = 0, imax = msgsIn.size(); i < imax; i++) {
             JDFMessage msgIn = (JDFMessage) msgsIn.get(i);
             String xsiType;
@@ -134,7 +134,7 @@ public class SubscribingIncomingRFAJMFDispatcher  extends
         JDFJMF jmfOut = _factory.createJMF();
         jmfOut.setSenderID(_config.getID());
 
-        List msgsIn = jmfIn.getMessageVector();
+        List msgsIn = jmfIn.getMessageVector (null, null);
         for (int i = 0, imax = msgsIn.size(); i < imax; i++) {
             JDFMessage msgIn = (JDFMessage) msgsIn.get(i);
             String xsiType;
@@ -214,7 +214,7 @@ public class SubscribingIncomingRFAJMFDispatcher  extends
             if (input instanceof JDFQuery) {
                 JDFQuery query = (JDFQuery) input;
                 //JDFSubscription subscription = query.getSubscription(0);
-                JDFSubscription subscription = query.getSubscription(0);
+                JDFSubscription subscription = query.getSubscription();
 
                 if (subscription != null) {
                     boolean subscribed = _subscriptionManager

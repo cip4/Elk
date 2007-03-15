@@ -12,14 +12,14 @@ import org.cip4.elk.impl.device.process.simulation.DeviceStatusDetails;
 import org.cip4.elk.impl.device.process.simulation.Down;
 import org.cip4.elk.impl.device.process.simulation.Running;
 import org.cip4.elk.impl.device.process.simulation.Setup;
+import org.cip4.elk.impl.device.process.simulation.SimulationPhaseInterface;
 import org.cip4.elk.impl.device.process.simulation.Stopped;
 import org.cip4.elk.impl.util.Repository;
 import org.cip4.elk.impl.util.URLAccessTool;
 import org.cip4.elk.jmf.OutgoingJMFDispatcher;
 import org.cip4.elk.queue.Queue;
-
+import org.cip4.elk.util.JDFUtil;
 import org.cip4.jdflib.auto.JDFAutoDeviceInfo.EnumDeviceStatus;
-import org.cip4.jdflib.auto.JDFAutoJobPhase.EnumStatus;
 import org.cip4.jdflib.auto.JDFAutoNotification.EnumClass;
 import org.cip4.jdflib.core.AttributeName;
 import org.cip4.jdflib.core.ElementName;
@@ -36,16 +36,23 @@ import org.cip4.jdflib.node.JDFNode;
 import org.cip4.jdflib.pool.JDFAmountPool;
 import org.cip4.jdflib.pool.JDFResourcePool;
 import org.cip4.jdflib.resource.JDFNotification;
+import org.cip4.jdflib.resource.JDFPart;
 import org.cip4.jdflib.resource.JDFResource;
 import org.cip4.jdflib.resource.JDFResource.EnumResStatus;
 import org.cip4.jdflib.resource.process.JDFComponent;
 import org.cip4.jdflib.util.JDFDate;
 import org.cip4.jdflib.util.JDFDuration;
 
+/**
+ * A simulation of a the JDF ConventionalPrinting process.
+ * 
+ * @version $Id$
+ * @author Marco Kornrumpf (Marco.Kornrumpf@Bertelsmann.de)
+ */
 public class ConventionalPrintingProcessSimu extends BaseProcess {
 
 	/** The type of this Process */
-	public static final String PROCESS_TYPE = "ConventionalPrinting";
+	public static final String[] PROCESS_TYPES = {"ConventionalPrinting"};
 
 	private int _totalAmount = 0;
 
@@ -93,7 +100,7 @@ public class ConventionalPrintingProcessSimu extends BaseProcess {
 			URLAccessTool fileUtil, OutgoingJMFDispatcher dispatcher,
 			Repository repository) {
 		super(config, queue, fileUtil, dispatcher, repository);
-		setProcessType(PROCESS_TYPE);
+		setProcessTypes(PROCESS_TYPES);
 		
 
 	}
@@ -347,6 +354,7 @@ public class ConventionalPrintingProcessSimu extends BaseProcess {
 
 //		return simuPhases;
 //	}
+		
 
 	/**
 	 * TODO Alter this text Creates the values for the following Amounts as
@@ -356,8 +364,10 @@ public class ConventionalPrintingProcessSimu extends BaseProcess {
 	 * 
 	 * @param jdf
 	 *            The JDFNode that will be processed
+     * @return  the amount produced
+     * @todo Refactor... Claes 2006-11-16
 	 */
-	private void getTotalAmount(JDFNode jdf) {
+	protected int getTotalAmount(JDFNode jdf) {
 		jdf.getCreateAuditPool().addModified(_config.getID(), null);
 		_state.setJdf(jdf);
 		JDFAttributeMap emptyAttributeMap = new JDFAttributeMap();
@@ -373,27 +383,17 @@ public class ConventionalPrintingProcessSimu extends BaseProcess {
 			jdf.setStatus(EnumNodeStatus.Aborted);
 
 			// TODO generate events.
-			return;
+			return _totalAmount;
 		}
 		resAmountOut.setActualAmount(0, emptyAttributeMap);
 		// Creates an AmountPool if it is not specified
 		createPartAmount(resAmountOut);
 
-		int partAmountGoodAmount = 0;
-		int partAmountWasteAmount = 0;
-		VJDFAttributeMap amountVector = resAmountOut.getPartMapVector();
-		for (int i = 0; i < amountVector.size(); i++) {
-			if (amountVector.elementAt(i).get("Condition").equals("Good")) {
-				partAmountGoodAmount = (int) resAmountOut
-						.getAmount(resAmountOut.getPartMapVector().elementAt(i));
+		final int partAmountGoodAmount = (int) resAmountOut
+                .getAmount(new JDFAttributeMap("Condition", "Good"));
+        final int partAmountWasteAmount = (int) resAmountOut
+                .getAmount(new JDFAttributeMap("Condition", "Waste"));
 
-			}
-			if (amountVector.elementAt(i).get("Condition").equals("Waste")) {
-				partAmountWasteAmount = (int) resAmountOut
-						.getAmount(resAmountOut.getPartMapVector().elementAt(i));
-
-			}
-		}
 		int outAmount = (int) resAmountOut.getAmount(new JDFAttributeMap());
 
 		log.debug("ComponentLink(output)/@Amount=" + outAmount
@@ -427,7 +427,7 @@ public class ConventionalPrintingProcessSimu extends BaseProcess {
 		}
 
 		_totalAmount = outAmount;
-
+        return _totalAmount;
 	}
 
 	/*
@@ -630,17 +630,16 @@ public class ConventionalPrintingProcessSimu extends BaseProcess {
 	 */
 	private JDFPartAmount getPartAmountValue(JDFResourceLink resAmountOut,
 			String ident) {
-
-		VJDFAttributeMap vFilterMap = resAmountOut.getPartMapVector();
-		for (int i = 0; i < vFilterMap.size(); i++) {
-			if (vFilterMap.elementAt(i).get("Condition").equals(ident)) {
-
-				JDFPartAmount part = resAmountOut.getAmountPool()
-						.getPartAmount(vFilterMap.elementAt(i));
-				return part;
-			}
-		}
-		return null;
+	    final JDFPartAmount partAmount;
+        final JDFPart part = (JDFPart) resAmountOut.getAmountPool().getChildByTagName(
+                ElementName.PART, null, 0, new JDFAttributeMap("Condition",
+                        ident), false, false);        
+        if (part != null) {
+            partAmount = (JDFPartAmount) part.getParentNode();
+        } else {
+            partAmount = null;
+        }
+        return partAmount;
 	}
 
 	/**
@@ -717,7 +716,7 @@ public class ConventionalPrintingProcessSimu extends BaseProcess {
 				}
 				// Device in running state
 				if (_state.getState().equals(EnumDeviceStatus.Running)) {
-					_actualJobPhase.setStatus(EnumStatus.InProgress);
+					_actualJobPhase.setStatus(EnumNodeStatus.InProgress);
 					// Device goodcounter is off
 					if (isWasteCounter()) {
 						_actualJobPhase.setStatusDetails("Waste");
@@ -864,6 +863,14 @@ public class ConventionalPrintingProcessSimu extends BaseProcess {
 
 		}
 		for (int i = 0; i < phases.size(); i++) {
+//			checkRunningJob(); //(JP) check if still running.
+			
+			// (JP) info about simulation.
+			log.info("simulation step: " 
+						+ ((SimulationPhaseInterface)(phases.get(i))).getSimulationPhase().getName()
+						+ "(" + ((SimulationPhaseInterface)(phases.get(i))).getPhaseLength() + "): "
+						+ ((SimulationPhaseInterface)(phases.get(i))).getJmfComment());
+			
 
 			if (phases.get(i) instanceof Setup) {
 
@@ -983,6 +990,8 @@ public class ConventionalPrintingProcessSimu extends BaseProcess {
 			} catch (InterruptedException e) {
 				log.error("Sleep interuppted during RunningPhase. " + e);
 			}
+			
+//			checkRunningJob(); //(JP) check if still running.
 
 			// Waste production
 			if (actualWaste <= phaseWasteAmount && phaseWasteAmount != 0) {
@@ -1252,8 +1261,7 @@ public class ConventionalPrintingProcessSimu extends BaseProcess {
         _state.setJdfUrl(jdfUrl.toString());
         // Execution phase for Device
         // _state.setState(_state.RUNNING);
-        List processNodes = _preFlightJDF.getProcessNodes(jdf,
-                getProcessType(), null);
+        List processNodes = JDFUtil.getProcessNodes(getProcessType(), jdf, null);
         if (processNodes.size() == 0) {
             String err = "Could not execute process because there were no"
                     + " process nodes of type '" + getProcessType()
@@ -1266,7 +1274,7 @@ public class ConventionalPrintingProcessSimu extends BaseProcess {
             for (int i = 0, imax = processNodes.size(); i < imax; i++) {
                 JDFNode jdfNode = (JDFNode) processNodes.get(i);
 
-                if (_preFlightJDF.isExecutableAndAvailbleResources(jdfNode,
+                if (JDFUtil.isExecutableAndAvailbleResources(jdfNode,
                         null)) {
                     executeNode(jdfNode);
                 }

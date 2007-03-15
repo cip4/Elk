@@ -8,7 +8,7 @@ import org.cip4.elk.ElkEvent;
 import org.cip4.elk.JDFElementFactory;
 import org.cip4.jdflib.core.ElementName;
 import org.cip4.jdflib.core.JDFComment;
-import org.cip4.jdflib.core.JDFElement;
+import org.cip4.jdflib.core.KElement;
 import org.cip4.jdflib.jmf.JDFAcknowledge;
 import org.cip4.jdflib.jmf.JDFCommand;
 import org.cip4.jdflib.jmf.JDFJMF;
@@ -26,7 +26,7 @@ import org.cip4.jdflib.resource.JDFNotification;
  * The class is thread safe.
  * 
  * @author Ola Stering (olst6875@student.uu.se)
- * @version $Id: Messages.java 1513 2006-08-15 09:05:41Z prosi $
+ * @version $Id: Messages.java,v 1.9 2006/08/30 15:46:02 buckwalter Exp $
  */
 public class Messages {
 
@@ -108,25 +108,32 @@ public class Messages {
     }
 
     /**
-     * Creates a <em>Notification</em>.
+     * Appends a <em>Notification</em> element to a <em>Response</em>
+     * element. If there already exists a <em>Notification</em> a
+     * <em>Comment</em> containing the specified message is added to the
+     * <em>Notification</em>.
      * 
-     * TODO append more comments to notification instead of appending a new
-     * Notification
-     * 
-     * @param response the response to append the notification to
-     * @param notClass the class of the notification
-     * @param returnCode the return code
-     * @param msg a message that will be appended as a comment to the
+     * @param response
+     *            the response to append the notification to
+     * @param notClass
+     *            the class of the notification
+     * @param returnCode
+     *            the return code
+     * @param msg
+     *            a message that will be appended as a comment to the
      *            notification
-     * @see com.heidelberg.JDFLib.Auto.JDFAutoNotification
      */
     public static void appendNotification(JDFResponse response,
             JDFNotification.EnumClass notClass, int returnCode, String msg) {
         response.setReturnCode(returnCode);
-
-        JDFNotification notification = response.appendNotification();
+        final JDFNotification notification; 
+        if (response.getNotification() == null) {
+            notification = response.appendNotification();
+        } else {
+            notification = response.getNotification();            
+        }
         notification.setClass(notClass);
-        JDFComment comment = notification.appendComment();
+        final JDFComment comment = notification.appendComment();
         comment.appendText(msg);
     }
 
@@ -155,7 +162,7 @@ public class Messages {
         ackMsg.setType(type);
         ackMsg.setAttributeNS(XSI_NAMESPACE_URI, XSI_ATTRIBUTE_NAME,
             "Acknowledge" + type);
-        JDFElement[] elements = response.getChildElements();
+        KElement[] elements = response.getChildElementArray();
 
         for (int i = 0, size = elements.length; i < size; i++) {
             ackMsg.copyElement(elements[i], null);
@@ -235,7 +242,7 @@ public class Messages {
      * @return A new JMF Message.
      */
     public static JDFJMF createJMFMessage(JDFMessage msg, String senderID) {
-        JDFJMF jmfMsg = (JDFJMF) _factory.createJMF();
+        JDFJMF jmfMsg = _factory.createJMF();
         if (senderID == null)
             throw new NullPointerException("The senderID may not be null");
         jmfMsg.copyElement(msg, null);

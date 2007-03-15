@@ -11,7 +11,7 @@ import org.cip4.jdflib.resource.JDFNotification;
  * An event that is generated each time a process' amount is changed.
  * 
  * @author Ola Stering (olst6875@student.uu.se)
- * @version $Id: ProcessAmountEvent.java 545 2005-07-06 15:57:34Z ola.stering $
+ * @version $Id: ProcessAmountEvent.java,v 1.2 2005/07/06 15:57:34 ola.stering Exp $
  */
 public class ProcessAmountEvent extends ElkEvent {
     

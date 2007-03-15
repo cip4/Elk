@@ -26,7 +26,7 @@ import org.cip4.jdflib.jmf.JDFStatusQuParams;
  *      Specification Release 1.2, 5.5.2.8 Status </a>
  * @author Claes Buckwalter (clabu@itn.liu.se)
  * @author Ola Stering (olst6875@student.uu.se)
- * @version $Id: StatusJMFProcessor.java 1324 2006-05-29 09:25:45Z buckwalter $
+ * @version $Id: StatusJMFProcessor.java,v 1.8 2006/05/29 09:25:45 buckwalter Exp $
  */
 public class StatusJMFProcessor extends AbstractJMFProcessor {
     private Process _device; // XXX

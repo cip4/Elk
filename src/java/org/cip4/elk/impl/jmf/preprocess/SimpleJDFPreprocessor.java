@@ -9,12 +9,10 @@ import java.util.List;
 import java.util.Vector;
 
 import org.apache.log4j.Logger;
-import org.cip4.elk.Config;
 import org.cip4.elk.JDFElementFactory;
+import org.cip4.elk.device.DeviceConfig;
 import org.cip4.elk.device.process.Process;
-import org.cip4.elk.impl.device.process.BaseProcess;
 import org.cip4.elk.impl.jmf.util.Messages;
-import org.cip4.elk.impl.util.PreFlightJDF;
 import org.cip4.elk.impl.util.Repository;
 import org.cip4.elk.jmf.IncomingJMFDispatcher;
 import org.cip4.elk.jmf.OutgoingJMFDispatcher;
@@ -23,10 +21,9 @@ import org.cip4.jdflib.auto.JDFAutoAcknowledge.EnumAcknowledgeType;
 import org.cip4.jdflib.auto.JDFAutoNotification.EnumClass;
 import org.cip4.jdflib.auto.JDFAutoQueueEntry.EnumQueueEntryStatus;
 import org.cip4.jdflib.core.ElementName;
-import org.cip4.jdflib.core.JDFConstants;
 import org.cip4.jdflib.core.JDFNodeInfo;
 import org.cip4.jdflib.core.JDFParser;
-import org.cip4.jdflib.datatypes.JDFAttributeMap;
+import org.cip4.jdflib.core.VString;
 import org.cip4.jdflib.jmf.JDFAcknowledge;
 import org.cip4.jdflib.jmf.JDFCommand;
 import org.cip4.jdflib.jmf.JDFJMF;
@@ -36,6 +33,8 @@ import org.cip4.jdflib.jmf.JDFQueueSubmissionParams;
 import org.cip4.jdflib.jmf.JDFResponse;
 import org.cip4.jdflib.node.JDFNode;
 import org.cip4.jdflib.resource.JDFNotification;
+import org.cip4.jdflib.resource.devicecapability.JDFDeviceCap;
+import org.cip4.jdflib.util.UrlUtil;
 
 /**
  * <p>
@@ -66,20 +65,19 @@ import org.cip4.jdflib.resource.JDFNotification;
  * 
  * @author Ola Stering (olst6875@student.uu.se)
  * @author Claes Buckwalter (clabu@itn.liu.se)
- * @version $Id: SimpleJDFPreprocessor.java 1494 2006-08-02 12:48:45Z buckwalter $
+ * @version $Id: SimpleJDFPreprocessor.java,v 1.18 2006/11/20 10:19:25 buckwalter Exp $
  */
 public class SimpleJDFPreprocessor implements JDFPreprocessor {
 
     /** This fields indicates whether the JDF Node should be validated or not */
     private boolean validation = false;
-    private static Logger log;
-    private Queue _queue;
-    private OutgoingJMFDispatcher _outgoingJMFDispatcher;
-    private Config _config;
-    private Process _process;
-    private IncomingJMFDispatcher _incomingJMFDispatcher;
-    private Repository _repository;
-    private PreFlightJDF _preFlightJDF;
+    protected static Logger log;
+    protected Queue _queue;
+    protected OutgoingJMFDispatcher _outgoingJMFDispatcher;
+    protected DeviceConfig _config;
+    protected Process _process;
+    protected IncomingJMFDispatcher _incomingJMFDispatcher;
+    protected Repository _repository;
 
     /**
      * Creates a SimpleJDFPreprocessor.
@@ -87,20 +85,18 @@ public class SimpleJDFPreprocessor implements JDFPreprocessor {
      * @param queue
      * @param outgoingJMFDispatcher
      * @param config
-     * @param process
+     * @param p
      */
     public SimpleJDFPreprocessor(Queue queue,
             OutgoingJMFDispatcher outgoingJMFDispatcher,
-            IncomingJMFDispatcher incomingJMFDispatcher, Config config,
-            Process process, Repository repository) {
+            IncomingJMFDispatcher incomingJMFDispatcher, DeviceConfig config,
+            Repository repository) {
         log = Logger.getLogger(this.getClass().getName());
         _queue = queue;
         _outgoingJMFDispatcher = outgoingJMFDispatcher;
         _config = config;
-        _process = process;
         _incomingJMFDispatcher = incomingJMFDispatcher;
         _repository = repository;
-        _preFlightJDF = new PreFlightJDF();
         log.debug("Instance of " + this.getClass().getName() + " created");
     }
 
@@ -108,15 +104,17 @@ public class SimpleJDFPreprocessor implements JDFPreprocessor {
      * The type of process that this preprocessor is checking for in the JDF
      * Node.
      * 
-     * @return the process type
+     * @return the process type; null if no type
      */
-    public String getProcessType() {
-        if (_process instanceof BaseProcess) {
-            return ((BaseProcess) _process).getProcessType();
+    public String getProcessType() {        
+        final JDFDeviceCap deviceCap = _config.getDeviceConfig().getDeviceCap(0);
+        if (deviceCap != null) {
+            final VString types = deviceCap.getTypes(); 
+            if (types != null) {
+                return (String) types.get(0);
+            }
         }
-        String msg = "The process " + _process + " has an unknown type";
-        log.warn(msg);
-        return msg;
+        return null;
     }
 
     /**
@@ -133,8 +131,8 @@ public class SimpleJDFPreprocessor implements JDFPreprocessor {
      * @throws NullPointerException if submissionParams is <code>null</code>
      *             or if response is <code>null</code>
      */
-    private int enqueueJDF(JDFQueueSubmissionParams submissionParams,
-            JDFResponse response) {
+    private int enqueueJDF(final JDFQueueSubmissionParams submissionParams,
+            final JDFResponse response) {
         JDFQueueEntry queueEntry = null;
         int returnCode = 0;
         synchronized (_queue) {
@@ -151,9 +149,9 @@ public class SimpleJDFPreprocessor implements JDFPreprocessor {
                 _queue.putQueueEntry(queueEntry);
                 response.copyElement(queueEntry, null);
             } else {
-                JDFQueue.EnumQueueStatus status = _queue.getQueueStatus();
+                final JDFQueue.EnumQueueStatus status = _queue.getQueueStatus();
                 returnCode = 112;
-                String msg = "Job rejected. The queue is " + status.getName()
+                final String msg = "Job rejected. The queue is " + status.getName()
                         + ".";
                 Messages.appendNotification(response,
                     JDFNotification.EnumClass.Warning, returnCode, msg);
@@ -189,12 +187,7 @@ public class SimpleJDFPreprocessor implements JDFPreprocessor {
      */
     public int validateJDFNode(JDFNode jdf, JDFResponse response) {
         int returnCode = 0;
-        String jdfID = jdf.getID();
-        if (!validation) {
-            log.info("JDF node with ID '" + jdfID
-                    + "' is not being validated");
-            return returnCode;
-        }
+        String jdfID = jdf.getID();        
 
         boolean validated = false;
         String reportUrl = null;
@@ -210,13 +203,10 @@ public class SimpleJDFPreprocessor implements JDFPreprocessor {
             JDFJMF knownDevicesResponse = _incomingJMFDispatcher
                     .dispatchJMF(knownDevicesQuery);
             log.debug("Validating JDF node (" + jdfID + ") using CheckJDF...");
-            CheckJDFWrapper.validate(jdf, schemaFile, knownDevicesResponse,
-                reportFile);
-            log.debug("Verifying if JDF node (" + jdfID
-                    + ") passed validation...");
-            validated = CheckJDFWrapper.isValid(reportFile);
+            validated = CheckJDFWrapper.validate(jdf, schemaFile, knownDevicesResponse,
+                reportFile);            
             // Publish the report
-            String tempReportUrl = reportFile.toURI().toURL().toExternalForm();
+            String tempReportUrl = UrlUtil.fileToUrl(reportFile, true);
             reportUrl = _repository.addPublicFile(tempReportUrl);
             log.debug("Copied CheckJDF validation report from " + tempReportUrl
                     + " to " + reportUrl);
@@ -289,8 +279,8 @@ public class SimpleJDFPreprocessor implements JDFPreprocessor {
      * <code>Queue</code>. The queue entry is assigned status <em>Setup</em>.
      * A queue entry will not be added if the queue has status <em>Closed</em>,
      * <em>Full</em>, or <em>Blocked</em>. </li>
-     * <li> Checks so that the JDF contains at least one (JDF) <em>Process</em>
-     * node of the type specified by {@link Process#getProcessType()}. </li>
+     * <li> Checks so that the JDF contains any JDF nodes that match the
+     * device's capabilities, see {@link DeviceConfig#getProcessableNodes(JDFNode)}.</li>
      * <li> Register any subscriptions that exist in
      * <em>JDF/NodeInfo/JMF/Query/Subscription</em>. </li>
      * <li> Updates the <em>QueueEntry</em> setting its status to
@@ -302,7 +292,7 @@ public class SimpleJDFPreprocessor implements JDFPreprocessor {
      * @see org.cip4.elk.impl.jmf.preprocess.JDFPreprocessor#preProcessJDF(org.cip4.jdflib.jmf.JDFCommand,
      *      boolean)
      */
-    public JDFResponse preProcessJDF(JDFCommand command)
+    public JDFResponse preProcessJDF(final JDFCommand command)
             throws NullPointerException {
         log.debug("Preprocessing SubmitQueueEntry...");
         int returnCode = 0;
@@ -314,9 +304,9 @@ public class SimpleJDFPreprocessor implements JDFPreprocessor {
             throw new NullPointerException(msg);
         }
 
-        JDFResponse response = Messages.createResponse(command.getID(), command
+        final JDFResponse response = Messages.createResponse(command.getID(), command
                 .getType());
-        String ackURL = command.getAcknowledgeURL();
+        final String ackURL = command.getAcknowledgeURL();
 
         // Check incoming parameters
         returnCode = checkIncomingParameters(command, response);
@@ -326,7 +316,7 @@ public class SimpleJDFPreprocessor implements JDFPreprocessor {
         }
 
         // Get submission parameters
-        JDFQueueSubmissionParams submissionParams = command
+        final JDFQueueSubmissionParams submissionParams = command
                 .getQueueSubmissionParams(0);
 
         // Fetch JDF file and store it in the repository
@@ -335,7 +325,7 @@ public class SimpleJDFPreprocessor implements JDFPreprocessor {
         try {
             // Add the JDF file to the repository
             jdfUrl = _repository.addPrivateFile(jdfUrl);
-            // Get the JDF instance
+            // Parse the JDF file
             jdf = new JDFParser().parseStream(_repository.getFile(jdfUrl))
                     .getJDFRoot();
         } catch (Exception e) {
@@ -353,6 +343,19 @@ public class SimpleJDFPreprocessor implements JDFPreprocessor {
         // Update submission params with the repository URL
         submissionParams.setURL(jdfUrl);
 
+        // Check if JDF contains any nodes that match the device's capabilities
+        final List compatibleNodes = _config.getProcessableNodes(jdf);
+        if (compatibleNodes.size() == 0) {
+            _repository.removeFile(jdfUrl);
+            final String logMsg = "The job was rejected because none of the its nodes" +
+                    "matched this device's capabilities.";
+            returnCode = 101; // Invalid parameter
+            Messages.appendNotification(response, EnumClass.Warning,
+                returnCode, logMsg);            
+            log.warn(logMsg);
+            return response;
+        }
+                
         // Enqueue JDF
         returnCode = enqueueJDF(submissionParams, response);
         if (returnCode != 0) { // The queue was in an invalid state
@@ -360,22 +363,20 @@ public class SimpleJDFPreprocessor implements JDFPreprocessor {
             completeMessages(returnCode, response, ackURL);
             return response;
         }
-        // Gets the queued queue entry
-        JDFQueueEntry qe = response.getQueueEntry(0);
+        // Get the queued queue entry
+        final JDFQueueEntry qe = response.getQueueEntry(0);
 
-        // Validate, check if node is of correct type and check resources.
-        returnCode = validateJDFNode(jdf, response);
-        if (returnCode == 0) {
-            returnCode = processHandles(jdf, response);            
-        }
-
-        if (returnCode != 0) {
-            qe = _queue.removeQueueEntry(qe.getQueueEntryID());
-            _repository.removeFile(jdfUrl);
-            response.removeQueueEntry(0);
-            log.debug("Removed queue entry with id " + qe.getQueueEntryID());
-            completeMessages(returnCode, response, ackURL);
-            return response;
+        // If validation is enabled, validate JDF
+        if (validation) {            
+            returnCode = validateJDFNode(jdf, response);            
+            if (returnCode != 0) {
+                _queue.removeQueueEntry(qe.getQueueEntryID());
+                _repository.removeFile(jdfUrl);
+                response.removeChild(ElementName.QUEUEENTRY, null, 0);
+                log.debug("Removed queue entry with id " + qe.getQueueEntryID());
+                completeMessages(returnCode, response, ackURL);
+                return response;
+            }
         }
 
         // Dummy preprocess for a while.
@@ -416,8 +417,8 @@ public class SimpleJDFPreprocessor implements JDFPreprocessor {
             qe.setQueueEntryStatus(EnumQueueEntryStatus.Waiting); // Should
             // save JDF
             qe.setJobID(jdf.getJobID(true));
-            if (!jdf.getJobPartID().equals("")) {
-                qe.setJobPartID(jdf.getJobPartID());
+            if (!jdf.getJobPartID(false).equals("")) {
+                qe.setJobPartID(jdf.getJobPartID(false));
             } else {
                 log.warn("No JobPartID was set for the JDF, the JobPartID"
                         + " is set to the same as JobID='" + jdf.getJobID(true)
@@ -426,7 +427,7 @@ public class SimpleJDFPreprocessor implements JDFPreprocessor {
             }
             log.debug("Putting QueueEntry " + qe + " back into the Queue");
             _queue.putQueueEntry(qe);
-            JDFQueue q = _queue.getQueue(command.getQueueFilter(0));
+            final JDFQueue q = _queue.getQueue(command.getQueueFilter(0));
             response.copyElement(q, null);
             response.setReturnCode(returnCode);
         }
@@ -446,16 +447,15 @@ public class SimpleJDFPreprocessor implements JDFPreprocessor {
      *            <em>JDF/NodeInfo/JMF/Query/Subscription</em> element.
      * @throws NullPointerException if jdf is <code>null</code>.
      */
-    public void initSubscriptions(JDFNode jdf) {
-        JDFNodeInfo nodeInfo = jdf.getNodeInfo();
+    public void initSubscriptions(final JDFNode jdf) {
+        final JDFNodeInfo nodeInfo = jdf.getNodeInfo();
         if (nodeInfo != null) {
-            Vector v = nodeInfo.getChildElementVector(ElementName.JMF,
-                JDFConstants.NONAMESPACE, new JDFAttributeMap(), true, 0, true);
+            final Vector v = nodeInfo.getChildElementVector(ElementName.JMF,
+                null,null, true, 0, true);
             log.debug("Found " + v.size() + " JMF messages in JDF/NodeInfo.");
 
             for (Iterator it = v.iterator(); it.hasNext();) {
-
-                JDFJMF jmf = (JDFJMF) it.next();
+                final JDFJMF jmf = (JDFJMF) it.next();
                 // TODO Should Check so that it is only
                 // valid Queries with Subscription Elements in them...
                 _incomingJMFDispatcher.dispatchJMF(jmf);
@@ -502,64 +502,6 @@ public class SimpleJDFPreprocessor implements JDFPreprocessor {
 
         return response;
     }
-    
-    /**
-     * Return 0 (success) if at least one <em>JDFNode</em> can be handled by
-     * this Process and it is executable (see
-     * {@link PreFlightJDF#isExecutableAndAvailbleResources(JDFNode, JDFResponse)})
-     * AND the JDFNode/Template="false". If the <em>JDFNode</em> contains no
-     * processable nodes or no executable nodes or it is a Template, a <em>Notification</em> will
-     * be appended to the incoming <em>Response</em> message.
-     * 
-     * Clarification: A Node is processable if it contains a JDF/@Type that this
-     * process can handle. A Node is executable if it is in an executable state
-     * (see
-     * {@link PreFlightJDF#isExecutableAndAvailbleResources(JDFNode, JDFResponse)}).
-     * 
-     * @param jdf The <em>JDFNode</em> that is being checked for executable
-     *            nodes.
-     * @param response The Response message to which a <em>Notification</em>
-     *            will be appended on failure, on success the <em>Response</em>
-     *            is unmodified.
-     * @return 0 on success, 6 otherwise (Invalid parameter)
-     */
-    private int processHandles(JDFNode jdf, JDFResponse response) {
-        int returnCode = 0;
-        List processNodes = _preFlightJDF.getProcessNodes(jdf,
-            getProcessType(), null);
-
-        if (jdf.getTemplate()) {
-            String msg = "The JDFNode is a Template. It is not being executed.";
-            returnCode = 1; // Invalid parameter
-            Messages.appendNotification(response, EnumClass.Warning,
-                returnCode, msg);
-            log.warn(msg);
-            returnCode = 1; // General error
-        } else if (processNodes.size() == 0) {
-            String msg = "Could not execute process because there were no process nodes of type '"
-                    + getProcessType() + "' to execute.";
-            returnCode = 6; // Invalid parameter
-            Messages.appendNotification(response, EnumClass.Warning,
-                returnCode, msg);
-            log.warn(msg);
-        } else { // At least one Node of correct Type.
-            boolean continueExecution = false;
-            for (int i = 0; i < processNodes.size(); i++) {
-                if (_preFlightJDF.isExecutableAndAvailbleResources(
-                    (JDFNode) processNodes.get(i), response)) {
-                    continueExecution = true;
-                }
-            }
-
-            if (!continueExecution) { // No executable Node.
-                log.info("No process Nodes for JDFNode with id '" + jdf.getID()
-                        + "' ready for execution, processing aborted."
-                        + " For details see Response/Notification.");
-                returnCode = 1; // General error.
-            }
-        }
-        return returnCode;
-    }
 
     /**
      * Ensures that the <em>Command</em> is a valid
@@ -578,7 +520,7 @@ public class SimpleJDFPreprocessor implements JDFPreprocessor {
      * 
      * @throws NullPointerException if command or response is <code>null</code>
      */
-    public int checkIncomingParameters(JDFCommand command, JDFResponse response) {
+    protected int checkIncomingParameters(JDFCommand command, JDFResponse response) {
         int returnCode = 0;
         String msg = null;
 

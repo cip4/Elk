@@ -25,7 +25,7 @@ import org.cip4.jdflib.jmf.JDFSubscription;
  * </p>
  * 
  * @author Claes Buckwalter (clabu@itn.liu.se)
- * @version $Id: SubscribingIncomingJMFDispatcher.java 1512 2006-08-15 08:53:16Z prosi $
+ * @version $Id: SubscribingIncomingJMFDispatcher.java,v 1.6 2006/08/15 08:52:38 prosi Exp $
  */
 public class SubscribingIncomingJMFDispatcher extends
         AbstractIncomingJMFDispatcher {

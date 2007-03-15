@@ -28,6 +28,7 @@ import org.cip4.jdflib.jmf.JDFJMF;
 import org.cip4.jdflib.jmf.JDFMessage;
 import org.cip4.jdflib.jmf.JDFResponse;
 import org.cip4.jdflib.resource.JDFNotification;
+import org.cip4.jdflib.util.UrlUtil;
 
 /**
  * This servlet parses MIME packages containing JMF and/or JDF and extracts the
@@ -99,7 +100,7 @@ public class MimeTestJMFServlet extends LoggingJMFServlet {
         String outputDirUrl = null;
         InputStream mimeStream = null;
         try {
-            outputDirUrl = outputDir.toURI().toURL().toString();
+            outputDirUrl = UrlUtil.fileToUrl(outputDir, true);
             mimeStream = new FileInputStream(mimeFile);
             String[] fileUrls = _mimeReader.extractMimePackage(mimeStream,
                     outputDirUrl);
