@@ -33,7 +33,7 @@ import com.meterware.servletunit.ServletUnitClient;
  * @author Claes Buckwalter (clabu@itn.liu.se)
  */
 public class JMFServletTest extends ElkTestCase {
-    public static String JDF_FILE = "data/jdf/Approval.jdf";
+    public static String JDF_FILE = "data/jdf/Elk_Approval.jdf";
     public void setUp() throws Exception {
         super.setUp();
     }
