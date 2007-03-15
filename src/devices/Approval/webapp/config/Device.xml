@@ -1,13 +1,18 @@
-<Device Class="Implementation" ID="ElkApproval"
-    DeviceID="Elk Approval" JMFSenderID="Elk Approval"
-    KnownLocalizations="En" Manufacturer="CIP4"
+<Device
+    xmlns="http://www.CIP4.org/JDFSchema_1_1"
+    Class="Implementation"
+    DeviceID="Elk Approval"
+    JMFSenderID="Elk Approval"
+    Manufacturer="CIP4"
     ManufacturerURL="http://www.cip4.org"
     DeviceType="Elk Approval (build @build.number@, @build.timestamp@)" 
     ModelName="Elk Approval"
     ModelNumber="build @build.number@, @build.timestamp@"
     ModelDescription="Elk Approval Reference Device"
-    ModelURL="http://elk.itn.liu.se" Status="Available"
-    JMFURL="http://localhost:8080/elk/jmf" FriendlyName="Elk Approval">
+    ModelURL="http://elk.itn.liu.se"
+    JDFOutputURL="http://127.0.0.1:8080/elk-approval/output"
+    JMFURL="http://127.0.0.1:8080/elk-approval/jmf" 
+    FriendlyName="Elk Approval">
     <DeviceCap CombinedMethod="None" GenericAttributes="ID ProductID
         CustomerID SpawnIDs Class Status PartIDKeys SettingsPolicy
         BestEffortExceptions OperatorInterventionExceptions
