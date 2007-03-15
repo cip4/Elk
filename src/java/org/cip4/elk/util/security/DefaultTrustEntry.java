@@ -365,7 +365,7 @@ public class DefaultTrustEntry implements TrustEntry, Runnable, Serializable {
 	public void setRemoteSecureUrl(String remoteSecureUrl) {
 		if (!isLocalRoleServer())
 			_remoteSecureUrl = remoteSecureUrl;
-		else throw new IllegalArgumentException("Can´t set secure url for a remote client");
+		else throw new IllegalArgumentException("Canï¿½t set secure url for a remote client");
 	}
 	
 	public String getLocalSecureUrl() {

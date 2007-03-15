@@ -748,7 +748,7 @@ public abstract class AbstractRFAJMFProcessor implements RFAJMFProcessor {
 				// certificate invalid.
 				response.setReturnCode(CERTIFICATE_INVALID); break;
 			case TrustEntry.CERT_HOSTNAME_MISMATCH:
-				// cert hostname doesn´t match the hostInfo
+				// cert hostname doesnï¿½t match the hostInfo
 				response.setReturnCode(AUTHENTICATION_DENIED); break;
 			default:
 				log.error("Unhandled TrustEntry.STATUS: " + localStatus 

@@ -134,7 +134,7 @@ public class DefaultKeyManager implements KeyManager {
 	 * [propertyPrefix].ssl.server.truststore
 	 * [propertyPrefix].ssl.server.truststorepass
 	 * 
-	 * If keyStores doesn´t exist, set these properties for
+	 * If keyStores doesnï¿½t exist, set these properties for
 	 * certificate generation
 	 * 
 	 * [propertyPrefix].ssl.server.cert.keyalg

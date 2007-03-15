@@ -307,7 +307,7 @@ public class ElkAuthenticationHandler extends AbstractAuthenticationHandler
 
 	/**
 	 * This method overrides the AbstractAuthenticationHandlers method
-	 * This shouldn´t be needed but is here to allow that the
+	 * This shouldnï¿½t be needed but is here to allow that the
 	 * reply URL is set manually in the properties file
 	 */
 	public TrustEntry initIncomingClientConnection(String remoteID, 
@@ -324,7 +324,7 @@ public class ElkAuthenticationHandler extends AbstractAuthenticationHandler
 	
 	/**
 	 * This method overrides the AbstractAuthenticationHandlers method
-	 * This shouldn´t be needed but is here to allow that the
+	 * This shouldnï¿½t be needed but is here to allow that the
 	 * reply URL is set manually in the properties file
 	 */
 	public TrustEntry initIncomingServerConnection(String remoteID,

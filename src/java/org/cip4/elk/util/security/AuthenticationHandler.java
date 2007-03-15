@@ -45,7 +45,7 @@ public interface AuthenticationHandler {
 
 	/**
 	 * Initiates a connection by sending a RFA command to the URL
-	 * Returns null if the RFA request couldn´t be handled. 
+	 * Returns null if the RFA request couldnï¿½t be handled. 
 	 * 
 	 * @param remoteUrl the remote URL to initiate a cert exchange with
 	 * @return 
@@ -54,7 +54,7 @@ public interface AuthenticationHandler {
 
 	/**
 	 * Initiates a connection by sending a RFA command to the URL
-	 * Returns null if the RFA request couldn´t be handled. 
+	 * Returns null if the RFA request couldnï¿½t be handled. 
 	 * 
 	 * @param remoteUrl the remote URL to initiate a cert exchange with
 	 * @return 
@@ -64,7 +64,7 @@ public interface AuthenticationHandler {
 	
 	/**
 	 * Returns a TrustEntry with the localRole AsServer or null if
-	 * it doesn´t exist. 
+	 * it doesnï¿½t exist. 
 	 * 
 	 * Returns a TrustEntry to a remote CLIENT wich is
 	 * the same as a local SERVER
@@ -77,7 +77,7 @@ public interface AuthenticationHandler {
 
 	/**
 	 * Returns a TrustEntry with the role AsClient or null if
-	 * it doesn´t exist.
+	 * it doesnï¿½t exist.
 	 * 
 	 * Returns a TrustEntry to a remote SERVER wich is
 	 * the same as a local CLIENT

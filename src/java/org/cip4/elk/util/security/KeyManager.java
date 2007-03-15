@@ -41,7 +41,7 @@ public interface KeyManager {
 	/**
 	 * Adds the certificate of the TrustEntry to the trustStore.
 	 * Implementing classes must distinguish servers from clients
-	 * since an entity´s client and server certificate usually
+	 * since an entityï¿½s client and server certificate usually
 	 * has the same alias.
 	 * 
 	 * The remoteCertificate for the trustEntry is stored in 

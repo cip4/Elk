@@ -16,7 +16,7 @@ import org.apache.commons.httpclient.methods.PostMethod;
  * to a remote web server using HTTP POST
  *
  * @author Sean C. Sullivan
- * @author Ortwin Glück
+ * @author Ortwin Glï¿½ck
  * @author Oleg Kalnichevski
  * @author Claes Buckwalter
  */

@@ -17,9 +17,9 @@ All settings relevant to the certificates and keystores used are set here.
 Default files that can be used should be supplied in this folder
 
 Tomcat also needs a cip4 JSSE implementation in order to
-allow runtime changes in the truststore. (You don´t need to 
+allow runtime changes in the truststore. (You donï¿½t need to 
 restart tomcat after adding a trusted certificate into the
-specified truststore file). If this JSSEImplementation isn´t
+specified truststore file). If this JSSEImplementation isnï¿½t
 specified, tomcat has to be restarted in order
 to handle new certificates stored in the truststore file.
 
@@ -44,7 +44,7 @@ Quick Start Guide for Tomcat 5.5.x
  7. Connect your RFA implementing JDF Controller (for example Alces) to the Elk JDF Device using the URL http://localhost:8080/elk-printing/jmf
  8. You can check the contents of the keystores with the "keytool -list -keystore <ks-file.jks>" command
  	The passwords are specified in the rfa.properties file	
- 9. If this doesn´t work, send an email to markus.cip4<at>myman.se
+ 9. If this doesnï¿½t work, send an email to markus.cip4<at>myman.se
 
 --------------------------
 Default settings in tomcat
@@ -55,7 +55,7 @@ Insert this Connector into existing <tomcat home>/conf/server.xml
 or overwrite the existing server.xml with the one supplied.
 Remember to set the <user home> folder in the file.
 
-If you don´t have the cip4JSSEImplementation you should ommit the
+If you donï¿½t have the cip4JSSEImplementation you should ommit the
 line 
     		   SSLImplementation="org.cip4.ssl.JSSEImplementation"
 

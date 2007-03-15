@@ -396,7 +396,7 @@ public abstract class AbstractAuthenticationHandler implements
 		Iterator it = _trustEntries.iterator();
 		while (it.hasNext()) {
 			tmp = (TrustEntry) it.next();
-			// Check that it´s not a server TE and that URL is correct
+			// Check that itï¿½s not a server TE and that URL is correct
 			if (tmp.isLocalRoleServer() == true && tmp.getRemoteUrl().equals(url))
 				return tmp;
 		}
