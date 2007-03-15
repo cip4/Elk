@@ -1,15 +1,15 @@
-Message-ID: <6041582.1173996294579.JavaMail.clabu@presley.telenet.be>
+Message-ID: <5339653.1173998025285.JavaMail.clabu@presley.telenet.be>
 MIME-Version: 1.0
 Content-Type: multipart/related; 
-	boundary="----=_Part_0_10748487.1173996294506"
+	boundary="----=_Part_2_11892243.1173998025277"
 
-------=_Part_0_10748487.1173996294506
+------=_Part_2_11892243.1173998025277
 Content-Type: application/vnd.cip4-jmf+xml
 Content-Transfer-Encoding: 7bit
 
 <?xml version="1.0" encoding="UTF-8"?>
 <JMF SenderID="Alces" TimeStamp="2005-10-09T17:42:00+01:00" Version="1.2" xmlns="http://www.CIP4.org/JDFSchema_1_1"><Command ID="M001" Type="SubmitQueueEntry"><QueueSubmissionParams URL="cid:Alces-Approval.jdf"/><QueueFilter MaxEntries="4" QueueEntryDetails="Brief"/></Command></JMF>
-------=_Part_0_10748487.1173996294506
+------=_Part_2_11892243.1173998025277
 Content-Type: application/xml; name=Alces-Approval.jdf
 Content-Transfer-Encoding: 7bit
 Content-Disposition: attachment; filename=Alces-Approval.jdf
@@ -53,7 +53,7 @@ Content-ID: <Alces-Approval.jdf>
     </ResourceLinkPool>
 </JDF>
 
-------=_Part_0_10748487.1173996294506
+------=_Part_2_11892243.1173998025277
 Content-Type: application/pdf; name=Alces-Figures.pdf
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename=Alces-Figures.pdf
@@ -390,4 +390,4 @@ NTUzNSBmDQowMDAwMDA2ODg5IDAwMDAwIG4NCjAwMDAwMDcxMDMgMDAwMDAgbg0KMDAwMDAwNzE4
 MSAwMDAwMCBuDQowMDAwMDA3MzYzIDAwMDAwIG4NCjAwMDAwMTQ5NTYgMDAwMDAgbg0KMDAwMDAx
 NTAwMSAwMDAwMCBuDQowMDAwMDE1MDU4IDAwMDAwIG4NCjAwMDAwMTg0NDggMDAwMDAgbg0KdHJh
 aWxlcg08PC9TaXplIDk+Pg1zdGFydHhyZWYNMTE2DSUlRU9GDQ==
-------=_Part_0_10748487.1173996294506--
+------=_Part_2_11892243.1173998025277--
