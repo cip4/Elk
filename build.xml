@@ -37,11 +37,12 @@
 		<echo>Initializing optional targets for deploying Elk directly into Tomcat...</echo>
 		<!-- Tomcat tasks -->
 		<!-- Configure the context path for this application -->
-		<property name="path" value="/elk" />
+		<property name="path" value="/elk-printing" />
+		<property name="war" value="elk-printing.war" />
 		<!-- Configure properties to access the Manager application -->
 		<property name="tomcat.url" value="http://localhost:8080/manager" />
-		<property name="tomcat.username" value="tomcat" />
-		<property name="tomcat.password" value="tomcat" />
+		<property name="tomcat.username" value="admin" />
+		<property name="tomcat.password" value="heidelberg" />
 		<echo>Elk Context Path: ${path}</echo>
 		<echo>Tomcat Manager URL: ${tomcat.url}</echo>
 		<echo>Tomcat Manager Login: ${tomcat.username}/${tomcat.password}</echo>
@@ -104,12 +105,12 @@
 	</target>
 	<target name="install" description="Install web application" depends="-tomcat-init">
 		<echo>Deploying Elk web application to Tomcat...</echo>
-		<install url="${tomcat.url}" username="${tomcat.username}" password="${tomcat.password}" path="${path}" war="file:${basedir}/${dist.dir}/elk.war" />
+		<install url="${tomcat.url}" username="${tomcat.username}" password="${tomcat.password}" path="${path}" war="file:${basedir}/${dist.dir}/${war}" />
 	</target>
 	<target name="redeploy" depends="-tomcat-init" description="Undeploys and redeploys the web application">
 		<echo>Redeploying Elk web application to Tomcat... </echo>
 		<undeploy url="${tomcat.url}" username="${tomcat.username}" password="${tomcat.password}" path="${path}" />
-		<deploy url="${tomcat.url}" username="${tomcat.username}" password="${tomcat.password}" path="${path}" war="file:${basedir}/${dist.dir}/elk.war" />
+		<deploy url="${tomcat.url}" username="${tomcat.username}" password="${tomcat.password}" path="${path}" war="file:${basedir}/${dist.dir}/${war}" />
 	</target>
 	<target name="-test-init" description="Prepare for running JUnit tests" depends="-init">
 		<echo>Preparing to run JUnit tests...</echo>

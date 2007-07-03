@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src/java"/>
+	<classpathentry kind="src" path="src/devices/ConventionalPrinting/webapp/WEB-INF/classes"/>
 	<classpathentry kind="src" path="src/test"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="src/lib/xml-apis.jar"/>
@@ -16,7 +17,6 @@
 	<classpathentry kind="lib" path="src/lib/junit-3.8.1.jar"/>
 	<classpathentry kind="lib" path="src/lib/jstl-1.1.2.jar"/>
 	<classpathentry kind="lib" path="src/lib/jdom-1.0.jar"/>
-	<classpathentry kind="lib" path="src/lib/JDFLibJ-2.1.3.37.jar"/>
 	<classpathentry kind="lib" path="src/lib/jaxen-1.0-FCS-full.jar"/>
 	<classpathentry kind="lib" path="src/lib/httpunit-1.5.4.jar"/>
 	<classpathentry kind="lib" path="src/lib/concurrent-1.3.4.jar"/>
@@ -27,5 +27,6 @@
 	<classpathentry kind="lib" path="src/lib/commons-httpclient-2.0.2.jar"/>
 	<classpathentry kind="lib" path="src/lib/commons-codec-1.3.jar"/>
 	<classpathentry kind="lib" path="src/lib/activation-1.0.2.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/JDFLib-J"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
