@@ -28,9 +28,9 @@
         <tbody>
             <c:forEach var='sub' items='${subscriptions.subscriptions}'>                
                 <tr>
-                    <td>${sub.id}</a></td>
+                    <td>${sub.id}<a/></td>
                     <td>${sub.url}</td>
-                    <td>${sub.messageType}</a></td>
+                    <td>${sub.messageType}<a/></td>
                     <td><code><c:out value="${sub.query}" escapeXml="true"/></code></td>
                     <td><a href="<c:url value='/config?cmd=deleteSubscription&channel=${sub.id}&url=${sub.url}'/>">Delete</a></td>
                 </tr>

@@ -27,6 +27,7 @@ import org.cip4.jdflib.core.JDFElement;
 import org.cip4.jdflib.core.JDFParser;
 import org.cip4.jdflib.core.JDFPartAmount;
 import org.cip4.jdflib.core.JDFResourceLink;
+import org.cip4.jdflib.core.KElement;
 import org.cip4.jdflib.core.JDFElement.EnumNodeStatus;
 import org.cip4.jdflib.datatypes.JDFAttributeMap;
 import org.cip4.jdflib.datatypes.VJDFAttributeMap;
@@ -472,7 +473,7 @@ public class ConventionalPrintingProcessSimu extends BaseProcess {
 	private void setResourceStatus(Object resource, EnumResStatus status) {
 
 		if (resource instanceof JDFResource) {
-			JDFElement[] elems = ((JDFElement) resource).getChildElements();
+			KElement[] elems = ((JDFElement) resource).getChildElementArray();
 			((JDFResource) resource).setStatus(status);
 			for (int i = 0; i < elems.length; i++) {
 				setResourceStatus(elems[i], status);

@@ -33,7 +33,7 @@ public class MessagesTest extends ElkTestCase {
         Messages.appendNotification(r, JDFNotification.EnumClass.Warning, 4,
             "HERE ARE SOME BUNS!");
         JDFAcknowledge a = Messages.createAcknowledge(r);
-        assertTrue(a.getChildElements().length == r.getChildElements().length);
+        assertTrue(a.getChildElementArray().length == r.getChildElementArray().length);
         // Make sure the response and the ack have the same length.
     }
 
@@ -43,7 +43,7 @@ public class MessagesTest extends ElkTestCase {
         // TEST CREATE RESPONSE AND CREATE ACKNOWLEDGE
         JDFResponse r = Messages.createResponse("testID", "testType");
         a = Messages.createAcknowledge(r);
-        assertTrue(a.getChildElements().length == 0); // Check if the array is
+        assertTrue(a.getChildElementArray().length == 0); // Check if the array is
         // of length 0 and not
         // null. No child elements
         // are appended

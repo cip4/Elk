@@ -24,7 +24,7 @@ import org.cip4.elk.queue.QueueStatusEvent;
 import org.cip4.elk.queue.QueueStatusListener;
 import org.cip4.jdflib.core.JDFComment;
 import org.cip4.jdflib.core.JDFDoc;
-import org.cip4.jdflib.core.JDFElement;
+import org.cip4.jdflib.core.KElement;
 import org.cip4.jdflib.jmf.JDFJMF;
 import org.cip4.jdflib.jmf.JDFMessage;
 import org.cip4.jdflib.jmf.JDFNotificationDef;
@@ -320,7 +320,7 @@ public class SimpleSubscriptionManager implements SubscriptionManager,
         // Create dummy query for JMFProcessor
         JDFQuery dummyQuery = (JDFQuery) query.cloneNode(false);
         // Copy original query's children
-        JDFElement[] queryChildren = query.getChildElements();
+        KElement[] queryChildren = query.getChildElementArray();
         for (int i = 0; i < queryChildren.length; i++) {
             if (!(queryChildren[i] instanceof JDFSubscription || queryChildren[i] instanceof JDFComment)) {
                 signal.copyElement(queryChildren[i], null);
@@ -337,7 +337,7 @@ public class SimpleSubscriptionManager implements SubscriptionManager,
         int returnCode = processor.processJMF(dummyQuery, dummyResponse);
         String url = query.getSubscription().getURL();
         if (returnCode == 0) { // Query okay
-            signal.copyElement(dummyResponse.getChildElements()[0], null);
+            signal.copyElement(dummyResponse.getChildElementArray()[0], null);
             //TODO
             // Vsignal.copyElement((KElement)dummyResponse.getChildElementVector(JDFConstants.WILDCARD,
             // JDFConstants.NONAMESPACE, new JDFAttributeMap(), false, 0, false).elementAt(0),

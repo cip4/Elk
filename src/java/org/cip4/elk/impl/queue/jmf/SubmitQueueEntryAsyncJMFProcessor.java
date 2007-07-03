@@ -4,7 +4,7 @@ import org.cip4.elk.impl.jmf.AbstractJMFProcessor;
 import org.cip4.elk.impl.jmf.preprocess.JDFPreprocessor;
 import org.cip4.elk.impl.jmf.util.Messages;
 import org.cip4.elk.queue.Queue;
-import org.cip4.jdflib.core.JDFElement;
+import org.cip4.jdflib.core.KElement;
 import org.cip4.jdflib.jmf.JDFCommand;
 import org.cip4.jdflib.jmf.JDFMessage;
 import org.cip4.jdflib.jmf.JDFResponse;
@@ -136,7 +136,7 @@ public class SubmitQueueEntryAsyncJMFProcessor extends AbstractJMFProcessor {
             log.debug("Processing SubmitQueueEntry command synchronously...");
             JDFResponse newResponse = _preprocessor.preProcessJDF(commandSubmitQueueEntry);
             // Copy Response from preprocessor to original Response
-            JDFElement[] elements = newResponse.getChildElements();
+            KElement[] elements = newResponse.getChildElementArray();
             for (int i = 0, size = elements.length; i < size; i++) {
                 incomingResponse.copyElement(elements[i], null);
             }

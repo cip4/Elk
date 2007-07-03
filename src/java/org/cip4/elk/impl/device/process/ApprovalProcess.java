@@ -11,10 +11,8 @@ import org.cip4.elk.queue.Queue;
 import org.cip4.jdflib.auto.JDFAutoNotification.EnumClass;
 import org.cip4.jdflib.core.ElementName;
 import org.cip4.jdflib.core.JDFComment;
-import org.cip4.jdflib.core.JDFConstants;
-import org.cip4.jdflib.core.JDFElement;
+import org.cip4.jdflib.core.KElement;
 import org.cip4.jdflib.core.JDFElement.EnumNodeStatus;
-import org.cip4.jdflib.datatypes.JDFAttributeMap;
 import org.cip4.jdflib.datatypes.VJDFAttributeMap;
 import org.cip4.jdflib.node.JDFNode;
 import org.cip4.jdflib.pool.JDFAuditPool;
@@ -82,7 +80,7 @@ public class ApprovalProcess extends BaseProcess {
         // Copy the contents of each input resource to an output resource
         // TODO Verify that inputResources.size() == outputResources.size()
         JDFResource resIn;
-        JDFElement[] children;
+        KElement[] children;
         JDFResource resOut;
         int randomStatus;
         Random random = new Random();
@@ -112,7 +110,7 @@ public class ApprovalProcess extends BaseProcess {
 
         for (int i = 0, imax = inputResources.size(); i < imax; i++) {
             resIn = (JDFResource) inputResources.get(i);
-            children = resIn.getChildElements();
+            children = resIn.getChildElementArray();
             resOut = (JDFResource) outputResources.get(i);
             for (int j = 0; j < children.length; j++) {
                 resOut.copyElement(children[j], null);
@@ -201,7 +199,7 @@ public class ApprovalProcess extends BaseProcess {
      */
     protected List getApprovalPersons(JDFApprovalParams approvalParams) {
         return approvalParams.getChildElementVector(ElementName.APPROVALPERSON,
-            JDFConstants.NONAMESPACE, new JDFAttributeMap(), false, 0, true);
+            null, null, false, 0, true);
     }
 
     /**

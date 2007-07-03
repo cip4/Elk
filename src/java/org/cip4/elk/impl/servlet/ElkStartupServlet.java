@@ -131,9 +131,11 @@ public class ElkStartupServlet extends HttpServlet {
         URLAccessTool urlTool = (URLAccessTool) _beanFactory
                 .getBean("fileUtil");
         try {
-            urlTool.setBaseUrl(UrlUtil.fileToUrl(new File(getServletContext().getRealPath("/")), true));
-        } catch (MalformedURLException mue) {
-            log.warn("Base URL could not be configured.", mue);
+            urlTool.setBaseUrl(getServletContext().getRealPath("/"));
+//            urlTool.setBaseUrl(UrlUtil.fileToUrl(new File(getServletContext().getRealPath("/")), true));
+//        } catch (MalformedURLException mue) {
+        } catch (Exception mue) {
+                       log.warn("Base URL could not be configured.", mue);
         }
 
         DeviceConfig config = (DeviceConfig) _beanFactory

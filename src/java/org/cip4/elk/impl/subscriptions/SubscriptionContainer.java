@@ -223,10 +223,13 @@ public class SubscriptionContainer {
     public synchronized Collection getSubscriptions() {
         Collection ret = new Vector();
         log.debug("About to return all Subscriptions.");
-        for (Iterator subscriptionMaps = _subscriptions.values().iterator(); subscriptionMaps
-                .hasNext();) {
-            Map m = (Map) subscriptionMaps.next();
-            ret.addAll(m.values());            
+        if(_subscriptions!=null)
+        {
+            for (Iterator subscriptionMaps = _subscriptions.values().iterator(); subscriptionMaps
+            .hasNext();) {
+                Map m = (Map) subscriptionMaps.next();
+                ret.addAll(m.values());            
+            }
         }
         log.debug("Total number of Subscriptions are " + ret.size());
         return Collections.unmodifiableCollection(ret);
@@ -239,12 +242,16 @@ public class SubscriptionContainer {
     public synchronized void cleanUp() {
         log.debug("About to destroy subscriptions.");
         Collection c = getSubscriptions();
-        SubscriptionImpl s = null;
-        for (Iterator it = c.iterator(); it.hasNext();) {
-            s = (SubscriptionImpl) it.next();
-            s.cancelTimer();
+        if(c!=null)
+        {
+            SubscriptionImpl s = null;
+            for (Iterator it = c.iterator(); it.hasNext();) {
+                s = (SubscriptionImpl) it.next();
+                s.cancelTimer();
+            }
         }
-        _subscriptions.clear();
+        if(_subscriptions!=null)
+            _subscriptions.clear();
         _subscriptions = null;
         log.debug("Destroyed subscriptions.");
 

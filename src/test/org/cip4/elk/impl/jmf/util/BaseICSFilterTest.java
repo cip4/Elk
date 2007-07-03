@@ -5,14 +5,13 @@ package org.cip4.elk.impl.jmf.util;
 
 import org.cip4.elk.ElkTestCase;
 import org.cip4.elk.JDFElementFactory;
-import org.cip4.elk.impl.jmf.util.BaseICSDeviceFilter;
 import org.cip4.jdflib.auto.JDFAutoDeviceFilter.EnumDeviceDetails;
 import org.cip4.jdflib.auto.JDFAutoDeviceInfo.EnumDeviceStatus;
 import org.cip4.jdflib.core.AttributeName;
 import org.cip4.jdflib.core.ElementName;
 import org.cip4.jdflib.core.JDFDoc;
-import org.cip4.jdflib.core.JDFElement;
 import org.cip4.jdflib.core.JDFParser;
+import org.cip4.jdflib.core.KElement;
 import org.cip4.jdflib.jmf.JDFDeviceFilter;
 import org.cip4.jdflib.jmf.JDFDeviceInfo;
 import org.cip4.jdflib.resource.JDFDevice;
@@ -93,7 +92,7 @@ public class BaseICSFilterTest extends ElkTestCase {
      */
     private void testDeviceList(JDFDeviceList list) {
 
-        JDFElement deviceInfoElements[] = list.getChildElements();
+        KElement deviceInfoElements[] = list.getChildElementArray();
         for (int i = 0; i < deviceInfoElements.length; i++) {
             JDFDeviceInfo deviceInfo = (JDFDeviceInfo) deviceInfoElements[i];
             JDFDevice device = deviceInfo.getDevice();
