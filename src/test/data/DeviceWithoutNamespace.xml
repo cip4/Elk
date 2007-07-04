@@ -1,7 +1,7 @@
 <Device Class="Implementation" ID="Elk" DeviceID="Elk" JMFSenderID="Elk"
     KnownLocalizations="En" Manufacturer="CIP4"
-    ManufacturerURL="http://elk.itn.liu.se" DeviceType="Elk" ModelName="Elk"
-    ModelDescription="Elk Refernce Device" ModelURL="http://elk.itn.liu.se"
+    ManufacturerURL="http://www.cip4.org/open_source/elk/" DeviceType="Elk" ModelName="Elk"
+    ModelDescription="Elk Refernce Device" ModelURL="http://www.cip4.org/open_source/elk/"
     Status="Available" JMFURL="http://localhost:8080/elk/jmf"
     FriendlyName="Elk">
     <DeviceCap>

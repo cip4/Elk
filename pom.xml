@@ -8,7 +8,7 @@
   <artifactId>elk</artifactId>  
   <version>20060531</version>
   <name>Elk</name>
-  <url>http://elk.itn.liu.se</url>
+  <url>http://www.cip4.org/open_source/elk/</url>
   <issueManagement>
     <system>JIRA</system>
     <url>http://www.cip4.org/jira/</url>
@@ -103,7 +103,7 @@
       <id>org.cip4</id>
       <name>CIP4 Maven Repository</name>
       <layout>default</layout>
-      <url>http://elk.itn.liu.se/maven2</url>
+      <url>http://www.cip4.org/open_source/elk//maven2</url>
       <releases>
         <enabled>true</enabled>
       </releases>

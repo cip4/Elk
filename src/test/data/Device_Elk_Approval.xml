@@ -6,7 +6,7 @@
     ModelName="Elk Approval"
     ModelNumber="build @build.number@, @build.timestamp@"
     ModelDescription="Elk Approval Reference Device"
-    ModelURL="http://elk.itn.liu.se" Status="Available"
+    ModelURL="http://www.cip4.org/open_source/elk/" Status="Available"
     JMFURL="http://localhost:8080/elk/jmf" FriendlyName="Elk Approval">
     <DeviceCap CombinedMethod="None" GenericAttributes="ID ProductID
         CustomerID SpawnIDs Class Status PartIDKeys SettingsPolicy

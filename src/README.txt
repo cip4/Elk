@@ -33,7 +33,7 @@ See http://www.cip4.org/jira/browse/ELK
 Documentation
 -------------
 
-For general help and API documentation see the project web site http://elk.itn.liu.se
+For general help and API documentation see the project web site http://www.cip4.org/open_source/elk/
 
 -----------------
 Quick Start Guide
@@ -53,4 +53,4 @@ The Elk reference devices come in the form of J2EE web applications bundled as W
 Building
 --------
 
-For documentation on how to build Elk, see the developer's tutorial at the Elk web site http://elk.itn.liu.se.
+For documentation on how to build Elk, see the developer's tutorial at the Elk web site http://www.cip4.org/open_source/elk/.

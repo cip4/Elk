@@ -3,7 +3,7 @@
     <bannerLeft>
         <name>Elk</name>
         <!--<src>http://maven.apache.org/images/apache-maven-project.png</src>-->
-        <href>http://elk.itn.liu.se/index.html</href>
+        <href>http://www.cip4.org/open_source/elk/index.html</href>
     </bannerLeft>
     <bannerRight>
         <name> </name>
@@ -21,9 +21,9 @@
             <item name="Developer's Tutorial (PDF)" href="docs/elk-dev-tutorial.pdf"/>
             <item name="Javadoc" href="apidocs/index.html"/>
             <item name="Issue Tracking" href="http://www.cip4.org/jira/"/>            
-            <item name="Downloads" href="http://elk.itn.liu.se/downloads"/>
-            <item name="Old Downloads" href="http://elk.itn.liu.se/maven/elk/distributions"/>
-            <item name="Alces" href="http://elk.itn.liu.se/alces"/>
+            <item name="Downloads" href="http://www.cip4.org/open_source/elk/downloads"/>
+            <item name="Old Downloads" href="http://www.cip4.org/open_source/elk/maven/elk/distributions"/>
+            <item name="Alces" href="http://www.cip4.org/open_source/elk/alces"/>
         </menu>
         ${reports}
     </body>

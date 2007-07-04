@@ -26,7 +26,7 @@ can also monitor Elk using the web-based user interface below:</p>
 <p>Welcome to Elk - CIP4's JDF device reference implementation. You can send JMF messages to Elk using the URL <strong>http://<jsp:expression>request.getLocalAddr()+":"+request.getLocalPort()</jsp:expression>/elk/jmf</strong> (or http://<jsp:expression>request.getLocalName()+":"+request.getLocalPort()</jsp:expression>/elk/jmf).</p>
 --%>
 <p>You can find more information about the Elk project at the project's
-web site <a href="http://elk.itn.liu.se"> http://elk.itn.liu.se </a> .</p>
+web site <a href="http://www.cip4.org/open_source/elk/">http://www.cip4.org/open_source/elk/</a> .</p>
     <p>Elk, build @build.number@, @build.timestamp@</p>
 </body>
 </html>

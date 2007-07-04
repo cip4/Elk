@@ -81,7 +81,7 @@ public class DefaultJDFElementFactoryTest extends TestCase
         assertTrue(o instanceof JDFStopPersChParams);
         JDFStopPersChParams stopParams = (JDFStopPersChParams) o;
         stopParams.setChannelID("12134");
-        stopParams.setURL("http://elk.itn.liu.se");
+        stopParams.setURL("http://www.cip4.org/open_source/elk/");
         System.out.println(stopParams);
     }
 }

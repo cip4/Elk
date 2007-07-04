@@ -6,7 +6,7 @@
     ModelName="Elk ConventionalPrinting"
     ModelNumber="build @build.number@, @build.timestamp@"
     ModelDescription="Elk ConventionPrinting Reference Device"
-    ModelURL="http://elk.itn.liu.se" Status="Available"
+    ModelURL="http://www.cip4.org/open_source/elk/" Status="Available"
     JMFURL="http://localhost:8080/elk/jmf" FriendlyName="Elk
     ConventionalPrinting">
     <DeviceCap CombinedMethod="None" GenericAttributes="ID ProductID
