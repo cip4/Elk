@@ -8,8 +8,6 @@ package org.cip4.elk.impl.subscriptions;
 import java.util.Collection;
 
 import org.cip4.elk.ElkTestCase;
-import org.cip4.elk.impl.subscriptions.SubscriptionImpl;
-import org.cip4.elk.impl.subscriptions.SubscriptionContainer;
 import org.cip4.jdflib.core.ElementName;
 import org.cip4.jdflib.jmf.JDFQuery;
 

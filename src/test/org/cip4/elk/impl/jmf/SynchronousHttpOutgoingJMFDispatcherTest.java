@@ -8,9 +8,7 @@ import java.io.InputStream;
 import org.cip4.elk.Config;
 import org.cip4.elk.DefaultConfig;
 import org.cip4.elk.ElkTestCase;
-import org.cip4.elk.impl.jmf.SyncHttpOutgoingJMFDispatcher;
 import org.cip4.elk.jmf.OutgoingJMFDispatcher;
-
 import org.cip4.jdflib.core.JDFParser;
 import org.cip4.jdflib.jmf.JDFJMF;
 

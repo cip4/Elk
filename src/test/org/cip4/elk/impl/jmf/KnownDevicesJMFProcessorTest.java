@@ -4,12 +4,10 @@
 package org.cip4.elk.impl.jmf;
 
 import org.cip4.elk.ElkTestCase;
-
 import org.cip4.elk.device.DeviceConfig;
 import org.cip4.elk.impl.device.SimpleDeviceConfig;
 import org.cip4.elk.impl.device.process.ApprovalProcess;
 import org.cip4.elk.impl.jmf.util.Messages;
-
 import org.cip4.jdflib.auto.JDFAutoDeviceFilter.EnumDeviceDetails;
 import org.cip4.jdflib.core.ElementName;
 import org.cip4.jdflib.core.JDFConstants;

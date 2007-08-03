@@ -16,7 +16,6 @@ import org.cip4.elk.device.process.ProcessStatusEvent;
 import org.cip4.elk.impl.device.SimpleDeviceConfig;
 import org.cip4.elk.impl.device.process.ApprovalProcess;
 import org.cip4.elk.impl.jmf.AbstractIncomingJMFDispatcher;
-import org.cip4.elk.impl.subscriptions.AsyncSimpleSubscriptionManager;
 import org.cip4.elk.jmf.JMFProcessor;
 import org.cip4.elk.jmf.OutgoingJMFDispatcher;
 import org.cip4.jdflib.core.ElementName;
