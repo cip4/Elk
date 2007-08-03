@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>Elk</name>
+	<name>Bambi</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -14,4 +14,16 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>bin</name>
+			<type>2</type>
+			<location>O:/Bambi/bin</location>
+		</link>
+		<link>
+			<name>java</name>
+			<type>2</type>
+			<location>O:/Bambi/src/java</location>
+		</link>
+	</linkedResources>
 </projectDescription>
