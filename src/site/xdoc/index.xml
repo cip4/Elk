@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<document>
+    <properties>
+        <author email="claes.buckwalter@agfa.com">Claes Buckwalter</author>
+        <title>The Elk Framework</title>
+    </properties>
+    <meta name="keyword" content="The Elk Framework, Elk, JDF, Job Definition Format, JMF, Job Messaging Format, CIP4, Device, Device Framework, Controller, JDF Framework, Java"/>
+    <body>
+        <section name="News">
+                <ul>
+                    <li>2007-02-15 - Brian Ray of the Elk team gives gives a tutorial on Job Messaging Format (JMF), Elk, and Alces at <a href="http://www.xplor.org/xplor2007/agenda/course_desc.cfm?courseID=140&amp;qwerty=asd456ghj">Xplor 2007</a>, Miami Beach Convention Center, Florida, USA, on March 2nd.</li>
+                    <li>2006-11-20 - Claes Buckwalter defends his licentiate thesis <a href="http://www.diva-portal.org/liu/abstract.xsql?dbid=7837">Integrating Systems in the Print Production Workflow - Aspects of Implementing JDF</a> at ITN, Linköping University on December 8th</li> 
+                    <li>2006-11-03 - An Elk tutorial will be held on Sunday, November 5th, at the CIP4 Tutorial and Developer Meeting in Quebec City, Canada. For more information, visit the <a href="http://www.cip4.org">CIP4 web site</a>.</li>
+                    <li>2006-06-01 - A new release of the Elk reference JDF devices is available for download. The <em>ConventionalPrinting</em> device's simulation model has been greatly imporved by Marco Kornrumpf, Arvato Systems, as part of his thesis project. The <em>Approval</em> device contains minor changes.
+                       Download:
+                       <ul>
+                           <li><a href="http://www.cip4.org/open_source/elk/downloads/elk-20060601-bin.zip">Binary distribution</a> (contains deployable ConventionalPrinting and Approval devices)</li>
+                           <li><a href="http://www.cip4.org/open_source/elk/downloads/elk-20060601-src.zip">Source distribution</a></li>
+                        </ul>
+                        Read the updated <a href="quickstart.html">Quick Start Guide</a> to get started.<br />
+                        (The 20060531 Elk release briefly posted here has been removed because it contained an old version of Xerces that prevented Elk from running under Java 1.4. Sorry for the inconvenience.)
+                    </li>
+                    <li>2006-05-22 - Claes Buckwalter held an Elk tutorial at the CIP4 technical interop in Tokyo. Here are <a href="docs/elk-tutorial-tokyo-interop-2006.pdf">the slides</a>.</li>
+                    <li>2006-01-19 - A new release of the Elk ConventionalPrinting device is available for download. The new release is based on JDFLib-J 2.1.3 and contains various bug fixes. One new feature is CheckJDF-J validation and device capability testing of all received JDF. The feature is enabled in Elk's <a href="http://www.cip4.org/open_source/elk/elk/config?cmd=showConfig">web-based GUI</a>. Download the pre-built deployable <a href="http://www.cip4.org/open_source/elk/maven/elk/distributions/elk-20060119.war">web application</a> (rename it elk.war) or the <a href="http://www.cip4.org/open_source/elk/maven/elk/distributions/elk-20060119-src.zip">source distribution</a>. View the <a href="http://www.cip4.org/open_source/elk/maven/elk/distributions/README.txt">README file</a> to get started.</li>
+                    <li>2006-01-18 - Elk's issue tracking system has moved to CIP4's server: <a href="http://www.cip4.org/jira/">http://www.cip4.org/jira/</a></li>
+                    <li>2005-11-14 - Claes Buckwalter and Ola Stering present Elk-related papers at <a href="http://www.printingfuturedays.com">Printing Future Days</a> in Chemnitz, Germany.</li>
+                    <li>2005-11-04 - Claes Buckwalter and Ola Stering of the Elk team will be attending the CIP4 technical interop in Strasbourg 6-12 November. On the 6th they will give a tutorial on Elk and Alces.</li>
+                    <li>2005-09-15 - <a href="http://www.cip4.org/open_source/elk/elk/">Try the online demo of the Elk 1.0 beta 1 Approval device</a></li>
+                    <li>
+                        2005-09-15 - Elk 1.0 beta 1. The Elk Framework and reference implementation reaches 1.0 beta. Features include:
+                        <ul>
+                            <li>Implementation of the JDF 1.2 Base ICS 1.0 level 3 Worker Interface (hot folders excluded)</li>
+                            <li>Device capabilities checking</li>
+                            <li>Two simulated process implementations: Approval and ConventionalPrinting</li>                            
+                            <li>Web-based user interface for monitoring</li>
+                        </ul> 
+                        Download Elk 1.0 beta 1:
+                        <ul>
+                            <li><a href="http://www.cip4.org/open_source/elk/maven/elk/distributions/elk-1.0-beta-1-approval.war">Approval process implementation</a> - zero-configuration deployable J2EE web application (WAR)</li>
+                            <li><a href="http://www.cip4.org/open_source/elk/maven/elk/distributions/elk-1.0-beta-1-convprint.war">ConventionalPrinting process implementation</a> - zero-configuration deployable J2EE web application (WAR)</li>
+                            <li><a href="http://www.cip4.org/open_source/elk/maven/elk/distributions/elk-1.0-beta-1-src.zip">Source distribution</a></li>
+                        </ul>
+                    </li>
+                    <li>2005-08-05 - The Elk Project now has an issue tracking system where you can report bugs and suggest new features: <a href="http://www.cip4.org/open_source/elk/jira/">http://www.cip4.org/open_source/elk/jira/</a></li>
+                    <li>2005-07-20 - Brian Ray of <a href="http://www.printable.com">Printable Technologies Inc.</a> has joined the <a href="team-list.html#Members">Elk project team</a>.</li>
+                    <li>2005-07-15 - A new build of the Elk reference implementation is available for download. [<a href="changes-report.html#elk-20050715">Changes</a>] [<a href="http://www.cip4.org/open_source/elk/maven/elk/distributions/elk-20050715.war">Deployable WAR</a>] [<a href="http://www.cip4.org/open_source/elk/maven/elk/distributions/elk-20050715-src.zip">Source</a>]</li>
+                    <li>2005-07-15 - <strong>Alces</strong> is a tool for testing software that implements the <em>worker interface</em> (see <a href="http://www.cip4.org/document_archive/documents/ICS-Base-1.0.pdf">Base ICS 1.0, appendix A</a>). Alces is used by the Elk team for regression testing of the Elk reference implementation. Visit the Alces web site for more information: <a href="http://www.cip4.org/open_source/elk/alces">http://www.cip4.org/open_source/elk/alces</a></li>
+                    <li>2005-05-08 - A new build of the Elk reference implementation is available for download. [<a href="changes-report.html#elk-20050623">Changes</a>] [<a href="http://www.cip4.org/open_source/elk/maven/elk/distributions/elk-20050623.war">Deployable WAR</a>] [<a href="http://www.cip4.org/open_source/elk/maven/elk/distributions/elk-20050623-src.zip">Source</a>]</li>
+                    <li>2005-05-08 - A new build of the Elk reference implementation is available for download. [<a href="changes-report.html#elk-20050508">Changes</a>] [<a href="http://www.cip4.org/open_source/elk/maven/elk/distributions/">Download</a>]</li>
+                    <li>2005-04-27 - Slides from the Elk tutorial held at CIP4's technical interop in Pittsburgh have been added. [<a href="docs/elk-tutorial-pittsburgh.pdf">Download</a>]</li>
+                    <li>2005-04-21 - A introduction to the Elk Framework will be given at CIP4's <em>JDF Developers Tutorial</em> on Sunday, April 24th, 2005 at PIA/GATF's headquarters in Sewickley, PA, USA. <a href="http://www.cip4.org">More info...</a></li>
+                    <li>2005-04-19 - Claes Buckwalter presented a paper named <em>A JDF-enabled Workflow Simulation Tool</em> at <a href="http://www.taga.com">TAGA 2005</a> in Toronto, Canada. The work presented in the paper is largely based on the Elk Framework.</li>
+                    <li>2005-03-10 - Thesis student Ola Stering has joined the <a href="team-list.html#Members">project team</a>. Ola will be working on the Elk project for the next five months and help make Elk fully compliant with the <a href="http://www.cip4.org/document_archive/ics.php">Base ICS</a> and <a href="http://www.cip4.org/document_archive/ics.php">MIS ICS</a>, level 3.</li>
+                    <li>2005-01-29 - The <a href="docs/elk-dev-tutorial.pdf">developers tutorial</a> has been updated to cover building with Ant.</li>
+                    <li>2005-01-28 - A <a href="quickstart.html">Quick Start Guide</a> for getting started with Elk has been added.</li>
+                    <li>2005-01-27 - From now on Elk's <a href="http://www.cip4.org/open_source/elk/maven/elk/distributions">binary distribution</a> will be the Elk reference device web application.</li>
+                    <li>2005-01-27 - From now on Elk's <a href="http://www.cip4.org/open_source/elk/maven/elk/distributions">source distribution</a> will be bundled with an <a href="http://ant.apache.org">Ant</a> build script. Ant is now the preferred tool for building Elk.</li>
+                    <li>2005-01-26 - Slides from the <a href="docs/elk-slides.pdf">Elk tutorial</a> and <a href="docs/jmf-slides.pdf">JMF tutorial</a> at CIP4's technical interop in Heidelberg have been added.</li>
+                </ul>
+            <p>
+            Information about the changes in each new Elk release can be found in the <a href="changes-report.html">changes report</a>.
+                </p>
+        </section>
+        <section name="The Elk Framework">
+            <p>The main goal of the Elk Framework project is to create an
+                application framework that provides the services needed by a JDF
+                <em>Device</em> or <em>Controller</em>. The framework is
+                implemented in Java and is based on <a
+                href="http://www.cip4.org">CIP4</a>'s open source JDF Java SDK
+                    <a href="http://www.cip4.org/open_source/index.html">JDFLib-J</a>.</p>
+            <p>A sub-goal of the project is to create a reference implementation
+                of the Elk Framework. The hope is that the reference
+                implementation will be able to serve as a test tool and a
+                starting point for others wishing to implement a JDF enabled system.</p>
+            <p>Don't hesitate to contact the <a hre="team-list.html">project
+                team</a> if you have any questions or if you want to get
+                invovled in the Elk Framework project.</p>
+        </section>
+        <section name="Disclaimer">
+            <p> The Elk Framework is distributed under the <a
+                    href="http://www.cip4.org/open_source/cip4_software_license.html">
+                    CIP4 Software License</a>. </p>
+            <p> THIS SOFTWARE IS PROVIDED &quot;AS IS&quot; AND ANY
+                EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+                THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+                PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+                INTERNATIONAL COOPERATION FOR THE INTEGRATION OF PROCESSES IN
+                PREPRESS, PRESS AND POSTPRESS OR ITS CONTRIBUTORS BE LIABLE FOR
+                ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+                CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+                PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+                OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+                THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR
+                TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+                OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+                OF SUCH DAMAGE. </p>
+        </section>
+    </body>
+</document>
