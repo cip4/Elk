@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="Elk">
+    <bannerLeft>
+        <name>Elk</name>
+        <!--<src>http://maven.apache.org/images/apache-maven-project.png</src>-->
+        <href>http://www.cip4.org/open_source/elk/index.html</href>
+    </bannerLeft>
+    <bannerRight>
+        <name> </name>
+        <!--<src>http://maven.apache.org/images/maven-small.gif</src>-->
+    </bannerRight>
+    <body>
+        <links>
+            <item name="CIP4" href="http://www.cip4.org" />
+            <item name="Digital Media Division, ITN, Linköping University" href="http://media.itn.liu.se"/>            
+        </links>        
+        <menu name="Elk">
+            <item name="Home" href="index.html"/>
+            <item name="Quick Start Guide" href="quickstart.html"/>
+            <item name="Overview" href="overview.html"/>
+            <item name="Developer's Tutorial (PDF)" href="docs/elk-dev-tutorial.pdf"/>
+            <item name="Javadoc" href="apidocs/index.html"/>
+            <item name="Issue Tracking" href="http://www.cip4.org/jira/"/>            
+            <item name="Downloads" href="http://www.cip4.org/open_source/elk/downloads"/>
+            <item name="Old Downloads" href="http://www.cip4.org/open_source/elk/maven/elk/distributions"/>
+            <item name="Alces" href="http://www.cip4.org/open_source/elk/alces"/>
+        </menu>
+        ${reports}
+    </body>
+</project>
