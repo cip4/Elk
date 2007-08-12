@@ -8,7 +8,7 @@ import java.util.List;
 
 import org.cip4.elk.queue.util.QueueFilter;
 import org.cip4.jdflib.core.ElementName;
-import org.cip4.jdflib.core.JDFConstants;
+//import org.cip4.jdflib.core.JDFConstants;
 import org.cip4.jdflib.datatypes.JDFAttributeMap;
 import org.cip4.jdflib.jmf.JDFQueue;
 import org.cip4.jdflib.jmf.JDFQueueEntry;

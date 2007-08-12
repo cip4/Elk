@@ -59,15 +59,14 @@ public class KnownDevicesJMFProcessorTest extends ElkTestCase {
         log.info(msgOut);
         log.info("End of message ************************************");
         VElement v = msgOut.getChildrenByTagName(ElementName.DEVICE,
-            JDFConstants.NONAMESPACE, new JDFAttributeMap(), true, true, 0);
+        JDFConstants.NONAMESPACE, new JDFAttributeMap(), true, true, 0);
         assertTrue(v.size() == 0);
         JDFDeviceFilter f = msgIn.getDeviceFilter(0);
         assertNotNull(f);
         f.setDeviceDetails(EnumDeviceDetails.Details);
         msgOut = Messages.createResponse(msgIn.getID(), "KnownDevices");
         pr.processMessage(msgIn, msgOut);
-        log
-                .info("When the Details filter is applied, Device elements are returned in the Response.");
+        log.info("When the Details filter is applied, Device elements are returned in the Response.");
         log.info("The output message ********************************");
         log.info(msgOut);
         log.info("End of message ************************************");

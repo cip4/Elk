@@ -5,7 +5,7 @@ package org.cip4.elk.impl.device.jmf;
 
 import org.cip4.elk.device.DeviceConfig;
 import org.cip4.elk.device.process.Process;
-import org.cip4.elk.impl.device.process.BaseProcess;
+//import org.cip4.elk.impl.device.process.BaseProcess;
 import org.cip4.elk.impl.jmf.AbstractJMFProcessor;
 import org.cip4.elk.impl.jmf.util.BaseICSDeviceFilter;
 import org.cip4.elk.queue.Queue;
