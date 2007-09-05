@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE document PUBLIC "-//Apache Software Foundation//DTD XDOC 1.0//EN" "http://maven.apache.org/dtd/xdoc_1_0.dtd">
 <document>
     <properties>
-        <author email="claes.buckwalter@agfa.com">Claes Buckwalter</author>
         <title>The Elk Framework</title>
+        <author email="claes.buckwalter-AT-agfa.com">Claes Buckwalter</author>
+    	<!--<meta name="keyword" content="The Elk Framework, Elk, JDF, Job Definition Format, JMF, Job Messaging Format, CIP4, Device, Device Framework, Controller, JDF Framework, Java"/>-->
     </properties>
-    <meta name="keyword" content="The Elk Framework, Elk, JDF, Job Definition Format, JMF, Job Messaging Format, CIP4, Device, Device Framework, Controller, JDF Framework, Java"/>
     <body>
         <section name="News">
                 <ul>
-                    <li>2007-02-15 - Brian Ray of the Elk team gives gives a tutorial on Job Messaging Format (JMF), Elk, and Alces at <a href="http://www.xplor.org/xplor2007/agenda/course_desc.cfm?courseID=140&amp;qwerty=asd456ghj">Xplor 2007</a>, Miami Beach Convention Center, Florida, USA, on March 2nd.</li>
+					<li>2007-09-05 - A <a href="http://maven.apache.org">Maven</a> repository has been set up for the Elk Project. It will contain the JAR files of the CIP4 tools plus other JARs needed to build the Elk Framework. The repository should become browsable in the next few days: <a href="http://www.cip4.org/open_source/elk/maven/">http://www.cip4.org/open_source/elk/maven/</a></li>
+                    <li>2007-09-04 - The Elk Project is in the process of being restructured. The restructuring is an effort to make a clear separation between <strong>the Elk Framework</strong> aka (the Elk API) and its reference implementation, <strong>the Elk Press</strong>. More information regarding the restructuring can be found <a href="newelk.html">here</a>.</li>
+	                <li>2007-09-04 - New web site design</li>
+                    <li>2007-02-15 - Brian Ray of the Elk team gives a tutorial on Job Messaging Format (JMF), Elk, and Alces at <a href="http://www.xplor.org/xplor2007/agenda/course_desc.cfm?courseID=140&amp;qwerty=asd456ghj">Xplor 2007</a>, Miami Beach Convention Center, Florida, USA, on March 2nd.</li>
                     <li>2006-11-20 - Claes Buckwalter defends his licentiate thesis <a href="http://www.diva-portal.org/liu/abstract.xsql?dbid=7837">Integrating Systems in the Print Production Workflow - Aspects of Implementing JDF</a> at ITN, Linköping University on December 8th</li> 
                     <li>2006-11-03 - An Elk tutorial will be held on Sunday, November 5th, at the CIP4 Tutorial and Developer Meeting in Quebec City, Canada. For more information, visit the <a href="http://www.cip4.org">CIP4 web site</a>.</li>
                     <li>2006-06-01 - A new release of the Elk reference JDF devices is available for download. The <em>ConventionalPrinting</em> device's simulation model has been greatly imporved by Marco Kornrumpf, Arvato Systems, as part of his thesis project. The <em>Approval</em> device contains minor changes.
@@ -61,7 +65,7 @@
             Information about the changes in each new Elk release can be found in the <a href="changes-report.html">changes report</a>.
                 </p>
         </section>
-        <section name="The Elk Framework">
+        <section name="TheElkFramework">
             <p>The main goal of the Elk Framework project is to create an
                 application framework that provides the services needed by a JDF
                 <em>Device</em> or <em>Controller</em>. The framework is
@@ -72,13 +76,13 @@
                 of the Elk Framework. The hope is that the reference
                 implementation will be able to serve as a test tool and a
                 starting point for others wishing to implement a JDF enabled system.</p>
-            <p>Don't hesitate to contact the <a hre="team-list.html">project
+            <p>Don't hesitate to contact the <a href="team-list.html">project
                 team</a> if you have any questions or if you want to get
                 invovled in the Elk Framework project.</p>
         </section>
         <section name="Disclaimer">
             <p> The Elk Framework is distributed under the <a
-                    href="http://www.cip4.org/open_source/cip4_software_license.html">
+                    href="http://www.cip4.org/open_source/cip4_software_license_v2.html">
                     CIP4 Software License</a>. </p>
             <p> THIS SOFTWARE IS PROVIDED &quot;AS IS&quot; AND ANY
                 EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
@@ -95,5 +99,11 @@
                 OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
                 OF SUCH DAMAGE. </p>
         </section>
+    	<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+    	</script>
+    	<script type="text/javascript">
+    	_uacct = 'UA-2486642-2';
+    	urchinTracker();
+    	</script>
     </body>
 </document>

@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE document PUBLIC "-//Apache Software Foundation//DTD XDOC 1.0//EN" "http://maven.apache.org/dtd/xdoc_1_0.dtd">
+<document>
+  <properties>    
+    <title>Restructuring the Elk Project</title>
+    <author email="clabu.buckwalter-AT-agfa.com">Claes Buckwalter</author>    
+  </properties>
+<body>
+<section name="Restructuring the Elk Project">
+<p>
+We have noticed that there is some confusion regarding what exactly the Elk Project is and what its different parts are. In an attempt to make things more clear the project is being restructured.
+</p>
+<p>
+To start with, the project's formal name is <strong>the Elk Project</strong>, often referred to as simply "Elk". The Elk Project consists of two parts:
+</p>
+<ol>
+<li><strong>The Elk Framework</strong> aka <strong>the Elk API</strong> -- a collection of interfaces and utility classes that define an API for implementing a JDF Device. By using the Elk Framework, one can implement their own JDF Device for testing or for production use.</li>
+<li><strong>The Elk Press</strong> (formerly the Elk ConventionalPrinting Device) -- a reference implementation of the Elk Framework in the form of a simulated press device that can execute JDF ConventionalPrinting nodes. The Elk Press is useful for testing prepress or MIS systems that track print production.</li>
+</ol>
+<p>
+ The problem has been that the project web site, the source repository, and the distribution do not separate between the Elk Framework and the reference device. Both the Elk Framework classes and all the classes of the Elk Press are packaged in a single JAR file. Instead, the Elk Framework should of course be distributed as a separate JAR file so that developers can download it when they want to write there own implementations. Developers should not have to download the Elk Press together with all its dependencies, such as Spring, just to get their hands on the Elk Framework. This has had the unfortunate effect that developers have come to believe that the Elk Framework is more heavyweight than it really is.
+</p>
+<p>
+In order to make a clearer separation between the different parts of the Elk Project the following changes are being made:
+</p>
+<ul>
+<li>The current Elk web site (<a href="http://www.cip4.org/open_source/elk/">http://www.cip4.org/open_source/elk/</a>) will continue to be the home of the Elk Framework. It will be the home of the Elk Framework's documentation and its source and binary distribution. The web site will also provide news about and pointers to projects that are based on or related to the Elk Framework.
+</li>
+<li>A new web site, probably a sub-site to the current one, will be created for the Elk Press. It will house the reference device's documentation, source and binary distribution, and other related information.
+</li>
+<li>The current Subversion source repository (http://cip4srv2.igd.fhg.de/svnroot/trunk/elk/) will continue to house the Elk Framework. All other source code will be moved. 
+</li>
+<li>A new source repository will be created for the Elk Press at { http://cip4srv2.igd.fhg.de/svnroot/trunk/elk-press/). The Elk Press source code will be extracted from the current source repository and moved to the new repository.</li>
+</ul>
+<p>
+So far, only this web site has been updated. As the restructuring continues it will be updated with more information. If you have any questions or comments on the restructuring, feel free to contact us. You can send an e-mail to me directly, or, if you are a member of <a href="http://www.cip4.org">CIP4</a>, you can send an e-mail to the <a href="mailto:tools-at-cip4.org">Tools &amp; Infrastructure working group</a>.
+</p>
+<p>
+  <br />
+  <br />
+	<a href="mailto:claes.buckwalter-at-agfa.com">Claes Buckwalter</a>, 2007-09-04
+</p>
+</section>
+</body>
+</document>

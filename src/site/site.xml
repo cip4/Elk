@@ -1,30 +1,61 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<project name="Elk">
+<project name="The Elk Framework">
+    <skin>
+
+        <!--
+        <groupId>org.apache.james</groupId>
+        <artifactId>maven-skin</artifactId>
+        <version>1.1</version>-->
+        <!--<groupId>org.springframework.maven.skins</groupId>
+        <artifactId>maven-spring-skin</artifactId>
+        <version>1.0.3</version>-->
+        <!--<groupId>wicket</groupId>
+        <artifactId>wicket-site-skin</artifactId>
+        <version>1.2.6</version>
+        -->
+        <groupId>org.cip4.elk</groupId>
+        <artifactId>elk-site-skin</artifactId>
+        <version>1.0.2</version>
+        <!--<groupId>org.apache.maven.skins</groupId>
+        <artifactId>maven-stylus-skin</artifactId>
+        <version>1.0.1</version>-->
+    </skin>
     <bannerLeft>
-        <name>Elk</name>
-        <!--<src>http://maven.apache.org/images/apache-maven-project.png</src>-->
+        <name>The Elk Framework</name>
+        <src>logo.png</src>
+        <alt>The Elk Framework</alt>
         <href>http://www.cip4.org/open_source/elk/index.html</href>
     </bannerLeft>
     <bannerRight>
+        <!--
         <name> </name>
-        <!--<src>http://maven.apache.org/images/maven-small.gif</src>-->
+        <src>http://maven.apache.org/images/maven-small.gif</src>
+		-->
     </bannerRight>
     <body>
         <links>
-            <item name="CIP4" href="http://www.cip4.org" />
-            <item name="Digital Media Division, ITN, Linköping University" href="http://media.itn.liu.se"/>            
-        </links>        
-        <menu name="Elk">
+            <item name="CIP4" href="http://www.cip4.org"/>
+            <!--<item name="Digital Media Division, ITN, Linköping University"
+                href="http://dm.itn.liu.se"/>-->
+        </links>
+        <menu name=" The Elk Framework">
             <item name="Home" href="index.html"/>
             <item name="Quick Start Guide" href="quickstart.html"/>
             <item name="Overview" href="overview.html"/>
-            <item name="Developer's Tutorial (PDF)" href="docs/elk-dev-tutorial.pdf"/>
+            <item name="Developer's Tutorial (PDF)"
+                href="docs/elk-dev-tutorial.pdf"/>
             <item name="Javadoc" href="apidocs/index.html"/>
-            <item name="Issue Tracking" href="http://www.cip4.org/jira/"/>            
-            <item name="Downloads" href="http://www.cip4.org/open_source/elk/downloads"/>
-            <item name="Old Downloads" href="http://www.cip4.org/open_source/elk/maven/elk/distributions"/>
-            <item name="Alces" href="http://www.cip4.org/open_source/elk/alces"/>
+            <item name="Issue Tracking" href="http://www.cip4.org/jira/"/>
+            <item name="Downloads"
+                href="http://www.cip4.org/open_source/elk/downloads"/>
+            <!--<item name="Old Downloads" href="http://www.cip4.org/open_source/elk/maven/elk/distributions"/>-->
+            <item name="Alces" href="http://www.cip4.org/open_source/elk/alces"
+            />
         </menu>
-        ${reports}
+        ${reports} 
     </body>
+    <!--<poweredBy>
+        <logo name="Maven" href="http://maven.apache.org/"
+            img="http://maven.apache.org/images/logos/maven-feather.png"/>
+    </poweredBy>-->
 </project>

@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
+<!DOCTYPE document PUBLIC "-//Apache Software Foundation//DTD XDOC 1.0//EN" "http://maven.apache.org/dtd/xdoc_1_0.dtd">
 <document>
     <properties>
-        <author email="clabu@itn.liu.se">Claes Buckwalter</author>
         <title>Quick Start Guide</title>
+        <author email="claes.buckwalter-AT-agfa.com">Claes Buckwalter</author>        
     </properties>
-    <meta name="keyword" content="Elk, JDF, Job Definition Format, CIP, java,         Device, Device Framework"/>
     <body>
         <section name="One Minute Quick Start Guide">
             <ol>
@@ -59,6 +59,7 @@
                         <li>Have fun!</li>
                     </ol>
                 </subsection>
+            </section>
             <section name="Building Elk">
                 <subsection name="1 Requirements">
                     <ul>
@@ -89,6 +90,5 @@
                     </ol>
                     </subsection>
             </section>
-        </section>
     </body>
 </document>
