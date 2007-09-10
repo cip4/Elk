@@ -65,7 +65,7 @@
             Information about the changes in each new Elk release can be found in the <a href="changes-report.html">changes report</a>.
                 </p>
         </section>
-        <section name="TheElkFramework">
+        <section name="The Elk Framework">
             <p>The main goal of the Elk Framework project is to create an
                 application framework that provides the services needed by a JDF
                 <em>Device</em> or <em>Controller</em>. The framework is

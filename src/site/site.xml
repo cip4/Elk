@@ -49,7 +49,7 @@
             <item name="Downloads"
                 href="http://www.cip4.org/open_source/elk/downloads"/>
             <!--<item name="Old Downloads" href="http://www.cip4.org/open_source/elk/maven/elk/distributions"/>-->
-            <item name="Alces" href="http://www.cip4.org/open_source/elk/alces"
+            <item name="Alces" href="http://www.cip4.org/open_source/alces/"
             />
         </menu>
         ${reports} 
