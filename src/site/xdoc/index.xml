@@ -8,8 +8,22 @@
     </properties>
     <body>
         <section name="News">
-                <ul>
-					<li>2007-09-05 - A <a href="http://maven.apache.org">Maven</a> repository has been set up for the Elk Project. It will contain the JAR files of the CIP4 tools plus other JARs needed to build the Elk Framework. The repository should become browsable in the next few days: <a href="http://www.cip4.org/open_source/elk/maven/">http://www.cip4.org/open_source/elk/maven/</a></li>
+                <ul>         
+                    <li>2007-09-12 - The recommended way of building the Elk Framework and the Elk Press is now to use <a href="http://maven.apache.org">Maven 2</a>. 
+                    Once you have installed Maven, you can build the Elk Framework JAR file by typing <code>mvn package</code>. Maven will then download the plugins it needs
+                    and the Elk Framework's dependencies. Other useful Maven commands are <code>mvn compile</code>, <code>mvn test</code>, and <code>mvn site</code> to generated this web site.
+                    <br/>   
+                    The Elk Framework still includes the old Ant build script as an alternative for building the JAR file.                     
+                    </li>
+					<li>2007-09-12 - The Subversion source repository has been restructured. There is now a separate source repository for each Elk project:
+                        <ul>
+                            <li><a href="http://cip4srv2.igd.fhg.de/svnroot/trunk/elk/">elk</a> - the Elk Framework source repository</li>
+                            <li><a href="http://cip4srv2.igd.fhg.de/svnroot/trunk/elk-press/">elk-press</a> - the Elk Press source repository</li>
+                        </ul>
+                        Instructions how to retrieve the Elk Framework source code from our source repository can be found under <a href="source-repository.html">Project Information &gt; Source Repository</a>.  
+                    </li> 
+                    <li>2007-09-12 - A separate web site for the Elk Press has been published: <a href="http://www.cip4.org/open_source/elk/press/">http://www.cip4.org/open_source/elk/press/</a></li>
+                    <li>2007-09-05 - A <a href="http://maven.apache.org">Maven</a> repository has been set up for the Elk Project. It will contain the JAR files of the CIP4 tools plus other JARs needed to build the Elk Framework. The repository should become browsable in the next few days: <a href="http://www.cip4.org/open_source/elk/maven/">http://www.cip4.org/open_source/elk/maven/</a></li>
                     <li>2007-09-04 - The Elk Project is in the process of being restructured. The restructuring is an effort to make a clear separation between <strong>the Elk Framework</strong> aka (the Elk API) and its reference implementation, <strong>the Elk Press</strong>. More information regarding the restructuring can be found <a href="newelk.html">here</a>.</li>
 	                <li>2007-09-04 - New web site design</li>
                     <li>2007-02-15 - Brian Ray of the Elk team gives a tutorial on Job Messaging Format (JMF), Elk, and Alces at <a href="http://www.xplor.org/xplor2007/agenda/course_desc.cfm?courseID=140&amp;qwerty=asd456ghj">Xplor 2007</a>, Miami Beach Convention Center, Florida, USA, on March 2nd.</li>
