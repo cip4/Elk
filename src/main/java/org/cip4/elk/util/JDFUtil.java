@@ -9,9 +9,9 @@ import java.util.Vector;
 
 import org.apache.log4j.Logger;
 import org.cip4.elk.JDFElementFactory;
-import org.cip4.elk.impl.jmf.util.Messages;
 import org.cip4.jdflib.auto.JDFAutoNotification.EnumClass;
 import org.cip4.jdflib.core.ElementName;
+import org.cip4.jdflib.core.JDFComment;
 import org.cip4.jdflib.core.JDFElement;
 import org.cip4.jdflib.core.JDFResourceLink;
 import org.cip4.jdflib.core.JDFElement.EnumNodeStatus;
@@ -223,7 +223,7 @@ public final class JDFUtil {
         if (jdf.getTemplate()) {
             String msg = "The JDFNode is a Template. It is not being executed.";
             returnCode = 1; // Invalid parameter
-            Messages.appendNotification(response, EnumClass.Warning,
+            appendNotification(response, EnumClass.Warning,
                     returnCode, msg);
             log.warn(msg);
             returnCode = 1; // General error
@@ -231,7 +231,7 @@ public final class JDFUtil {
             String msg = "Could not execute process because there were no process nodes of type '"
                     + processType + "' to execute.";
             returnCode = 6; // Invalid parameter
-            Messages.appendNotification(response, EnumClass.Warning,
+            appendNotification(response, EnumClass.Warning,
                     returnCode, msg);
             log.warn(msg);
         } else { // At least one Node of correct Type.
@@ -253,4 +253,34 @@ public final class JDFUtil {
         return returnCode;
     }
 
+    /**
+     * Appends a <em>Notification</em> element to a <em>Response</em>
+     * element. If there already exists a <em>Notification</em> a
+     * <em>Comment</em> containing the specified message is added to the
+     * <em>Notification</em>.
+     * 
+     * @param response
+     *            the response to append the notification to
+     * @param notClass
+     *            the class of the notification
+     * @param returnCode
+     *            the return code
+     * @param msg
+     *            a message that will be appended as a comment to the
+     *            notification
+     */
+    public static void appendNotification(JDFResponse response,
+            JDFNotification.EnumClass notClass, int returnCode, String msg) {
+        response.setReturnCode(returnCode);
+        final JDFNotification notification; 
+        if (response.getNotification() == null) {
+            notification = response.appendNotification();
+        } else {
+            notification = response.getNotification();            
+        }
+        notification.setClass(notClass);
+        final JDFComment comment = notification.appendComment();
+        comment.appendText(msg);
+    }
+    
 }
