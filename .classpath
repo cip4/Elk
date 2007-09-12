@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src/java"/>
-	<classpathentry kind="src" path="src/devices/ConventionalPrinting/webapp/WEB-INF/classes"/>
 	<classpathentry kind="src" path="src/test"/>
+	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="src/lib/xml-apis.jar"/>
 	<classpathentry kind="lib" path="src/lib/xercesImpl.jar"/>
