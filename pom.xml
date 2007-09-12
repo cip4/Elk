@@ -64,11 +64,7 @@
             <testResource>
                 <directory>src/test</directory>
             </testResource>
-            <testResource>
-                <directory>src/test/data</directory>
-            </testResource>
-        </testResources>
-        <sourceDirectory>src/java</sourceDirectory>
+        </testResources>        
         <testSourceDirectory>src/test</testSourceDirectory>
     </build>
     <reporting>
