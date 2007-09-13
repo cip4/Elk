@@ -46,11 +46,12 @@
                 href="docs/elk-dev-tutorial.pdf"/>
             <item name="Javadoc" href="apidocs/index.html"/>
             <item name="Issue Tracking" href="http://www.cip4.org/jira/"/>
-            <item name="Downloads"
-                href="http://www.cip4.org/open_source/elk/downloads"/>
-            <!--<item name="Old Downloads" href="http://www.cip4.org/open_source/elk/maven/elk/distributions"/>-->
-            <item name="Alces" href="http://www.cip4.org/open_source/alces/"
-            />
+            <item name="Old Downloads"
+                href="http://www.cip4.org/open_source/elk/downloads"/>            
+        </menu>
+        <menu name="Related Projects">
+        	<item name="The Elk Press" href="http://www.cip4.org/open_source/elk/press/"/>
+            <item name="Alces" href="http://www.cip4.org/open_source/alces/"/>
         </menu>
         ${reports} 
     </body>
