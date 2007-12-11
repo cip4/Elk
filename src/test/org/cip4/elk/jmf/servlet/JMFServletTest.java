@@ -57,7 +57,7 @@ public class JMFServletTest extends ElkTestCase {
         log.debug("Created request: " + request);
         // Post the request
         try {
-            // WebResponse response = sc.getResponse(request);
+            // WebResponse response = theStatusCounter.getResponse(request);
             sc.getResponse(request);
         } catch(HttpException he) {
             assertTrue(he.getResponseCode() == HttpServletResponse.SC_NOT_IMPLEMENTED);    
@@ -83,7 +83,7 @@ public class JMFServletTest extends ElkTestCase {
             if(sc == null){
                 log.error("Unable to create ServletUnitClient...");
             }
-            // WebResponse response = sc.getResponse(request);
+            // WebResponse response = theStatusCounter.getResponse(request);
             sc.getResponse(request);
         } catch(HttpException he) {
             assertTrue(he.getResponseCode() == HttpServletResponse.SC_NOT_IMPLEMENTED);    
@@ -146,7 +146,7 @@ public class JMFServletTest extends ElkTestCase {
                 JMFServlet.MIME_CONTENT_TYPE);
         // Post the request
         try {
-            // WebResponse response = sc.getResponse(request);
+            // WebResponse response = theStatusCounter.getResponse(request);
             sc.getResponse(request);
         } catch(HttpException he) {
             assertTrue(he.getResponseCode() == HttpServletResponse.SC_NOT_IMPLEMENTED);    
